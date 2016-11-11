@@ -36,7 +36,7 @@ to setup
     set excrete false
     set isSeed true
     set isStuck true
-	  set age random 1000
+    set age random 1000
 	  set flowConst 1 ;edit this
 	  set doubConst 1
     setxy random-xcor random-ycor
@@ -291,7 +291,7 @@ to bacteria-tick-behavior
     flowMove
     bacteriaMove
 	  checkStuck
-    death-bifidos
+    death-desulfos
     if (age mod desulfoDoub / doubConst = 0 and age != 0)[
       reproduceBact
     ]
@@ -302,7 +302,7 @@ to bacteria-tick-behavior
     flowMove
     bacteriaMove
 	  checkStuck
-    death-bifidos
+    death-closts
     if (age mod clostDoub / doubConst = 0 and age != 0)[
       reproduceBact
     ]
@@ -313,7 +313,7 @@ to bacteria-tick-behavior
     flowMove
     bacteriaMove
 	  checkStuck
-    death-bifidos
+    death-vulgats
     if (age mod vulgatDoub / doubConst = 0 and age != 0)[
       reproduceBact
     ]
@@ -374,9 +374,13 @@ to checkStuck
     if(not isStuck and (random 100 < stuckChance))[
 	    set isStuck true
     ]
-    if(isStuck and (random 100 < unstuckChance))[
+    ifelse(isStuck and (random 100 < unstuckChance))[
 	    set isStuck false
-    ]
+    ][;else
+			if(random 100 < seedChance)[
+			  set isSeed true
+			]
+		]
   ]
 end
 ;///////////////////////////checkStuck///////////////////////////////////////
@@ -427,7 +431,6 @@ to inConc
     setxy min-pxcor - 0.5 random-ycor
 
   ]
-
   create-vulgats inConcVulgats [
     set color grey
     set size 1
@@ -1061,7 +1064,7 @@ INPUTBOX
 388
 333
 initial-number-vulgats
-2000
+200
 1
 0
 Number
@@ -1072,7 +1075,7 @@ INPUTBOX
 388
 393
 initial-number-bifidos
-100000
+10000
 1
 0
 Number
@@ -1083,7 +1086,7 @@ INPUTBOX
 388
 453
 initial-number-closts
-2000
+200
 1
 0
 Number
@@ -1094,7 +1097,7 @@ INPUTBOX
 388
 513
 initial-number-desulfos
-100
+10
 1
 0
 Number
@@ -1299,6 +1302,17 @@ INPUTBOX
 498
 bifido-lactate-production
 1
+1
+0
+Number
+
+INPUTBOX
+855
+487
+983
+547
+seedChance
+5
 1
 0
 Number

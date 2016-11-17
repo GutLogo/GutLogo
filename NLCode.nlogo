@@ -262,12 +262,12 @@ to make-carbohydrates
       set CS (CS + (added))
     ]
   ]
-  set inulinReserve ((inulin) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set FOReserve ((FO) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set lactoseReserve ((lactose) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set lactateReserve ((lactate) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set glucoseReserve ((glucose) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set CSReserve ((CS) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set inulinReserve ((inulin) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set FOReserve ((FO) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set lactoseReserve ((lactose) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set lactateReserve ((lactate) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set glucoseReserve ((glucose) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set CSReserve ((CS) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
 
   set inulin ((inulin - inulinReserve) * (1 - trueAbsorption))
   set FO ((FO - FOReserve) * (1 - trueAbsorption))
@@ -1105,7 +1105,7 @@ INPUTBOX
 388
 453
 initial-number-closts
-200
+300
 1
 0
 Number
@@ -1116,7 +1116,7 @@ INPUTBOX
 388
 513
 initial-number-desulfos
-10
+20
 1
 0
 Number
@@ -1243,7 +1243,7 @@ INPUTBOX
 556
 277
 inFlowInulin
-10
+100
 1
 0
 Number
@@ -1265,7 +1265,7 @@ INPUTBOX
 710
 396
 inFlowFO
-10
+100
 1
 0
 Number
@@ -1276,7 +1276,7 @@ INPUTBOX
 556
 396
 inFlowLactose
-10
+100
 1
 0
 Number
@@ -1287,7 +1287,7 @@ INPUTBOX
 709
 336
 inFlowLactate
-10
+100
 1
 0
 Number
@@ -1298,7 +1298,7 @@ INPUTBOX
 710
 276
 inFlowGlucose
-10
+100
 1
 0
 Number
@@ -1309,7 +1309,7 @@ INPUTBOX
 556
 337
 inFlowCS
-10
+100
 1
 0
 Number
@@ -1332,6 +1332,17 @@ INPUTBOX
 547
 seedChance
 5
+1
+0
+Number
+
+INPUTBOX
+478
+502
+633
+562
+reserveFraction
+0.9
 1
 0
 Number
@@ -1754,7 +1765,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 5.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

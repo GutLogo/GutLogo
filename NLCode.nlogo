@@ -27,6 +27,7 @@ to setup
   clear-all
 
   ; Initializing the turtles and patches
+	; populates the world with the bacteria population at the initial-numbers set by the user
   set-default-shape bifidos "bacteria"
   create-bifidos initial-number-bifidos [
     set color blue
@@ -83,7 +84,8 @@ to setup
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
-
+	
+	; initializes the patch variables
   ask patches [
     set glucose 10
     set FO 10
@@ -132,9 +134,6 @@ to go
   (1 * ((count closts) / (count turtles)))+(1.2 * ((count vulgats) / (count turtles))) +
   (0.7 * ((count bifidos) / (count turtles)))))
 
-  ; Uncomment the following line to display energy on the turtles
-  ; display-labels
-
   if not any? turtles [ stop ] ; stop if all turtles are dead
 
   ; Modify the energy levels of each turtles and carbohydrate
@@ -164,11 +163,10 @@ end
 
 
 ;///////////////////////////DEATH-BACTERIA///////////////////////////////////////
+; Each of these functions are currently equivalent, different function so we can expand on it if needed
 ; Bifidobacteria die if below the energy threshold or if excreted
 to death-bifidos
   if energy < 5[
-    ;ifelse isSeed
-    ;[set energy 100]
     die
   ]
   if excrete [die]
@@ -177,8 +175,6 @@ end
 ; Clostrida die if below the energy threshold or if excreted
 to death-closts
   if energy < 5 [
-    ;ifelse isSeed
-    ;[set energy 100]
     die
   ]
   if excrete [die]
@@ -187,8 +183,6 @@ end
 ; Desulfovibrio die if below the energy threshold or if excreted
 to death-desulfos
   if energy < 5 [
-    ;ifelse isSeed
-    ;[set energy 100]
     die
   ]
   if excrete [die]
@@ -197,8 +191,6 @@ end
 ; Vulgatus die if below energy threshold or if excreted
 to death-vulgats
   if energy < 5 [
-    ;ifelse isSeed
-    ;[set energy 100]
     die
   ]
   if excrete [die]
@@ -296,14 +288,14 @@ end
 
 to bacteria-tick-behavior
   ask bifidos [
-    flowMove
-    bacteriaMove
-	  checkStuck
-    death-bifidos
+    flowMove ; movement of the bacteria by flow
+    bacteriaMove ; movement of the bacteria by a combination of motility and other random forces
+	  checkStuck ; check if the bacteria becomes stuck or unstuck
+    death-bifidos ; check that the energy of the bacteria is enough, otherwise bacteria dies
     if (age mod bifidoDoub / doubConst = 0 and age != 0)[ ;this line controls on what tick mod reproduce
-      reproduceBact
+      reproduceBact ; run the reproduce code for bacteria
     ]
-  	set age (age + 1)
+  	set age (age + 1) ; increase the age of the bacteria with each tick
   ]
 
   ask desulfos [;controls the behavior for the desulfos bacteria
@@ -347,10 +339,10 @@ end
 to reproduceBact
   if energy > 50 [
     let tmp (energy / 2 )
-    set energy (tmp)
+    set energy (tmp) ; parent's energy is halved
     hatch 1 [
       rt random-float 360
-      set energy tmp
+      set energy tmp ; child gets half of parent's energy
       set isSeed false
       set isStuck false
 	    set age 0
@@ -378,6 +370,7 @@ end
 
 ;///////////////////////////flowMove///////////////////////////////////////
 to flowMove
+; moves the bacteria by the flow distance * the bacteria's flow constant
 ;if xcor would pass the max-pxcor with movement, sets excrete to true
   if (isStuck = false)[
     ifelse (xcor + flowDist * flowConst >= (max-pxcor + 0.5))
@@ -389,6 +382,7 @@ end
 ;///////////////////////////flowMove///////////////////////////////////////
 
 ;///////////////////////////checkStuck///////////////////////////////////////
+; checks if the bacteria should be stuck or unstucked based on the chances
 to checkStuck
   if(not isSeed)[
     if(not isStuck and (random 100 < stuckChance))[
@@ -408,6 +402,7 @@ end
 ;///////////////////////////inConc///////////////////////////////////////
 to inConc
 ;controls the amount of each type of bacteria flowing in to the simulation
+; similar to the code in go, but bacteria are now placed at only in the first column
 
   create-bifidos inConcBifidos [
     set color blue
@@ -471,7 +466,6 @@ end
 ;///////////////////////////bactEat///////////////////////////////////////
 to bactEat [carbNum]
 ;run this through a turtle with a carbNum parameter to have them try to eat the carb
-;include the odd bifido lactate production
   if (carbNum = 10)[;CS
     ifelse (breed = desulfos)[
       set energy (energy + 50)
@@ -1040,7 +1034,7 @@ INPUTBOX
 982
 488
 flowDist
-1
+0.2
 1
 0
 Number
@@ -1353,6 +1347,17 @@ Number
 This model represents the relationships between _Bifidobaceria_, _Desulfovibrio_, and _Clostridia_. These bacteria are important in the appearance of Autism Spectrum Disorders (ASDs). High levels of _Desulfovibrio_ and _Clostridia_ and low levels of _Bifidobacteria_ have been found in the gut of children with ASDs. Therefore, a gut microbiome dominated by _Bifidobacteria_ is likely to be that of a healthy child, whereas a gut microbiome dominated by _Desulfovibrio_ and/or _Clostridia_ is likely to be that of an autistic child.
 
 ## Change Log
+
+##### 17NOV2016 - CL, JC, & EU
+*More than 95% of the code has been altered since the last update
+Introduced flow of bacteria and carbohydrates
+New implementation of time, ticks are now one minute
+New implementation of eating, bacteria no longer have eaten, only energy
+Bacteria lose energy every single tick, currently set to lose (100/1440) each tick, 1440 = number of minutes per day
+Bacteria reproduce using energy, half of parent's energy transferred to child
+Flow of carbohydrates uses reserve variables to model the inavalibility of some of the carbohydrates at the start
+Simulation will model the ileum of the small intestine
+
 
 ##### 10/25/15
 Introduced autoregulation of Bifidobacteria
@@ -1770,6 +1775,14 @@ NetLogo 5.3.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="checkStabilty" repetitions="50" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="5000"/>
+    <metric>count turtles</metric>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default

@@ -282,12 +282,12 @@ end
 ; Sets previous carbohydrate variables to current levels to allow for correct
 ; transfer on ticks
 to store-carbohydrates
-  set inulinPrev ((inulin))
-  set FOPrev ((FO))
-  set lactosePrev ((lactose))
-  set lactatePrev ((lactate))
-  set glucosePrev ((glucose))
-  set CSPrev ((CS))
+  set inulinPrev ((inulin + inulinReserve))
+  set FOPrev ((FO + FOReserve))
+  set lactosePrev ((lactose + lactoseReserve))
+  set lactatePrev ((lactate + lactateReserve))
+  set glucosePrev ((glucose + glucoseReserve))
+  set CSPrev ((CS + CSReserve))
 end
 ;///////////////////////////STORE-CARBOHYDRATES///////////////////////////////////////
 
@@ -351,6 +351,7 @@ to reproduceBact
     hatch 1 [
       rt random-float 360
       set energy tmp
+      set isSeed false
       set isStuck false
 	    set age 0
     ]
@@ -1039,7 +1040,7 @@ INPUTBOX
 982
 488
 flowDist
-0.5
+1
 1
 0
 Number
@@ -1072,7 +1073,7 @@ INPUTBOX
 851
 488
 stuckChance
-50
+0
 1
 0
 Number
@@ -1188,7 +1189,7 @@ INPUTBOX
 855
 547
 unstuckChance
-50
+0
 1
 0
 Number
@@ -1243,7 +1244,7 @@ INPUTBOX
 556
 277
 inFlowInulin
-100
+10
 1
 0
 Number
@@ -1254,7 +1255,7 @@ INPUTBOX
 711
 498
 absorption
-0.01
+0
 1
 0
 Number
@@ -1265,7 +1266,7 @@ INPUTBOX
 710
 396
 inFlowFO
-100
+10
 1
 0
 Number
@@ -1276,7 +1277,7 @@ INPUTBOX
 556
 396
 inFlowLactose
-100
+10
 1
 0
 Number
@@ -1287,7 +1288,7 @@ INPUTBOX
 709
 336
 inFlowLactate
-100
+10
 1
 0
 Number
@@ -1298,7 +1299,7 @@ INPUTBOX
 710
 276
 inFlowGlucose
-100
+10
 1
 0
 Number
@@ -1309,7 +1310,7 @@ INPUTBOX
 556
 337
 inFlowCS
-100
+10
 1
 0
 Number
@@ -1331,7 +1332,7 @@ INPUTBOX
 983
 547
 seedChance
-5
+0
 1
 0
 Number
@@ -1765,7 +1766,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.3
+NetLogo 5.3.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

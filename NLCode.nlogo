@@ -6,7 +6,7 @@ breed [closts clost] ;define the Clostridia breed
 breed [vulgats vulgat]; define the Bacteriodes Vulgatus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
 patches-own [antioxidants oxidants glucose FO lactose lactate inulin CS varA varB glucosePrev FOPrev lactosePrev
-lactatePrev inulinPrev CSPrev avaCarbs]
+lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve inulinReserve CSReserve avaCarbs]
 globals [trueAbsorption negCarb]
 ;///////////////////////////VARIABLES///////////////////////////////////////
 
@@ -97,6 +97,12 @@ to setup
     set lactatePrev 0
     set inulinPrev 0
     set CSPrev 0
+    set glucoseReserve 0
+    set FOReserve 0
+    set lactoseReserve 0
+    set lactateReserve 0
+    set inulinReserve 0
+    set CSReserve 0
   ]
 
   ; 0.723823204 is the weighted average immune response coefficient calculated for
@@ -208,7 +214,14 @@ to make-carbohydrates
     set negCarb true
     stop
   ]
-  if (ticks mod (ceiling(1 / flowDist)) = 0)[
+
+  set inulin ((inulin) + inulinReserve)
+  set FO ((FO) + FOReserve)
+  set lactose ((lactose) + lactoseReserve)
+  set lactate ((lactate) + lactateReserve)
+  set glucose ((glucose) + glucoseReserve)
+  set CS ((CS) + CSReserve)
+
   let remainFactor 0
   if (flowDist < 1)[set remainFactor (1 - flowDist)]
   set inulin (inulin * remainFactor)
@@ -249,13 +262,19 @@ to make-carbohydrates
       set CS (CS + (added))
     ]
   ]
-  ]
-  set inulin ((inulin) * (1 - trueAbsorption))
-  set FO ((FO) * (1 - trueAbsorption))
-  set lactose ((lactose) * (1 - trueAbsorption))
-  set lactate ((lactate) * (1 - trueAbsorption))
-  set glucose ((glucose) * (1 - trueAbsorption))
-  set CS ((CS) * (1 - trueAbsorption))
+  set inulinReserve ((inulin) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set FOReserve ((FO) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set lactoseReserve ((lactose) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set lactateReserve ((lactate) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set glucoseReserve ((glucose) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  set CSReserve ((CS) * .7 * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+
+  set inulin ((inulin - inulinReserve) * (1 - trueAbsorption))
+  set FO ((FO - FOReserve) * (1 - trueAbsorption))
+  set lactose ((lactose - lactoseReserve) * (1 - trueAbsorption))
+  set lactate ((lactate - lactateReserve) * (1 - trueAbsorption))
+  set glucose ((glucose - glucoseReserve) * (1 - trueAbsorption))
+  set CS ((CS - CSReserve) * (1 - trueAbsorption))
 end
 ;///////////////////////////MAKE-CAROBOHYDRATES///////////////////////////////////////
 
@@ -263,12 +282,12 @@ end
 ; Sets previous carbohydrate variables to current levels to allow for correct
 ; transfer on ticks
 to store-carbohydrates
-  set inulinPrev ((round inulin))
-  set FOPrev ((round FO))
-  set lactosePrev ((round lactose))
-  set lactatePrev ((round lactate))
-  set glucosePrev ((round glucose))
-  set CSPrev ((round CS))
+  set inulinPrev ((inulin))
+  set FOPrev ((FO))
+  set lactosePrev ((lactose))
+  set lactatePrev ((lactate))
+  set glucosePrev ((glucose))
+  set CSPrev ((CS))
 end
 ;///////////////////////////STORE-CARBOHYDRATES///////////////////////////////////////
 

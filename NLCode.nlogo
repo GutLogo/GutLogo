@@ -5,7 +5,7 @@ breed [desulfos desulfo] ; define the Desulfovibrio breed
 breed [closts clost] ; define the Clostridia breed
 breed [vulgats vulgat]; define the Bacteriodes Vulgatus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
-patches-own [antioxidants oxidants glucose FO lactose lactate inulin CS varA varB glucosePrev FOPrev lactosePrev
+patches-own [glucose FO lactose lactate inulin CS varA varB glucosePrev FOPrev lactosePrev
 lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve inulinReserve CSReserve avaCarbs]
 globals [trueAbsorption negCarb]
 ;///////////////////////////VARIABLES///////////////////////////////////////

@@ -52,7 +52,7 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 
+	  set flowConst 1
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
@@ -66,7 +66,7 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 
+	  set flowConst 1
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
@@ -80,11 +80,11 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 
+	  set flowConst 1
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
-	
+
 	; initializes the patch variables
   ask patches [
     set glucose 10
@@ -134,8 +134,6 @@ to go
   (1 * ((count closts) / (count turtles)))+(1.2 * ((count vulgats) / (count turtles))) +
   (0.7 * ((count bifidos) / (count turtles)))))
 
-  if not any? turtles [ stop ] ; stop if all turtles are dead
-
   ; Modify the energy levels of each turtles and carbohydrate
   ; level of each patch
   ask patches [
@@ -153,14 +151,23 @@ to go
 
   ; Increment time
   tick
-  ; Stop if any population hits 0 or there are too many turtles
-  if count turtles > 1000000 [stop]
-  if count turtles = 0 [stop]
+
   ; Stop if negative number of carbs calculated
   if negCarb [stop]
 end
 ;///////////////////////////GO///////////////////////////////////////
 
+;///////////////////////////stopCheck///////////////////////////////////////
+to stopCheck
+  ; code for stopping the simulation
+
+  ; Stop if any population hits 0 or there are too many turtles
+  if count turtles > 1000000 [stop]
+  if not any? turtles [ stop ] ; stop if all turtles are dead
+
+
+end
+;///////////////////////////stopCheck///////////////////////////////////////
 
 ;///////////////////////////DEATH-BACTERIA///////////////////////////////////////
 ; Each of these functions are currently equivalent, different function so we can expand on it if needed
@@ -289,7 +296,7 @@ end
 to bacteria-tick-behavior
   ask bifidos [
     flowMove ; movement of the bacteria by flow
-    bacteriaMove ; movement of the bacteria by a combination of motility and other random forces
+    randMove ; movement of the bacteria by a combination of motility and other random forces
 	  checkStuck ; check if the bacteria becomes stuck or unstuck
     death-bifidos ; check that the energy of the bacteria is enough, otherwise bacteria dies
     if (age mod bifidoDoub / doubConst = 0 and age != 0)[ ;this line controls on what tick mod reproduce
@@ -300,7 +307,7 @@ to bacteria-tick-behavior
 
   ask desulfos [;controls the behavior for the desulfos bacteria
     flowMove
-    bacteriaMove
+    randMove
 	  checkStuck
     death-desulfos
     if (age mod desulfoDoub / doubConst = 0 and age != 0)[
@@ -311,7 +318,7 @@ to bacteria-tick-behavior
 
   ask closts [;controls the behavior for the closts
     flowMove
-    bacteriaMove
+    randMove
 	  checkStuck
     death-closts
     if (age mod clostDoub / doubConst = 0 and age != 0)[
@@ -322,7 +329,7 @@ to bacteria-tick-behavior
 
   ask vulgats [;controls the behavior for the vulgats
     flowMove
-    bacteriaMove
+    randMove
 	  checkStuck
     death-vulgats
     if (age mod vulgatDoub / doubConst = 0 and age != 0)[
@@ -351,22 +358,22 @@ to reproduceBact
 end
 ;///////////////////////////reproduceBact///////////////////////////////////////
 
-;///////////////////////////bacteriaMove///////////////////////////////////////
+;///////////////////////////randMove///////////////////////////////////////
 ; Defines random movement of turtles
-to bacteriaMove
-; rotates the orientation of the bacteria randomly within 180 degrees front-facing then moves forward the bacteria's motilDist
+to randMove
+; rotates the orientation of the bacteria randomly within 180 degrees front-facing then moves forward the bacteria's randDist
 ;may disable with motility assumption
 ; if it would hit go through the simulation boundaries, sets excrete to true
   if (isStuck = false)[
     rt (random 360)
 
-    ifelse (can-move? motilDist)
-      [fd motilDist]
+    ifelse (can-move? randDist)
+      [fd randDist]
       [set excrete true]
   ]
 
 end
-;///////////////////////////bacteriaMove///////////////////////////////////////
+;///////////////////////////randMove///////////////////////////////////////
 
 ;///////////////////////////flowMove///////////////////////////////////////
 to flowMove
@@ -413,7 +420,7 @@ to inConc
     set isSeed false
     set isStuck false
 	  set age 0
-	  set flowConst 1 
+	  set flowConst 1
 	  set doubConst 1
     setxy min-pxcor - 0.5 random-ycor
 
@@ -1020,7 +1027,7 @@ INPUTBOX
 589
 1277
 649
-motilDist
+randDist
 0.1
 1
 0
@@ -1033,17 +1040,6 @@ INPUTBOX
 488
 flowDist
 0.2
-1
-0
-Number
-
-INPUTBOX
-1150
-649
-1277
-709
-lessMotilConst
-0.75
 1
 0
 Number
@@ -1065,7 +1061,7 @@ INPUTBOX
 851
 488
 stuckChance
-0
+50
 1
 0
 Number
@@ -1181,7 +1177,7 @@ INPUTBOX
 855
 547
 unstuckChance
-0
+20
 1
 0
 Number
@@ -1324,7 +1320,7 @@ INPUTBOX
 983
 547
 seedChance
-0
+5
 1
 0
 Number

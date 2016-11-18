@@ -1,8 +1,8 @@
 extensions [profiler]
 ;///////////////////////////VARIABLES///////////////////////////////////////
-breed [bifidos bifido] ;define the Bifidobacteria breed
-breed [desulfos desulfo] ;define the Desulfovibrio breed
-breed [closts clost] ;define the Clostridia breed
+breed [bifidos bifido] ; define the Bifidobacteria breed
+breed [desulfos desulfo] ; define the Desulfovibrio breed
+breed [closts clost] ; define the Clostridia breed
 breed [vulgats vulgat]; define the Bacteriodes Vulgatus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
 patches-own [antioxidants oxidants glucose FO lactose lactate inulin CS varA varB glucosePrev FOPrev lactosePrev
@@ -23,7 +23,7 @@ end
 ;///////////////////////////SETUP///////////////////////////////////////
 to setup
 
-  ;ensure the model starts from scratch
+  ; ensure the model starts from scratch
   clear-all
 
   ; Initializing the turtles and patches
@@ -38,7 +38,7 @@ to setup
     set isSeed true
     set isStuck true
     set age random 1000
-	  set flowConst 1 ;edit this
+	  set flowConst 1 ; can use this to edit the breed specfic flow distance
 	  set doubConst 1
     setxy random-xcor random-ycor
 
@@ -52,7 +52,7 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 ;edit this
+	  set flowConst 1 
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
@@ -66,7 +66,7 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 ;edit this
+	  set flowConst 1 
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
@@ -80,7 +80,7 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 ;edit this
+	  set flowConst 1 
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
@@ -413,7 +413,7 @@ to inConc
     set isSeed false
     set isStuck false
 	  set age 0
-	  set flowConst 1 ;edit this
+	  set flowConst 1 
 	  set doubConst 1
     setxy min-pxcor - 0.5 random-ycor
 
@@ -467,13 +467,13 @@ end
 to bactEat [carbNum]
 ;run this through a turtle with a carbNum parameter to have them try to eat the carb
   if (carbNum = 10)[;CS
-    ifelse (breed = desulfos)[
-      set energy (energy + 50)
+    ifelse (breed = desulfos)[; check correct breed
+      set energy (energy + 50); increase the energy of the bacteria
       ask patch-here [
-        set CS (CS - 1)
-		if (CS < 1)[
-			set avaCarbs remove 10 avaCarbs
-		]
+          set CS (CS - 1); reduce the carb count
+        if (CS < 1)[; remove the carb from avaCarbs if there is no more of it
+          set avaCarbs remove 10 avaCarbs
+        ]
       ]
     ]
     [;else
@@ -486,9 +486,9 @@ to bactEat [carbNum]
       set energy (energy + 25)
       ask patch-here [
         set FO (FO - 1)
-		if (FO < 1)[
-			set avaCarbs remove 11 avaCarbs
-		]
+        if (FO < 1)[
+          set avaCarbs remove 11 avaCarbs
+        ]
       ]
     ]
     [;else
@@ -496,9 +496,9 @@ to bactEat [carbNum]
         set energy (energy + 50)
         ask patch-here [
           set FO (FO - 1)
-			if (FO < 1)[
-				set avaCarbs remove 11 avaCarbs
-			]
+          if (FO < 1)[
+            set avaCarbs remove 11 avaCarbs
+          ]
         ]
         if (random-float 100 < bifido-lactate-production) [
           ask patch-here [
@@ -514,9 +514,9 @@ to bactEat [carbNum]
       set energy (energy + 50)
       ask patch-here [
         set glucose (glucose - 1)
-		if (glucose < 1)[
-			set avaCarbs remove 12 avaCarbs
-		]
+        if (glucose < 1)[
+          set avaCarbs remove 12 avaCarbs
+        ]
       ]
     ]
     [;else
@@ -524,9 +524,9 @@ to bactEat [carbNum]
         set energy (energy + 25)
         ask patch-here [
         	set glucose (glucose - 1)
-			if (glucose < 1)[
-				set avaCarbs remove 12 avaCarbs
-			]
+          if (glucose < 1)[
+            set avaCarbs remove 12 avaCarbs
+          ]
         ]
         if (random-float 100 < bifido-lactate-production) [
           ask patch-here [
@@ -542,9 +542,9 @@ to bactEat [carbNum]
       set energy (energy + 25)
       ask patch-here [
         set inulin (inulin - 1)
-		if (inulin < 1)[
-			set avaCarbs remove 13 avaCarbs
-		]
+        if (inulin < 1)[
+          set avaCarbs remove 13 avaCarbs
+        ]
       ]
     ]
     [;else
@@ -552,9 +552,9 @@ to bactEat [carbNum]
       set energy (energy + 25)
         ask patch-here [
           	set inulin (inulin - 1)
-			if (inulin < 1)[
-				set avaCarbs remove 13 avaCarbs
-			]
+          if (inulin < 1)[
+            set avaCarbs remove 13 avaCarbs
+          ]
         ]
         if (random-float 100 < bifido-lactate-production) [
           ask patch-here [
@@ -570,9 +570,9 @@ to bactEat [carbNum]
       set energy (energy + 50)
       ask patch-here [
         set lactate (lactate - 1)
-		if (lactate < 1)[
-			set avaCarbs remove 14 avaCarbs
-		]
+        if (lactate < 1)[
+          set avaCarbs remove 14 avaCarbs
+        ]
       ]
     ]
     [;else
@@ -590,9 +590,9 @@ to bactEat [carbNum]
       ];end else
       ask patch-here [
         set lactose (lactose - 1)
-		if (lactose < 1)[
-			set avaCarbs remove 15 avaCarbs
-		]
+        if (lactose < 1)[
+          set avaCarbs remove 15 avaCarbs
+        ]
       ]
     ]
     [;else
@@ -600,9 +600,9 @@ to bactEat [carbNum]
         set energy (energy + 50)
         ask patch-here [
           	set lactose (lactose - 1)
-			if (lactose < 1)[
-				set avaCarbs remove 15 avaCarbs
-			]
+          if (lactose < 1)[
+            set avaCarbs remove 15 avaCarbs
+          ]
         ]
         if (random-float 100 < bifido-lactate-production) [
           ask patch-here [
@@ -620,15 +620,15 @@ end
 
 ;///////////////////////////patchEat///////////////////////////////////////
 to patchEat
-;run this on a ask patches to have them start the turtle eating process
+; run this on a ask patches to have them start the turtle eating process
   ask turtles-here [
-    set remAttempts 5 ;reset the number of attempts
-    set energy (energy - (100 / 1440)) ;decrease the energy of the bacteria, currently survive 24 hours no eat
+    set remAttempts 5 ; reset the number of attempts
+    set energy (energy - (100 / 1440)) ; decrease the energy of the bacteria, currently survive 24 hours no eat
   ]
-  let allCarbs (list CS FO glucose inulin lactate lactose)
+  let allCarbs (list CS FO glucose inulin lactate lactose); list containing numbers of all the carbs
   set avaCarbs []
 
-  ;initialize the two lists
+  ; initialize the two lists
   let hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
   let i 1
   while [i < (length(allCarbs))][
@@ -637,18 +637,16 @@ to patchEat
     ]
     set i (i + 1)
   ]
-  let tries 0 ;not used in current code
   ; do the eating till no carbs or not hungry
   while [(length(avaCarbs) > 0) and any? hungryBact] [
-    ;code here to randomly select a turtle from hungryBact and then ask it to run bactEat with a random carb from ava. list
+    ; code here to randomly select a turtle from hungryBact and then ask it to run bactEat with a random carb from ava. list
     let carbNum one-of avaCarbs
     ask one-of hungryBact [
       bactEat(carbNum)
       set remAttempts remAttempts - 1
     ]
 	set hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
-	;increase the tries counters
-    set tries (tries + 1)
+	; increase the tries counters
   ]
 
 end

@@ -173,7 +173,7 @@ end
 ; Each of these functions are currently equivalent, different function so we can expand on it if needed
 ; Bifidobacteria die if below the energy threshold or if excreted
 to death-bifidos
-  if energy < 5[
+  if energy <= 0[
     die
   ]
   if excrete [die]
@@ -181,7 +181,7 @@ end
 
 ; Clostrida die if below the energy threshold or if excreted
 to death-closts
-  if energy < 5 [
+  if energy <= 0 [
     die
   ]
   if excrete [die]
@@ -189,7 +189,7 @@ end
 
 ; Desulfovibrio die if below the energy threshold or if excreted
 to death-desulfos
-  if energy < 5 [
+  if energy <= 0 [
     die
   ]
   if excrete [die]
@@ -197,7 +197,7 @@ end
 
 ; Vulgatus die if below energy threshold or if excreted
 to death-vulgats
-  if energy < 5 [
+  if energy <= 0 [
     die
   ]
   if excrete [die]

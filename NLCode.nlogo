@@ -166,7 +166,7 @@ end
 ;///////////////////////////DEATH-BACTERIA///////////////////////////////////////
 ; Bifidobacteria die if below the energy threshold or if excreted
 to death-bifidos
-  if energy < 5[
+  if energy <= 0[
     ;ifelse isSeed
     ;[set energy 100]
     die
@@ -176,7 +176,7 @@ end
 
 ; Clostrida die if below the energy threshold or if excreted
 to death-closts
-  if energy < 5 [
+  if energy <= 0[
     ;ifelse isSeed
     ;[set energy 100]
     die
@@ -186,7 +186,7 @@ end
 
 ; Desulfovibrio die if below the energy threshold or if excreted
 to death-desulfos
-  if energy < 5 [
+  if energy <= 0[
     ;ifelse isSeed
     ;[set energy 100]
     die
@@ -196,7 +196,7 @@ end
 
 ; Vulgatus die if below energy threshold or if excreted
 to death-vulgats
-  if energy < 5 [
+  if energy <= 0[
     ;ifelse isSeed
     ;[set energy 100]
     die

@@ -1,16 +1,16 @@
 extensions [profiler]
 ;///////////////////////////VARIABLES///////////////////////////////////////
-breed [bifidos bifido] ;define the Bifidobacteria breed
-breed [desulfos desulfo] ;define the Desulfovibrio breed
-breed [closts clost] ;define the Clostridia breed
+breed [bifidos bifido] ; define the Bifidobacteria breed
+breed [desulfos desulfo] ; define the Desulfovibrio breed
+breed [closts clost] ; define the Clostridia breed
 breed [vulgats vulgat]; define the Bacteriodes Vulgatus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
-patches-own [antioxidants oxidants glucose FO lactose lactate inulin CS varA varB glucosePrev FOPrev lactosePrev
-lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve inulinReserve CSReserve avaCarbs]
-globals [trueAbsorption negCarb]
+patches-own [glucose FO lactose lactate inulin CS glucosePrev FOPrev lactosePrev
+lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve inulinReserve CSReserve avaMetas]
+globals [trueAbsorption negMeta]
 ;///////////////////////////VARIABLES///////////////////////////////////////
 
-;///////////////////////////DISPLAY-LABLELS///////////////////////////////////////
+;///////////////////////////DISPLAY-LABELS///////////////////////////////////////
 ; Shows levels of energy on the turtles in the viewer
 to display-labels
   ask turtles [set label ""]
@@ -18,15 +18,16 @@ to display-labels
   ask bifidos [set label round energy ]
   ask closts [set label round energy ]
 end
-;///////////////////////////DISPLAY-LABLELS///////////////////////////////////////
+;///////////////////////////DISPLAY-LABELS///////////////////////////////////////
 
 ;///////////////////////////SETUP///////////////////////////////////////
 to setup
 
-  ;ensure the model starts from scratch
+  ; ensure the model starts from scratch
   clear-all
 
   ; Initializing the turtles and patches
+	; populates the world with the bacteria population at the initial-numbers set by the user
   set-default-shape bifidos "bacteria"
   create-bifidos initial-number-bifidos [
     set color blue
@@ -37,7 +38,7 @@ to setup
     set isSeed true
     set isStuck true
     set age random 1000
-	  set flowConst 1 ;edit this
+	  set flowConst 1 ; can use this to edit the breed specfic flow distance
 	  set doubConst 1
     setxy random-xcor random-ycor
 
@@ -51,7 +52,7 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 ;edit this
+	  set flowConst 1
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
@@ -65,7 +66,7 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 ;edit this
+	  set flowConst 1
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
@@ -79,11 +80,12 @@ to setup
     set isSeed true
     set isStuck true
 	  set age random 1000
-	  set flowConst 1 ;edit this
+	  set flowConst 1
 	  set doubConst 1
     setxy random-xcor random-ycor
   ]
 
+	; initializes the patch variables
   ask patches [
     set glucose 10
     set FO 10
@@ -112,8 +114,8 @@ to setup
   (1 * ((count closts) / (count turtles)))+(1.2 * ((count vulgats) / (count turtles))) +
   (0.7 * ((count bifidos) / (count turtles)))))
 
-  ; Setup for stop if negative carbs
-  set negCarb false
+  ; Setup for stop if negative metas
+  set negMeta false
 
   ;set time to zero
   reset-ticks
@@ -132,19 +134,14 @@ to go
   (1 * ((count closts) / (count turtles)))+(1.2 * ((count vulgats) / (count turtles))) +
   (0.7 * ((count bifidos) / (count turtles)))))
 
-  ; Uncomment the following line to display energy on the turtles
-  ; display-labels
-
-  if not any? turtles [ stop ] ; stop if all turtles are dead
-
-  ; Modify the energy levels of each turtles and carbohydrate
+  ; Modify the energy levels of each turtles and metaohydrate
   ; level of each patch
   ask patches [
     patchEat
-    store-carbohydrates
+    store-metabolites
   ]
   ask patches[
-    make-carbohydrates
+    make-metabolites
   ]
   bacteria-tick-behavior
 
@@ -154,21 +151,29 @@ to go
 
   ; Increment time
   tick
-  ; Stop if any population hits 0 or there are too many turtles
-  if count turtles > 1000000 [stop]
-  if count turtles = 0 [stop]
-  ; Stop if negative number of carbs calculated
-  if negCarb [stop]
+
+  ; Stop if negative number of metas calculated
+  if negMeta [stop]
 end
 ;///////////////////////////GO///////////////////////////////////////
 
+;///////////////////////////stopCheck///////////////////////////////////////
+to stopCheck
+  ; code for stopping the simulation
+
+  ; Stop if any population hits 0 or there are too many turtles
+  if count turtles > 1000000 [stop]
+  if not any? turtles [ stop ] ; stop if all turtles are dead
+
+
+end
+;///////////////////////////stopCheck///////////////////////////////////////
 
 ;///////////////////////////DEATH-BACTERIA///////////////////////////////////////
+; Each of these functions are currently equivalent, different function so we can expand on it if needed
 ; Bifidobacteria die if below the energy threshold or if excreted
 to death-bifidos
-  if energy < 5[
-    ;ifelse isSeed
-    ;[set energy 100]
+  if energy <= 0[
     die
   ]
   if excrete [die]
@@ -176,9 +181,7 @@ end
 
 ; Clostrida die if below the energy threshold or if excreted
 to death-closts
-  if energy < 5 [
-    ;ifelse isSeed
-    ;[set energy 100]
+  if energy <= 0 [
     die
   ]
   if excrete [die]
@@ -186,9 +189,7 @@ end
 
 ; Desulfovibrio die if below the energy threshold or if excreted
 to death-desulfos
-  if energy < 5 [
-    ;ifelse isSeed
-    ;[set energy 100]
+  if energy <= 0 [
     die
   ]
   if excrete [die]
@@ -196,22 +197,20 @@ end
 
 ; Vulgatus die if below energy threshold or if excreted
 to death-vulgats
-  if energy < 5 [
-    ;ifelse isSeed
-    ;[set energy 100]
+  if energy <= 0 [
     die
   ]
   if excrete [die]
 end
 ;///////////////////////////DEATH-BACTERIA///////////////////////////////////////
 
-;///////////////////////////MAKE-CAROBOHYDRATES///////////////////////////////////////
-; Runs through all the carbohydrates and makes them, and moves them.
-to make-carbohydrates
+;///////////////////////////make-metabolites///////////////////////////////////////
+; Runs through all the metabolites and makes them, and moves them.
+to make-metabolites
 
   if ((inulin < 0) or (CS < 0) or (FO < 0) or (lactose < 0) or (lactate < 0) or (glucose < 0)) [
-    print "ERROR! Patch reported negative carbohydrate. Problem with simulation leading to inaccurate results. Terminating Program."
-    set negCarb true
+    print "ERROR! Patch reported negative metaohydrate. Problem with simulation leading to inaccurate results. Terminating Program."
+    set negMeta true
     stop
   ]
 
@@ -276,39 +275,39 @@ to make-carbohydrates
   set glucose ((glucose - glucoseReserve) * (1 - trueAbsorption))
   set CS ((CS - CSReserve) * (1 - trueAbsorption))
 end
-;///////////////////////////MAKE-CAROBOHYDRATES///////////////////////////////////////
+;///////////////////////////make-metabolites///////////////////////////////////////
 
-;///////////////////////////STORE-CARBOHYDRATES///////////////////////////////////////
-; Sets previous carbohydrate variables to current levels to allow for correct
+;///////////////////////////STORE-METABOLITES///////////////////////////////////////
+; Sets previous metaohydrate variables to current levels to allow for correct
 ; transfer on ticks
-to store-carbohydrates
-  set inulinPrev ((inulin))
-  set FOPrev ((FO))
-  set lactosePrev ((lactose))
-  set lactatePrev ((lactate))
-  set glucosePrev ((glucose))
-  set CSPrev ((CS))
+to store-metabolites
+  set inulinPrev ((inulin + inulinReserve))
+  set FOPrev ((FO + FOReserve))
+  set lactosePrev ((lactose + lactoseReserve))
+  set lactatePrev ((lactate + lactateReserve))
+  set glucosePrev ((glucose + glucoseReserve))
+  set CSPrev ((CS + CSReserve))
 end
-;///////////////////////////STORE-CARBOHYDRATES///////////////////////////////////////
+;///////////////////////////STORE-METABOLITES///////////////////////////////////////
 
 ;///////////////////////////BACTERIA-TICK-BEHAVIOR///////////////////////////////////////
 ; Determines the turtle behavior for this tick
 
 to bacteria-tick-behavior
   ask bifidos [
-    flowMove
-    bacteriaMove
-	  checkStuck
-    death-bifidos
+    flowMove ; movement of the bacteria by flow
+    randMove ; movement of the bacteria by a combination of motility and other random forces
+	  checkStuck ; check if the bacteria becomes stuck or unstuck
+    death-bifidos ; check that the energy of the bacteria is enough, otherwise bacteria dies
     if (age mod bifidoDoub / doubConst = 0 and age != 0)[ ;this line controls on what tick mod reproduce
-      reproduceBact
+      reproduceBact ; run the reproduce code for bacteria
     ]
-  	set age (age + 1)
+  	set age (age + 1) ; increase the age of the bacteria with each tick
   ]
 
   ask desulfos [;controls the behavior for the desulfos bacteria
     flowMove
-    bacteriaMove
+    randMove
 	  checkStuck
     death-desulfos
     if (age mod desulfoDoub / doubConst = 0 and age != 0)[
@@ -319,7 +318,7 @@ to bacteria-tick-behavior
 
   ask closts [;controls the behavior for the closts
     flowMove
-    bacteriaMove
+    randMove
 	  checkStuck
     death-closts
     if (age mod clostDoub / doubConst = 0 and age != 0)[
@@ -330,7 +329,7 @@ to bacteria-tick-behavior
 
   ask vulgats [;controls the behavior for the vulgats
     flowMove
-    bacteriaMove
+    randMove
 	  checkStuck
     death-vulgats
     if (age mod vulgatDoub / doubConst = 0 and age != 0)[
@@ -347,10 +346,11 @@ end
 to reproduceBact
   if energy > 50 [
     let tmp (energy / 2 )
-    set energy (tmp)
+    set energy (tmp) ; parent's energy is halved
     hatch 1 [
       rt random-float 360
-      set energy tmp
+      set energy tmp ; child gets half of parent's energy
+      set isSeed false
       set isStuck false
 	    set age 0
     ]
@@ -358,25 +358,26 @@ to reproduceBact
 end
 ;///////////////////////////reproduceBact///////////////////////////////////////
 
-;///////////////////////////bacteriaMove///////////////////////////////////////
+;///////////////////////////randMove///////////////////////////////////////
 ; Defines random movement of turtles
-to bacteriaMove
-; rotates the orientation of the bacteria randomly within 180 degrees front-facing then moves forward the bacteria's motilDist
+to randMove
+; rotates the orientation of the bacteria randomly within 180 degrees front-facing then moves forward the bacteria's randDist
 ;may disable with motility assumption
 ; if it would hit go through the simulation boundaries, sets excrete to true
   if (isStuck = false)[
     rt (random 360)
 
-    ifelse (can-move? motilDist)
-      [fd motilDist]
+    ifelse (can-move? randDist)
+      [fd randDist]
       [set excrete true]
   ]
 
 end
-;///////////////////////////bacteriaMove///////////////////////////////////////
+;///////////////////////////randMove///////////////////////////////////////
 
 ;///////////////////////////flowMove///////////////////////////////////////
 to flowMove
+; moves the bacteria by the flow distance * the bacteria's flow constant
 ;if xcor would pass the max-pxcor with movement, sets excrete to true
   if (isStuck = false)[
     ifelse (xcor + flowDist * flowConst >= (max-pxcor + 0.5))
@@ -388,6 +389,7 @@ end
 ;///////////////////////////flowMove///////////////////////////////////////
 
 ;///////////////////////////checkStuck///////////////////////////////////////
+; checks if the bacteria should be stuck or unstucked based on the chances
 to checkStuck
   if(not isSeed)[
     if(not isStuck and (random 100 < stuckChance))[
@@ -407,6 +409,7 @@ end
 ;///////////////////////////inConc///////////////////////////////////////
 to inConc
 ;controls the amount of each type of bacteria flowing in to the simulation
+; similar to the code in go, but bacteria are now placed at only in the first column
 
   create-bifidos inConcBifidos [
     set color blue
@@ -417,7 +420,7 @@ to inConc
     set isSeed false
     set isStuck false
 	  set age 0
-	  set flowConst 1 ;edit this
+	  set flowConst 1
 	  set doubConst 1
     setxy min-pxcor - 0.5 random-ycor
 
@@ -468,17 +471,16 @@ end
 
 
 ;///////////////////////////bactEat///////////////////////////////////////
-to bactEat [carbNum]
-;run this through a turtle with a carbNum parameter to have them try to eat the carb
-;include the odd bifido lactate production
-  if (carbNum = 10)[;CS
-    ifelse (breed = desulfos)[
-      set energy (energy + 50)
+to bactEat [metaNum]
+;run this through a turtle with a metaNum parameter to have them try to eat the carb
+  if (metaNum = 10)[;CS
+    ifelse (breed = desulfos)[; check correct breed
+      set energy (energy + 50); increase the energy of the bacteria
       ask patch-here [
-        set CS (CS - 1)
-		if (CS < 1)[
-			set avaCarbs remove 10 avaCarbs
-		]
+          set CS (CS - 1); reduce the meta count
+        if (CS < 1)[; remove the meta from avaMetas if there is no more of it
+          set avaMetas remove 10 avaMetas
+        ]
       ]
     ]
     [;else
@@ -486,14 +488,14 @@ to bactEat [carbNum]
     ]
   ]
 
-  if (carbNum = 11)[;FO
+  if (metaNum = 11)[;FO
     ifelse (breed = closts or breed = vulgats)[
       set energy (energy + 25)
       ask patch-here [
         set FO (FO - 1)
-		if (FO < 1)[
-			set avaCarbs remove 11 avaCarbs
-		]
+        if (FO < 1)[
+          set avaMetas remove 11 avaMetas
+        ]
       ]
     ]
     [;else
@@ -501,9 +503,9 @@ to bactEat [carbNum]
         set energy (energy + 50)
         ask patch-here [
           set FO (FO - 1)
-			if (FO < 1)[
-				set avaCarbs remove 11 avaCarbs
-			]
+          if (FO < 1)[
+            set avaMetas remove 11 avaMetas
+          ]
         ]
         if (random-float 100 < bifido-lactate-production) [
           ask patch-here [
@@ -514,14 +516,14 @@ to bactEat [carbNum]
     ];end else
   ]
 
-  if (carbNum = 12)[;GLUCOSE
+  if (metaNum = 12)[;GLUCOSE
     ifelse (breed = closts or breed = vulgats)[
       set energy (energy + 50)
       ask patch-here [
         set glucose (glucose - 1)
-		if (glucose < 1)[
-			set avaCarbs remove 12 avaCarbs
-		]
+        if (glucose < 1)[
+          set avaMetas remove 12 avaMetas
+        ]
       ]
     ]
     [;else
@@ -529,9 +531,9 @@ to bactEat [carbNum]
         set energy (energy + 25)
         ask patch-here [
         	set glucose (glucose - 1)
-			if (glucose < 1)[
-				set avaCarbs remove 12 avaCarbs
-			]
+          if (glucose < 1)[
+            set avaMetas remove 12 avaMetas
+          ]
         ]
         if (random-float 100 < bifido-lactate-production) [
           ask patch-here [
@@ -542,14 +544,14 @@ to bactEat [carbNum]
     ];end else
   ]
 
-  if (carbNum = 13)[;INULIN
+  if (metaNum = 13)[;INULIN
     ifelse (breed = closts or breed = vulgats)[
       set energy (energy + 25)
       ask patch-here [
         set inulin (inulin - 1)
-		if (inulin < 1)[
-			set avaCarbs remove 13 avaCarbs
-		]
+        if (inulin < 1)[
+          set avaMetas remove 13 avaMetas
+        ]
       ]
     ]
     [;else
@@ -557,9 +559,9 @@ to bactEat [carbNum]
       set energy (energy + 25)
         ask patch-here [
           	set inulin (inulin - 1)
-			if (inulin < 1)[
-				set avaCarbs remove 13 avaCarbs
-			]
+          if (inulin < 1)[
+            set avaMetas remove 13 avaMetas
+          ]
         ]
         if (random-float 100 < bifido-lactate-production) [
           ask patch-here [
@@ -570,14 +572,14 @@ to bactEat [carbNum]
     ];end else
   ]
 
-  if (carbNum = 14)[;LACTATE
+  if (metaNum = 14)[;LACTATE
     ifelse (breed = (desulfos))[
       set energy (energy + 50)
       ask patch-here [
         set lactate (lactate - 1)
-		if (lactate < 1)[
-			set avaCarbs remove 14 avaCarbs
-		]
+        if (lactate < 1)[
+          set avaMetas remove 14 avaMetas
+        ]
       ]
     ]
     [;else
@@ -585,7 +587,7 @@ to bactEat [carbNum]
     ]
   ]
 
-  ifelse (carbNum = 15)[;LACTOSE
+  ifelse (metaNum = 15)[;LACTOSE
     ifelse (breed = closts or breed = vulgats)[
       ifelse (breed = closts)[
         set energy (energy + 25)
@@ -595,9 +597,9 @@ to bactEat [carbNum]
       ];end else
       ask patch-here [
         set lactose (lactose - 1)
-		if (lactose < 1)[
-			set avaCarbs remove 15 avaCarbs
-		]
+        if (lactose < 1)[
+          set avaMetas remove 15 avaMetas
+        ]
       ]
     ]
     [;else
@@ -605,9 +607,9 @@ to bactEat [carbNum]
         set energy (energy + 50)
         ask patch-here [
           	set lactose (lactose - 1)
-			if (lactose < 1)[
-				set avaCarbs remove 15 avaCarbs
-			]
+          if (lactose < 1)[
+            set avaMetas remove 15 avaMetas
+          ]
         ]
         if (random-float 100 < bifido-lactate-production) [
           ask patch-here [
@@ -625,35 +627,33 @@ end
 
 ;///////////////////////////patchEat///////////////////////////////////////
 to patchEat
-;run this on a ask patches to have them start the turtle eating process
+; run this on a ask patches to have them start the turtle eating process
   ask turtles-here [
-    set remAttempts 5 ;reset the number of attempts
-    set energy (energy - (100 / 1440)) ;decrease the energy of the bacteria, currently survive 24 hours no eat
+    set remAttempts 5 ; reset the number of attempts
+    set energy (energy - (100 / 1440)) ; decrease the energy of the bacteria, currently survive 24 hours no eat
   ]
-  let allCarbs (list CS FO glucose inulin lactate lactose)
-  set avaCarbs []
+  let allMetas (list CS FO glucose inulin lactate lactose); list containing numbers of all the metas
+  set avaMetas []
 
-  ;initialize the two lists
+  ; initialize the two lists
   let hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
   let i 1
-  while [i < (length(allCarbs))][
-    if (item i allCarbs >= 1) [
-      set avaCarbs lput (i + 10) avaCarbs
+  while [i < (length(allMetas))][
+    if (item i allMetas >= 1) [
+      set avaMetas lput (i + 10) avaMetas
     ]
     set i (i + 1)
   ]
-  let tries 0 ;not used in current code
-  ; do the eating till no carbs or not hungry
-  while [(length(avaCarbs) > 0) and any? hungryBact] [
-    ;code here to randomly select a turtle from hungryBact and then ask it to run bactEat with a random carb from ava. list
-    let carbNum one-of avaCarbs
+  ; do the eating till no metas or not hungry
+  while [(length(avaMetas) > 0) and any? hungryBact] [
+    ; code here to randomly select a turtle from hungryBact and then ask it to run bactEat with a random meta from ava. list
+    let metaNum one-of avaMetas
     ask one-of hungryBact [
-      bactEat(carbNum)
+      bactEat(metaNum)
       set remAttempts remAttempts - 1
     ]
 	set hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
-	;increase the tries counters
-    set tries (tries + 1)
+	; increase the tries counters
   ]
 
 end
@@ -706,7 +706,7 @@ end
 GRAPHICS-WINDOW
 425
 21
-4927
+1292
 167
 -1
 -1
@@ -721,7 +721,7 @@ GRAPHICS-WINDOW
 1
 1
 0
-350
+66
 0
 8
 1
@@ -1027,7 +1027,7 @@ INPUTBOX
 589
 1277
 649
-motilDist
+randDist
 0.1
 1
 0
@@ -1039,18 +1039,7 @@ INPUTBOX
 982
 488
 flowDist
-0.933
-1
-0
-Number
-
-INPUTBOX
-1150
-649
-1277
-709
-lessMotilConst
-0.75
+0.2
 1
 0
 Number
@@ -1136,7 +1125,7 @@ TEXTBOX
 184
 649
 202
-Carbohydrate Variables
+Metaohydrate Variables
 14
 0.0
 1
@@ -1188,7 +1177,7 @@ INPUTBOX
 855
 547
 unstuckChance
-50
+20
 1
 0
 Number
@@ -1243,7 +1232,7 @@ INPUTBOX
 556
 277
 inFlowInulin
-100
+10
 1
 0
 Number
@@ -1254,7 +1243,7 @@ INPUTBOX
 711
 498
 absorption
-0.01
+0
 1
 0
 Number
@@ -1265,7 +1254,7 @@ INPUTBOX
 710
 396
 inFlowFO
-100
+10
 1
 0
 Number
@@ -1276,7 +1265,7 @@ INPUTBOX
 556
 396
 inFlowLactose
-100
+10
 1
 0
 Number
@@ -1287,7 +1276,7 @@ INPUTBOX
 709
 336
 inFlowLactate
-100
+10
 1
 0
 Number
@@ -1298,7 +1287,7 @@ INPUTBOX
 710
 276
 inFlowGlucose
-100
+10
 1
 0
 Number
@@ -1309,7 +1298,7 @@ INPUTBOX
 556
 337
 inFlowCS
-100
+10
 1
 0
 Number
@@ -1353,6 +1342,17 @@ This model represents the relationships between _Bifidobaceria_, _Desulfovibrio_
 
 ## Change Log
 
+##### 17NOV2016 - CL, JC, & EU
+*More than 95% of the code has been altered since the last update
+Introduced flow of bacteria and metabolites
+New implementation of time, ticks are now one minute
+New implementation of eating, bacteria no longer have eaten, only energy
+Bacteria lose energy every single tick, currently set to lose (100/1440) each tick, 1440 = number of minutes per day
+Bacteria reproduce using energy, half of parent's energy transferred to child
+Flow of metabolites uses reserve variables to model the inavalibility of some of the metaohydrates at the start
+Simulation will model the ileum of the small intestine
+
+
 ##### 10/25/15
 Introduced autoregulation of Bifidobacteria
 Things to do:
@@ -1367,8 +1367,8 @@ Bronson Modified Erik's code. Changes made follows:
 Reproduction rate now depends on the energy  by the microbe
 Set Flow to rate to 0
 Introduce probiotic treatment button to model
-Changed bacteria carbohydrate consumption cycle. Process now depeneds on
-stochastic interactions between microbes and carbohydrates. There is a back up
+Changed bacteria metaohydrate consumption cycle. Process now depeneds on
+stochastic interactions between microbes and metabolites. There is a back up
 left-over program written just in case any microbe is not fed and there is
 still food available.
 Bacteria now loose health every turn do to normal cell damage. Reproduction no
@@ -1430,7 +1430,7 @@ Bifidobacteria was the dominant species in 5 of 10 simulations (for 1 set of 10 
 - Right now, with all reproduction rates at 10%, 10/8/7 is healthy and 7/8/7 is autistic
 -- Clostridia population is always much lower than the others
 - Tried adding cell death to the model
-- Carbohydrates added as a patch variable
+- Metaohydrates added as a patch variable
 - Added a breast-fed toggle with lowers the clostridia growth rate when on
 
 ##### 11/25
@@ -1765,10 +1765,18 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.3
+NetLogo 5.3.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
+<experiments>
+  <experiment name="checkStabilty" repetitions="50" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="5000"/>
+    <metric>count turtles</metric>
+  </experiment>
+</experiments>
 @#$#@#$#@
 @#$#@#$#@
 default

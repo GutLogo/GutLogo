@@ -209,7 +209,7 @@ end
 to make-metabolites
 
   if ((inulin < 0) or (CS < 0) or (FO < 0) or (lactose < 0) or (lactate < 0) or (glucose < 0)) [
-    print "ERROR! Patch reported negative metaohydrate. Problem with simulation leading to inaccurate results. Terminating Program."
+    print "ERROR! Patch reported negative metabolite. Problem with simulation leading to inaccurate results. Terminating Program."
     set negMeta true
     stop
   ]
@@ -692,7 +692,7 @@ end
 GRAPHICS-WINDOW
 425
 21
-1292
+4927
 167
 -1
 -1
@@ -707,7 +707,7 @@ GRAPHICS-WINDOW
 1
 1
 0
-66
+350
 0
 8
 1
@@ -1025,7 +1025,7 @@ INPUTBOX
 982
 488
 flowDist
-0.2
+0.972
 1
 0
 Number
@@ -1751,7 +1751,7 @@ Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 
 @#$#@#$#@
-NetLogo 5.3.1
+NetLogo 5.3
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

@@ -419,7 +419,7 @@ to inConc
     set excrete false
     set isSeed false
     set isStuck false
-	  set age 0
+    set age random 1000
 	  set flowConst 1
 	  set doubConst 1
     setxy min-pxcor - 0.5 random-ycor
@@ -432,8 +432,7 @@ to inConc
     set energy 100
     set excrete false
     set isSeed false
-    set isStuck false
-	  set age 0
+    set age random 1000
 	  set flowConst 1
 	  set doubConst 1
     setxy min-pxcor - 0.5 random-ycor
@@ -447,7 +446,7 @@ to inConc
     set excrete false
     set isSeed false
     set isStuck false
-	  set age 0
+    set age random 1000
 	  set flowConst 1
 	  set doubConst 1
     setxy min-pxcor - 0.5 random-ycor
@@ -460,7 +459,7 @@ to inConc
     set excrete false
     set isSeed false
     set isStuck false
-	  set age 0
+    set age random 1000
 	  set flowConst 1
 	  set doubConst 1
     setxy min-pxcor - 0.5 random-ycor

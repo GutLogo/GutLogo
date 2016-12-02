@@ -651,54 +651,41 @@ to patchEat
       bactEat(metaNum)
       set remAttempts remAttempts - 1
     ]
-	set hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
-	; increase the tries counters
+    set hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
   ]
 
 end
 ;///////////////////////////patchEat///////////////////////////////////////
 
-;///////////////////////////GET-GLUCOSE///////////////////////////////////////
 ; Returns glucose value at passed coordinate
 to-report get-glucose [target-patch-x-coord target-patch-y-coord]
     report [glucosePrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
-;///////////////////////////GET-GLUCOSE///////////////////////////////////////
 
-;///////////////////////////GET-LACTOSE///////////////////////////////////////
 ; Returns lactose value at passed coordinate
 to-report get-lactose [target-patch-x-coord target-patch-y-coord]
     report [lactosePrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
-;///////////////////////////GET-LACTOSE///////////////////////////////////////
 
-;///////////////////////////GET-INULIN///////////////////////////////////////
 ; Returns inulin value at passed coordinate
 to-report get-inulin [target-patch-x-coord target-patch-y-coord]
     report [inulinPrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
-;///////////////////////////GET-INULIN///////////////////////////////////////
 
-;///////////////////////////GET-LACTATE///////////////////////////////////////
 ; Returns lactate value at passed coordinate
 to-report get-lactate [target-patch-x-coord target-patch-y-coord]
     report [lactatePrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
-;///////////////////////////GET-LACTATE///////////////////////////////////////
 
-;///////////////////////////GET-FO///////////////////////////////////////
 ; Returns FO value at passed coordinate
 to-report get-FO [target-patch-x-coord target-patch-y-coord]
     report [FOPrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
-;///////////////////////////GET-FO///////////////////////////////////////
 
-;///////////////////////////GET-CS///////////////////////////////////////
 ; Returns CS value at passed coordinate
 to-report get-CS [target-patch-x-coord target-patch-y-coord]
     report [CSPrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
-;///////////////////////////GET-CS///////////////////////////////////////
 
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @#$#@#$#@

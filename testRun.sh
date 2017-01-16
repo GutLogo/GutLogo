@@ -3,5 +3,5 @@
 ~/netlogo-6.0/netlogo-headless.sh \
 --model ~/gut-nlogo-model/NLCode.nlogo \
 --experiment testCluster \
---spreadsheet -
+--spreadsheet ~/results/spreadsheet-output.csv
 --threads 16

@@ -29,7 +29,7 @@ to setup
   ; Initializing the turtles and patches
 	; populates the world with the bacteria population at the initial-numbers set by the user
   set-default-shape bifidos "bacteria"
-  create-bifidos initial-number-bifidos [
+  create-bifidos initNumBifidos [
     set color blue
     set size 1
     set label-color blue - 2
@@ -44,7 +44,7 @@ to setup
 
   ]
   set-default-shape desulfos "bacteria"
-  create-desulfos initial-number-desulfos [
+  create-desulfos initNumDesulfos [
     set color green
     set size 1
     set energy 100
@@ -58,7 +58,7 @@ to setup
   ]
 
   set-default-shape closts "bacteria"
-  create-closts initial-number-closts [
+  create-closts initNumClosts [
     set color red
     set size 1
     set energy 100
@@ -72,7 +72,7 @@ to setup
   ]
 
   set-default-shape vulgats "bacteria"
-  create-vulgats initial-number-vulgats [
+  create-vulgats initNumVulgats [
     set color grey
     set size 1
     set energy 100
@@ -87,12 +87,12 @@ to setup
 
 	; initializes the patch variables
   ask patches [
-    set glucose 10
-    set FO 10
-    set lactose 10
-    set lactate 10
-    set inulin 10
-    set CS 10
+    set glucose 5
+    set FO 5
+    set lactose 5
+    set lactate 5
+    set inulin 5
+    set CS 5
     set glucosePrev 0
     set FOPrev 0
     set lactosePrev 0
@@ -138,12 +138,12 @@ to go
   ; level of each patch
   ask patches [
     patchEat
-    store-metabolites
+    storeMetabolites
   ]
   ask patches[
-    make-metabolites
+    makeMetabolites
   ]
-  bacteria-tick-behavior
+  bactTickBehavior
 
   if ticks mod tickInflow = 0[
     inConc
@@ -169,10 +169,10 @@ to stopCheck
 end
 ;///////////////////////////stopCheck///////////////////////////////////////
 
-;///////////////////////////DEATH-BACTERIA///////////////////////////////////////
+;///////////////////////////deathBacteria///////////////////////////////////////
 ; Each of these functions are currently equivalent, different function so we can expand on it if needed
 ; Bifidobacteria die if below the energy threshold or if excreted
-to death-bifidos
+to deathBifidos
   if energy <= 0[
     die
   ]
@@ -180,7 +180,7 @@ to death-bifidos
 end
 
 ; Clostrida die if below the energy threshold or if excreted
-to death-closts
+to deathClosts
   if energy <= 0 [
     die
   ]
@@ -188,7 +188,7 @@ to death-closts
 end
 
 ; Desulfovibrio die if below the energy threshold or if excreted
-to death-desulfos
+to deathDesulfos
   if energy <= 0 [
     die
   ]
@@ -196,17 +196,17 @@ to death-desulfos
 end
 
 ; Vulgatus die if below energy threshold or if excreted
-to death-vulgats
+to deathVulgats
   if energy <= 0 [
     die
   ]
   if excrete [die]
 end
-;///////////////////////////DEATH-BACTERIA///////////////////////////////////////
+;///////////////////////////deathBacteria///////////////////////////////////////
 
-;///////////////////////////make-metabolites///////////////////////////////////////
+;///////////////////////////makeMetabolites///////////////////////////////////////
 ; Runs through all the metabolites and makes them, and moves them.
-to make-metabolites
+to makeMetabolites
 
   if ((inulin < 0) or (CS < 0) or (FO < 0) or (lactose < 0) or (lactate < 0) or (glucose < 0)) [
     print "ERROR! Patch reported negative metabolite. Problem with simulation leading to inaccurate results. Terminating Program."
@@ -275,12 +275,12 @@ to make-metabolites
   set glucose ((glucose - glucoseReserve) * (1 - trueAbsorption))
   set CS ((CS - CSReserve) * (1 - trueAbsorption))
 end
-;///////////////////////////make-metabolites///////////////////////////////////////
+;///////////////////////////makeMetabolites///////////////////////////////////////
 
-;///////////////////////////STORE-METABOLITES///////////////////////////////////////
+;///////////////////////////storeMetabolites///////////////////////////////////////
 ; Sets previous metaohydrate variables to current levels to allow for correct
 ; transfer on ticks
-to store-metabolites
+to storeMetabolites
   set inulinPrev ((inulin + inulinReserve))
   set FOPrev ((FO + FOReserve))
   set lactosePrev ((lactose + lactoseReserve))
@@ -288,17 +288,17 @@ to store-metabolites
   set glucosePrev ((glucose + glucoseReserve))
   set CSPrev ((CS + CSReserve))
 end
-;///////////////////////////STORE-METABOLITES///////////////////////////////////////
+;///////////////////////////storeMetabolites///////////////////////////////////////
 
-;///////////////////////////BACTERIA-TICK-BEHAVIOR///////////////////////////////////////
+;///////////////////////////bactTickBehavior///////////////////////////////////////
 ; Determines the turtle behavior for this tick
 
-to bacteria-tick-behavior
+to bactTickBehavior
   ask bifidos [
     flowMove ; movement of the bacteria by flow
     randMove ; movement of the bacteria by a combination of motility and other random forces
 	  checkStuck ; check if the bacteria becomes stuck or unstuck
-    death-bifidos ; check that the energy of the bacteria is enough, otherwise bacteria dies
+    deathBifidos ; check that the energy of the bacteria is enough, otherwise bacteria dies
     if (age mod bifidoDoub / doubConst = 0 and age != 0)[ ;this line controls on what tick mod reproduce
       reproduceBact ; run the reproduce code for bacteria
     ]
@@ -309,7 +309,7 @@ to bacteria-tick-behavior
     flowMove
     randMove
 	  checkStuck
-    death-desulfos
+    deathDesulfos
     if (age mod desulfoDoub / doubConst = 0 and age != 0)[
       reproduceBact
     ]
@@ -320,7 +320,7 @@ to bacteria-tick-behavior
     flowMove
     randMove
 	  checkStuck
-    death-closts
+    deathClosts
     if (age mod clostDoub / doubConst = 0 and age != 0)[
       reproduceBact
     ]
@@ -331,7 +331,7 @@ to bacteria-tick-behavior
     flowMove
     randMove
 	  checkStuck
-    death-vulgats
+    deathVulgats
     if (age mod vulgatDoub / doubConst = 0 and age != 0)[
       reproduceBact
     ]
@@ -339,7 +339,7 @@ to bacteria-tick-behavior
   ]
 
 end
-;///////////////////////////BACTERIA-TICK-BEHAVIOR///////////////////////////////////////
+;///////////////////////////bactTickBehavior///////////////////////////////////////
 
 ;///////////////////////////reproduceBact///////////////////////////////////////:
 ;reproduce the chosen turtle
@@ -690,13 +690,13 @@ end
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @#$#@#$#@
 GRAPHICS-WINDOW
-425
-21
-4927
-167
+224
+17
+2338
+80
 -1
 -1
-12.8
+6.0
 1
 10
 1
@@ -970,7 +970,7 @@ INPUTBOX
 850
 369
 inConcVulgats
-0
+0.0
 1
 0
 Number
@@ -981,7 +981,7 @@ INPUTBOX
 850
 429
 inConcBifidos
-0
+0.0
 1
 0
 Number
@@ -992,7 +992,7 @@ INPUTBOX
 981
 369
 inConcClosts
-0
+0.0
 1
 0
 Number
@@ -1003,7 +1003,7 @@ INPUTBOX
 981
 428
 inConcDesulfos
-0
+0.0
 1
 0
 Number
@@ -1036,7 +1036,7 @@ INPUTBOX
 922
 310
 tickInflow
-480
+1.0
 1
 0
 Number
@@ -1047,7 +1047,7 @@ INPUTBOX
 851
 488
 stuckChance
-50
+50.0
 1
 0
 Number
@@ -1057,8 +1057,8 @@ INPUTBOX
 273
 388
 333
-initial-number-vulgats
-200
+initNumBifidos
+10000.0
 1
 0
 Number
@@ -1068,8 +1068,8 @@ INPUTBOX
 333
 388
 393
-initial-number-bifidos
-10000
+initNumVulgats
+200.0
 1
 0
 Number
@@ -1079,8 +1079,8 @@ INPUTBOX
 393
 388
 453
-initial-number-closts
-300
+initNumClosts
+300.0
 1
 0
 Number
@@ -1090,8 +1090,8 @@ INPUTBOX
 453
 388
 513
-initial-number-desulfos
-20
+initNumDesulfos
+20.0
 1
 0
 Number
@@ -1111,7 +1111,7 @@ TEXTBOX
 184
 649
 202
-Metaohydrate Variables
+Metabolite Variables
 14
 0.0
 1
@@ -1163,7 +1163,7 @@ INPUTBOX
 855
 547
 unstuckChance
-20
+20.0
 1
 0
 Number
@@ -1174,7 +1174,7 @@ INPUTBOX
 196
 379
 bifidoDoub
-338
+338.0
 1
 0
 Number
@@ -1185,7 +1185,7 @@ INPUTBOX
 196
 438
 desulfoDoub
-908
+908.0
 1
 0
 Number
@@ -1196,7 +1196,7 @@ INPUTBOX
 196
 556
 clostDoub
-67
+170.0
 1
 0
 Number
@@ -1207,7 +1207,7 @@ INPUTBOX
 196
 496
 vulgatDoub
-171
+171.0
 1
 0
 Number
@@ -1218,7 +1218,7 @@ INPUTBOX
 556
 277
 inFlowInulin
-10
+10.0
 1
 0
 Number
@@ -1229,7 +1229,7 @@ INPUTBOX
 711
 498
 absorption
-0
+0.1
 1
 0
 Number
@@ -1240,7 +1240,7 @@ INPUTBOX
 710
 396
 inFlowFO
-10
+10.0
 1
 0
 Number
@@ -1251,7 +1251,7 @@ INPUTBOX
 556
 396
 inFlowLactose
-10
+10.0
 1
 0
 Number
@@ -1262,7 +1262,7 @@ INPUTBOX
 709
 336
 inFlowLactate
-10
+10.0
 1
 0
 Number
@@ -1273,7 +1273,7 @@ INPUTBOX
 710
 276
 inFlowGlucose
-10
+10.0
 1
 0
 Number
@@ -1284,7 +1284,7 @@ INPUTBOX
 556
 337
 inFlowCS
-10
+10.0
 1
 0
 Number
@@ -1295,7 +1295,7 @@ INPUTBOX
 556
 498
 bifido-lactate-production
-1
+1.0
 1
 0
 Number
@@ -1306,7 +1306,7 @@ INPUTBOX
 983
 547
 seedChance
-5
+5.0
 1
 0
 Number
@@ -1749,9 +1749,8 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
-
 @#$#@#$#@
-NetLogo 5.3
+NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1761,6 +1760,97 @@ NetLogo 5.3
     <go>go</go>
     <timeLimit steps="5000"/>
     <metric>count turtles</metric>
+  </experiment>
+  <experiment name="clostDoub Check" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="10080"/>
+    <metric>count bifidos</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>count vulgats</metric>
+    <enumeratedValueSet variable="initial-number-desulfos">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="vulgatDoub">
+      <value value="171"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcVulgats">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initial-number-closts">
+      <value value="300"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="randDist">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="stuckChance">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="absorption">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowFO">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcDesulfos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="desulfoDoub">
+      <value value="908"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="unstuckChance">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="clostDoub" first="150" step="10" last="250"/>
+    <enumeratedValueSet variable="seedChance">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactate">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowCS">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifidoDoub">
+      <value value="338"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowInulin">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBifidos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowGlucose">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="flowDist">
+      <value value="0.972"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="plots-on?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initial-number-vulgats">
+      <value value="200"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="reserveFraction">
+      <value value="0.9"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initial-number-bifidos">
+      <value value="10000"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="tickInflow">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcClosts">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifido-lactate-production">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactose">
+      <value value="10"/>
+    </enumeratedValueSet>
   </experiment>
 </experiments>
 @#$#@#$#@
@@ -1775,7 +1865,6 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
-
 @#$#@#$#@
 0
 @#$#@#$#@

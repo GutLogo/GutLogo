@@ -1,0 +1,580 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>model - NetLogo 6.0-M6 - org.nlogo.core.model</title>
+          <meta name="description" content="model - NetLogo 6.0 - M6 - org.nlogo.core.model" />
+          <meta name="keywords" content="model NetLogo 6.0 M6 org.nlogo.core.model" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'org.nlogo.core.model.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="org">org</a>.<a href="../../package.html" class="extype" name="org.nlogo">nlogo</a>.<a href="../package.html" class="extype" name="org.nlogo.core">core</a></p>
+        <h1>model</h1><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">model</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.nlogo.core.model.BaseWidgetReader" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="BaseWidgetReaderextendsWidgetReader"></a>
+      <a id="BaseWidgetReader:BaseWidgetReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="BaseWidgetReader.html"><span class="name">BaseWidgetReader</span></a><span class="result"> extends <a href="WidgetReader.html" class="extype" name="org.nlogo.core.model.WidgetReader">WidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@BaseWidgetReaderextendsWidgetReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.BooleanLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BooleanLineextendsWidgetLine[Boolean]withProductwithSerializable"></a>
+      <a id="BooleanLine:BooleanLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="BooleanLine.html"><span class="name">BooleanLine</span></a><span class="params">(<span name="default">default: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Boolean">Boolean</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Boolean">Boolean</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@BooleanLineextendsWidgetLine[Boolean]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.ChooserReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ChooserReaderextendsBaseWidgetReaderwithProductwithSerializable"></a>
+      <a id="ChooserReader:ChooserReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ChooserReader.html"><span class="name">ChooserReader</span></a><span class="params">(<span name="parser">parser: <a href="../LiteralParser.html" class="extype" name="org.nlogo.core.LiteralParser">LiteralParser</a></span>)</span><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@ChooserReaderextendsBaseWidgetReaderwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.DoubleLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DoubleLineextendsWidgetLine[Double]withProductwithSerializable"></a>
+      <a id="DoubleLine:DoubleLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="DoubleLine.html"><span class="name">DoubleLine</span></a><span class="params">(<span name="default">default: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Double">Double</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Double">Double</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@DoubleLineextendsWidgetLine[Double]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.EscapedStringLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EscapedStringLineextendsWidgetLine[String]withProductwithSerializable"></a>
+      <a id="EscapedStringLine:EscapedStringLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="EscapedStringLine.html"><span class="name">EscapedStringLine</span></a><span class="params">(<span name="default">default: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Predef.String">String</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@EscapedStringLineextendsWidgetLine[String]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.InputBoxReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InputBoxReaderextendsBaseWidgetReader"></a>
+      <a id="InputBoxReader:InputBoxReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="InputBoxReader.html"><span class="name">InputBoxReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@InputBoxReaderextendsBaseWidgetReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.IntLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="IntLineextendsWidgetLine[Int]withProductwithSerializable"></a>
+      <a id="IntLine:IntLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="IntLine.html"><span class="name">IntLine</span></a><span class="params">(<span name="default">default: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Int">Int</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Int">Int</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@IntLineextendsWidgetLine[Int]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.InvertedBooleanLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InvertedBooleanLineextendsWidgetLine[Boolean]withProductwithSerializable"></a>
+      <a id="InvertedBooleanLine:InvertedBooleanLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="InvertedBooleanLine.html"><span class="name">InvertedBooleanLine</span></a><span class="params">(<span name="default">default: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Boolean">Boolean</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Boolean">Boolean</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@InvertedBooleanLineextendsWidgetLine[Boolean]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.MapLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MapLine[T]extendsWidgetLine[T]withProductwithSerializable"></a>
+      <a id="MapLine[T]:MapLine[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="MapLine.html"><span class="name">MapLine</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="map">map: <span class="extype" name="scala.List">List</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="org.nlogo.core.model.MapLine.T">T</span>)]</span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="org.nlogo.core.model.MapLine.T">T</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@MapLine[T]extendsWidgetLine[T]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.OptionLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OptionLine[T]extendsWidgetLine[Option[T]]withProductwithSerializable"></a>
+      <a id="OptionLine[T]:OptionLine[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="OptionLine.html"><span class="name">OptionLine</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="noneLine">noneLine: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="someLineReader">someLineReader: <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="org.nlogo.core.model.OptionLine.T">T</span>]</span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Option">Option</span>[<span class="extype" name="org.nlogo.core.model.OptionLine.T">T</span>]] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@OptionLine[T]extendsWidgetLine[Option[T]]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.ReservedLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ReservedLineextendsWidgetLine[Unit]withProductwithSerializable"></a>
+      <a id="ReservedLine:ReservedLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="ReservedLine.html"><span class="name">ReservedLine</span></a><span class="params">(<span name="output">output: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;RESERVED&quot;</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Unit">Unit</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@ReservedLineextendsWidgetLine[Unit]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.SpecifiedLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SpecifiedLineextendsWidgetLine[Unit]withProductwithSerializable"></a>
+      <a id="SpecifiedLine:SpecifiedLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SpecifiedLine.html"><span class="name">SpecifiedLine</span></a><span class="params">(<span name="str">str: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Unit">Unit</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@SpecifiedLineextendsWidgetLine[Unit]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.StringBooleanLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="StringBooleanLineextendsWidgetLine[Boolean]withProductwithSerializable"></a>
+      <a id="StringBooleanLine:StringBooleanLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="StringBooleanLine.html"><span class="name">StringBooleanLine</span></a><span class="params">(<span name="default">default: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Boolean">Boolean</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Boolean">Boolean</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@StringBooleanLineextendsWidgetLine[Boolean]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.StringLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="StringLineextendsWidgetLine[String]withProductwithSerializable"></a>
+      <a id="StringLine:StringLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="StringLine.html"><span class="name">StringLine</span></a><span class="params">(<span name="default">default: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Predef.String">String</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@StringLineextendsWidgetLine[String]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.TNilBooleanLine" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TNilBooleanLineextendsWidgetLine[Boolean]withProductwithSerializable"></a>
+      <a id="TNilBooleanLine:TNilBooleanLine"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TNilBooleanLine.html"><span class="name">TNilBooleanLine</span></a><span class="params">(<span name="default">default: <span class="extype" name="scala.Option">Option</span>[<span class="extype" name="scala.Boolean">Boolean</span>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="WidgetLine.html" class="extype" name="org.nlogo.core.model.WidgetLine">WidgetLine</a>[<span class="extype" name="scala.Boolean">Boolean</span>] with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@TNilBooleanLineextendsWidgetLine[Boolean]withProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.WidgetLine" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WidgetLine[T]extendsAnyRef"></a>
+      <a id="WidgetLine[T]:WidgetLine[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WidgetLine.html"><span class="name">WidgetLine</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@WidgetLine[T]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.WidgetReader" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WidgetReaderextendsAnyRef"></a>
+      <a id="WidgetReader:WidgetReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WidgetReader.html"><span class="name">WidgetReader</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@WidgetReaderextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.nlogo.core.model.ButtonReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ButtonReader"></a>
+      <a id="ButtonReader:ButtonReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ButtonReader$.html"><span class="name">ButtonReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@ButtonReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.ModelReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ModelReader"></a>
+      <a id="ModelReader:ModelReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelReader$.html"><span class="name">ModelReader</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@ModelReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.MonitorReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MonitorReader"></a>
+      <a id="MonitorReader:MonitorReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="MonitorReader$.html"><span class="name">MonitorReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@MonitorReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.OutputReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OutputReader"></a>
+      <a id="OutputReader:OutputReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="OutputReader$.html"><span class="name">OutputReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@OutputReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.PenReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PenReader"></a>
+      <a id="PenReader:PenReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PenReader$.html"><span class="name">PenReader</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@PenReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.PlotReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PlotReader"></a>
+      <a id="PlotReader:PlotReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PlotReader$.html"><span class="name">PlotReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@PlotReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.SliderReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SliderReader"></a>
+      <a id="SliderReader:SliderReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SliderReader$.html"><span class="name">SliderReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@SliderReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.SwitchReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SwitchReader"></a>
+      <a id="SwitchReader:SwitchReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SwitchReader$.html"><span class="name">SwitchReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@SwitchReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.TextBoxReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TextBoxReader"></a>
+      <a id="TextBoxReader:TextBoxReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TextBoxReader$.html"><span class="name">TextBoxReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@TextBoxReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.ViewReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ViewReader"></a>
+      <a id="ViewReader:ViewReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ViewReader$.html"><span class="name">ViewReader</span></a><span class="result"> extends <a href="BaseWidgetReader.html" class="extype" name="org.nlogo.core.model.BaseWidgetReader">BaseWidgetReader</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@ViewReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.core.model.WidgetReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WidgetReader"></a>
+      <a id="WidgetReader:WidgetReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="WidgetReader$.html"><span class="name">WidgetReader</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#org.nlogo.core.model.package@WidgetReader" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

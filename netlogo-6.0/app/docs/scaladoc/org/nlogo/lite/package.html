@@ -1,0 +1,230 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>lite - NetLogo 6.0-M6 - org.nlogo.lite</title>
+          <meta name="description" content="lite - NetLogo 6.0 - M6 - org.nlogo.lite" />
+          <meta name="keywords" content="lite NetLogo 6.0 M6 org.nlogo.lite" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.nlogo.lite.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.nlogo">nlogo</a></p>
+        <h1>lite</h1><span class="permalink">
+      <a href="../../../index.html#org.nlogo.lite.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">lite</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.nlogo.lite.Applet" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AppletextendsJAppletwithEvents.CompiledEvent.Handler"></a>
+      <a id="Applet:Applet"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Applet.html"><span class="name">Applet</span></a><span class="result"> extends <span class="extype" name="javax.swing.JApplet">JApplet</span> with <span class="extype" name="org.nlogo.window.Events.CompiledEvent.Handler">Handler</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.lite.package@AppletextendsJAppletwithEvents.CompiledEvent.Handler" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.lite.AppletPanel" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="AppletPanelextendsJPanelwithExceptions.HandlerwithEvent.LinkParent"></a>
+      <a id="AppletPanel:AppletPanel"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AppletPanel.html"><span class="name">AppletPanel</span></a><span class="result"> extends <span class="extype" name="javax.swing.JPanel">JPanel</span> with <a href="../api/Exceptions$$Handler.html" class="extype" name="org.nlogo.api.Exceptions.Handler">Handler</a> with <span class="extype" name="org.nlogo.window.Event.LinkParent">LinkParent</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.lite.package@AppletPanelextendsJPanelwithExceptions.HandlerwithEvent.LinkParent" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">The superclass of org.nlogo.lite.InterfaceComponent.</p><div class="fullcomment"><div class="comment cmt"><p>The superclass of org.nlogo.lite.InterfaceComponent.  Also used by org.nlogo.lite.Applet.</p><p>See the &quot;Controlling&quot; section of the NetLogo User Manual for example code.
+</p></div></div>
+    </li><li name="org.nlogo.lite.InterfaceComponent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="InterfaceComponentextendsAppletPanelwithEvent.LinkChild"></a>
+      <a id="InterfaceComponent:InterfaceComponent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="InterfaceComponent.html"><span class="name">InterfaceComponent</span></a><span class="result"> extends <a href="AppletPanel.html" class="extype" name="org.nlogo.lite.AppletPanel">AppletPanel</a> with <span class="extype" name="org.nlogo.window.Event.LinkChild">LinkChild</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.lite.package@InterfaceComponentextendsAppletPanelwithEvent.LinkChild" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This component is a wrapper around the contents of the
+interface panel that can be embedded in another application.</p><div class="fullcomment"><div class="comment cmt"><p>This component is a wrapper around the contents of the
+interface panel that can be embedded in another application.</p><p>Once created, an InterfaceComponent can't be garbage collected,
+so you should open successive models in the same InterfaceComponent,
+rather than making new instances.</p><p>See the &quot;Controlling&quot; section of the NetLogo User Manual
+for example code.
+</p></div></div>
+    </li><li name="org.nlogo.lite.LiteEditorFactory" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LiteEditorFactoryextendsEditorFactory"></a>
+      <a id="LiteEditorFactory:LiteEditorFactory"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LiteEditorFactory.html"><span class="name">LiteEditorFactory</span></a><span class="result"> extends <span class="extype" name="org.nlogo.window.EditorFactory">EditorFactory</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.lite.package@LiteEditorFactoryextendsEditorFactory" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.lite.LiteWorkspace" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LiteWorkspaceextendsGUIWorkspace"></a>
+      <a id="LiteWorkspace:LiteWorkspace"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LiteWorkspace.html"><span class="name">LiteWorkspace</span></a><span class="result"> extends <span class="extype" name="org.nlogo.window.GUIWorkspace">GUIWorkspace</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.lite.package@LiteWorkspaceextendsGUIWorkspace" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.lite.ProceduresLite" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ProceduresLiteextendsProceduresInterfacewithEvent.LinkChildwithEvents.LoadSectionEvent.Handler"></a>
+      <a id="ProceduresLite:ProceduresLite"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ProceduresLite.html"><span class="name">ProceduresLite</span></a><span class="result"> extends <span class="extype" name="org.nlogo.window.ProceduresInterface">ProceduresInterface</span> with <span class="extype" name="org.nlogo.window.Event.LinkChild">LinkChild</span> with <span class="extype" name="org.nlogo.window.Events.LoadSectionEvent.Handler">Handler</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.lite.package@ProceduresLiteextendsProceduresInterfacewithEvent.LinkChildwithEvents.LoadSectionEvent.Handler" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.nlogo.lite.InterfaceComponent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InterfaceComponent"></a>
+      <a id="InterfaceComponent:InterfaceComponent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="InterfaceComponent$.html"><span class="name">InterfaceComponent</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.lite.package@InterfaceComponent" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

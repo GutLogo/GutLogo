@@ -1,0 +1,2791 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>api - NetLogo 6.0-M6 - org.nlogo.api</title>
+          <meta name="description" content="api - NetLogo 6.0 - M6 - org.nlogo.api" />
+          <meta name="keywords" content="api NetLogo 6.0 M6 org.nlogo.api" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../index.html';
+            var hash = 'org.nlogo.api.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../lib/package_big.png" />
+        <p id="owner"><a href="../../package.html" class="extype" name="org">org</a>.<a href="../package.html" class="extype" name="org.nlogo">nlogo</a></p>
+        <h1>api</h1><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">api</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides classes associated with the NetLogo Extensions API and
+Controlling API.</p><p>For discussion and sample code, please see the NetLogo User Manual.
+</p></div><dl class="attributes block"> <dt>Source</dt><dd><a href="https://github.com/NetLogo/NetLogo/blob/6.0-M6/netlogo-gui/src/main/api/package.scala" target="_blank">package.scala</a></dd></dl><div class="toggleContainer block">
+          <span class="toggle">Linear Supertypes</span>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+        </div></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        <div id="order">
+              <span class="filtertype">Ordering</span>
+              <ol>
+                
+                <li class="alpha in"><span>Alphabetic</span></li>
+                <li class="inherit out"><span>By Inheritance</span></li>
+              </ol>
+            </div>
+        <div id="ancestors">
+                <span class="filtertype">Inherited<br />
+                </span>
+                <ol id="linearization">
+                  <li class="in" name="org.nlogo.api"><span>api</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                </ol>
+              </div><div id="ancestors">
+            <span class="filtertype"></span>
+            <ol>
+              <li class="hideall out"><span>Hide All</span></li>
+              <li class="showall in"><span>Show All</span></li>
+            </ol>
+          </div>
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="org.nlogo.api.Action" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ActionextendsAnyRef"></a>
+      <a id="Action:Action"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Action.html"><span class="name">Action</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ActionextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ActionBroker" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ActionBroker[A&lt;:org.nlogo.api.Action]extendsPublisher[A]"></a>
+      <a id="ActionBroker[A&lt;:Action]:ActionBroker[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ActionBroker.html"><span class="name">ActionBroker</span></a><span class="tparams">[<span name="A">A &lt;: <a href="Action.html" class="extype" name="org.nlogo.api.Action">Action</a></span>]</span><span class="result"> extends <span class="extype" name="scala.collection.mutable.Publisher">Publisher</span>[<span class="extype" name="org.nlogo.api.ActionBroker.A">A</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ActionBroker[A&lt;:org.nlogo.api.Action]extendsPublisher[A]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ActionBuffer" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ActionBuffer[A&lt;:org.nlogo.api.Action]extendsSubscriber[A,scala.collection.mutable.Publisher[A]]"></a>
+      <a id="ActionBuffer[A&lt;:Action]:ActionBuffer[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ActionBuffer.html"><span class="name">ActionBuffer</span></a><span class="tparams">[<span name="A">A &lt;: <a href="Action.html" class="extype" name="org.nlogo.api.Action">Action</a></span>]</span><span class="result"> extends <span class="extype" name="scala.collection.mutable.Subscriber">Subscriber</span>[<span class="extype" name="org.nlogo.api.ActionBuffer.A">A</span>, <span class="extype" name="scala.collection.mutable.Publisher">Publisher</span>[<span class="extype" name="org.nlogo.api.ActionBuffer.A">A</span>]]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ActionBuffer[A&lt;:org.nlogo.api.Action]extendsSubscriber[A,scala.collection.mutable.Publisher[A]]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">An ActionBuffer logs all actions generated by the supplied
+ActionBroker.</p><div class="fullcomment"><div class="comment cmt"><p>An ActionBuffer logs all actions generated by the supplied
+ActionBroker. Actions can be grabbed (which clears the buffer)
+and the buffer can be cleared independently. NP 2013-01-25.
+</p></div></div>
+    </li><li name="org.nlogo.api.ActionRunner" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ActionRunner[A&lt;:org.nlogo.api.Action]extendsAnyRef"></a>
+      <a id="ActionRunner[A&lt;:Action]:ActionRunner[A]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ActionRunner.html"><span class="name">ActionRunner</span></a><span class="tparams">[<span name="A">A &lt;: <a href="Action.html" class="extype" name="org.nlogo.api.Action">Action</a></span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ActionRunner[A&lt;:org.nlogo.api.Action]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Activation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ActivationextendsAnyRef"></a>
+      <a id="Activation:Activation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Activation.html"><span class="name">Activation</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ActivationextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A representation of the currently executing procedure
+</p>
+    </li><li name="org.nlogo.api.Agent" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="AgentextendsAnyRef"></a>
+      <a id="Agent:Agent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Agent.html"><span class="name">Agent</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@AgentextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">NetLogo agents include turtles, patches, links and the observer.</p>
+    </li><li name="org.nlogo.api.AgentException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AgentExceptionextendsException"></a>
+      <a id="AgentException:AgentException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AgentException.html"><span class="name">AgentException</span></a><span class="result"> extends <span class="extype" name="scala.Exception">Exception</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@AgentExceptionextendsException" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.AgentFollowingPerspective" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="AgentFollowingPerspectiveextendsAnyRef"></a>
+      <a id="AgentFollowingPerspective:AgentFollowingPerspective"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="AgentFollowingPerspective.html"><span class="name">AgentFollowingPerspective</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@AgentFollowingPerspectiveextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.AgentSet" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="AgentSetextendsAnyRef"></a>
+      <a id="AgentSet:AgentSet"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="AgentSet.html"><span class="name">AgentSet</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@AgentSetextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface provides access to NetLogo agentsets.</p><div class="fullcomment"><div class="comment cmt"><p>Interface provides access to NetLogo agentsets.  NetLogo agentsets may be composed of turtles,
+patches, or links (but an agentset may not contain a mix of different agent types.)</p><p>In order to perform some functions on AgentSets you may need to cast to
+org.nlogo.agent.AgentSet.
+</p></div></div>
+    </li><li name="org.nlogo.api.AgentVariableNumbers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AgentVariableNumbersextendsObject"></a>
+      <a id="AgentVariableNumbers:AgentVariableNumbers"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="AgentVariableNumbers.html"><span class="name">AgentVariableNumbers</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@AgentVariableNumbersextendsObject" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.AggregateManagerInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="AggregateManagerInterfaceextendsSourceOwnerwithModelSections.Saveable"></a>
+      <a id="AggregateManagerInterface:AggregateManagerInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="AggregateManagerInterface.html"><span class="name">AggregateManagerInterface</span></a><span class="result"> extends <a href="SourceOwner.html" class="extype" name="org.nlogo.api.SourceOwner">SourceOwner</a> with <a href="ModelSections$$Saveable.html" class="extype" name="org.nlogo.api.ModelSections.Saveable">Saveable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@AggregateManagerInterfaceextendsSourceOwnerwithModelSections.Saveable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Argument" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ArgumentextendsAnyRef"></a>
+      <a id="Argument:Argument"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Argument.html"><span class="name">Argument</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ArgumentextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface provides access to arguments passed to the <code>perform</code> or <code>report</code>
+methods of a primitive at run-time.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Interface provides access to arguments passed to the <code>perform</code> or <code>report</code>
+methods of a primitive at run-time.</p><p><code>Arguments</code> are created by NetLogo and passed to the <code>perform</code> or
+<code>report</code> methods of your primitive.
+</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p>Reporter#report(Argument[], Context)</p></span><span class="cmt"><p>Command#perform(Argument[], Context)</p></span></dd></dl></div>
+    </li><li name="org.nlogo.api.CSV" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CSVextendsAnyRef"></a>
+      <a id="CSV:CSV"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CSV.html"><span class="name">CSV</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@CSVextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ClassManager" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ClassManagerextendsAnyRef"></a>
+      <a id="ClassManager:ClassManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ClassManager.html"><span class="name">ClassManager</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ClassManagerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Command" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="CommandextendsPrimitiveCommand"></a>
+      <a id="Command:Command"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Command.html"><span class="name">Command</span></a><span class="result"> extends <a href="../core/PrimitiveCommand.html" class="extype" name="org.nlogo.core.PrimitiveCommand">PrimitiveCommand</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@CommandextendsPrimitiveCommand" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface for NetLogo extension commands.</p><div class="fullcomment"><div class="comment cmt"><p>Interface for NetLogo extension commands. Commands are primitives that
+do not return a value.  All new commands must implement this interface.
+</p></div></div>
+    </li><li name="org.nlogo.api.CommandLogoThunk" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CommandLogoThunkextendsAnyRef"></a>
+      <a id="CommandLogoThunk:CommandLogoThunk"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CommandLogoThunk.html"><span class="name">CommandLogoThunk</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@CommandLogoThunkextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.CommandRunnable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CommandRunnableextendsAnyRef"></a>
+      <a id="CommandRunnable:CommandRunnable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CommandRunnable.html"><span class="name">CommandRunnable</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@CommandRunnableextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.CommandTask" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CommandTaskextendsTask"></a>
+      <a id="CommandTask:CommandTask"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CommandTask.html"><span class="name">CommandTask</span></a><span class="result"> extends <a href="Task.html" class="extype" name="org.nlogo.api.Task">Task</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@CommandTaskextendsTask" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.CompilerServices" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="CompilerServicesextendsAnyRef"></a>
+      <a id="CompilerServices:CompilerServices"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="CompilerServices.html"><span class="name">CompilerServices</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@CompilerServicesextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Context" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ContextextendsAnyRef"></a>
+      <a id="Context:Context"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Context.html"><span class="name">Context</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ContextextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Provides access to the current execution environment.</p>
+    </li><li name="org.nlogo.api.Controllable" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ControllableextendsAnyRef"></a>
+      <a id="Controllable:Controllable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Controllable.html"><span class="name">Controllable</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ControllableextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface provides access to the NetLogo controlling API's report and command methods found in
+methods independent of App.app and headless.HeadlessWorkspace.</p><div class="fullcomment"><div class="comment cmt"><p>Interface provides access to the NetLogo controlling API's report and command methods found in
+methods independent of App.app and headless.HeadlessWorkspace.  This is useful for making java
+software that can run NetLogo in both GUI and Headless mode.
+</p></div></div>
+    </li><li name="org.nlogo.api.DefaultClassManager" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DefaultClassManagerextendsClassManager"></a>
+      <a id="DefaultClassManager:DefaultClassManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DefaultClassManager.html"><span class="name">DefaultClassManager</span></a><span class="result"> extends <a href="ClassManager.html" class="extype" name="org.nlogo.api.ClassManager">ClassManager</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DefaultClassManagerextendsClassManager" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.DelegatingMapper" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DelegatingMapperextendsTokenMapperInterface"></a>
+      <a id="DelegatingMapper:DelegatingMapper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="DelegatingMapper.html"><span class="name">DelegatingMapper</span></a><span class="result"> extends <a href="../core/TokenMapperInterface.html" class="extype" name="org.nlogo.core.TokenMapperInterface">TokenMapperInterface</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DelegatingMapperextendsTokenMapperInterface" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Drawing3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Drawing3DextendsAnyRef"></a>
+      <a id="Drawing3D:Drawing3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Drawing3D.html"><span class="name">Drawing3D</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Drawing3DextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.DrawingInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DrawingInterfaceextendsAnyRef"></a>
+      <a id="DrawingInterface:DrawingInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="DrawingInterface.html"><span class="name">DrawingInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DrawingInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.DrawingLine3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DrawingLine3DextendsAnyRef"></a>
+      <a id="DrawingLine3D:DrawingLine3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="DrawingLine3D.html"><span class="name">DrawingLine3D</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DrawingLine3DextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.DummyCompilerServices" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DummyCompilerServicesextendsCompilerServices"></a>
+      <a id="DummyCompilerServices:DummyCompilerServices"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DummyCompilerServices.html"><span class="name">DummyCompilerServices</span></a><span class="result"> extends <a href="CompilerServices.html" class="extype" name="org.nlogo.api.CompilerServices">CompilerServices</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DummyCompilerServicesextendsCompilerServices" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.DummyEditable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DummyEditableextendsEditablewithDummyErrorHandler"></a>
+      <a id="DummyEditable:DummyEditable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="DummyEditable.html"><span class="name">DummyEditable</span></a><span class="result"> extends <a href="Editable.html" class="extype" name="org.nlogo.api.Editable">Editable</a> with <a href="DummyErrorHandler.html" class="extype" name="org.nlogo.api.DummyErrorHandler">DummyErrorHandler</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DummyEditableextendsEditablewithDummyErrorHandler" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.DummyErrorHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="DummyErrorHandlerextendsAnyRef"></a>
+      <a id="DummyErrorHandler:DummyErrorHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="DummyErrorHandler.html"><span class="name">DummyErrorHandler</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DummyErrorHandlerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.DummyExtensionManager" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DummyExtensionManagerextendsDummyExtensionManagerwithExtensionManager"></a>
+      <a id="DummyExtensionManager:DummyExtensionManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DummyExtensionManager.html"><span class="name">DummyExtensionManager</span></a><span class="result"> extends <a href="../core/DummyExtensionManager.html" class="extype" name="org.nlogo.core.DummyExtensionManager">core.DummyExtensionManager</a> with <a href="ExtensionManager.html" class="extype" name="org.nlogo.api.ExtensionManager">ExtensionManager</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DummyExtensionManagerextendsDummyExtensionManagerwithExtensionManager" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.DummyLogoThunkFactory" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DummyLogoThunkFactoryextendsLogoThunkFactory"></a>
+      <a id="DummyLogoThunkFactory:DummyLogoThunkFactory"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="DummyLogoThunkFactory.html"><span class="name">DummyLogoThunkFactory</span></a><span class="result"> extends <a href="LogoThunkFactory.html" class="extype" name="org.nlogo.api.LogoThunkFactory">LogoThunkFactory</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@DummyLogoThunkFactoryextendsLogoThunkFactory" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Editable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="EditableextendsAnyRef"></a>
+      <a id="Editable:Editable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Editable.html"><span class="name">Editable</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@EditableextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.EditorAreaInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="EditorAreaInterfaceextendsAnyRef"></a>
+      <a id="EditorAreaInterface:EditorAreaInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="EditorAreaInterface.html"><span class="name">EditorAreaInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@EditorAreaInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ExtensionException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ExtensionExceptionextendsException"></a>
+      <a id="ExtensionException:ExtensionException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="ExtensionException.html"><span class="name">ExtensionException</span></a><span class="result"> extends <span class="extype" name="scala.Exception">Exception</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ExtensionExceptionextendsException" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Wrapper class for exceptions thrown by NetLogo extensions.</p>
+    </li><li name="org.nlogo.api.ExtensionManager" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ExtensionManagerextendsExtensionManager"></a>
+      <a id="ExtensionManager:ExtensionManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ExtensionManager.html"><span class="name">ExtensionManager</span></a><span class="result"> extends <a href="../core/ExtensionManager.html" class="extype" name="org.nlogo.core.ExtensionManager">core.ExtensionManager</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ExtensionManagerextendsExtensionManager" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><code>ExtensionManager</code> provides some methods that can be used in runOnce
+</code></p><div class="fullcomment"><div class="comment cmt"><p><code>ExtensionManager</code> provides some methods that can be used in runOnce
+</p></div></div>
+    </li><li name="org.nlogo.api.Graphics2DWrapper" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Graphics2DWrapperextendsGraphicsInterface"></a>
+      <a id="Graphics2DWrapper:Graphics2DWrapper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Graphics2DWrapper.html"><span class="name">Graphics2DWrapper</span></a><span class="result"> extends <a href="GraphicsInterface.html" class="extype" name="org.nlogo.api.GraphicsInterface">GraphicsInterface</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Graphics2DWrapperextendsGraphicsInterface" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.GraphicsInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="GraphicsInterfaceextendsAnyRef"></a>
+      <a id="GraphicsInterface:GraphicsInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="GraphicsInterface.html"><span class="name">GraphicsInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@GraphicsInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.HubNetInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="HubNetInterfaceextendsViewInterfacewithModelSections.BufSaveable"></a>
+      <a id="HubNetInterface:HubNetInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="HubNetInterface.html"><span class="name">HubNetInterface</span></a><span class="result"> extends <a href="ViewInterface.html" class="extype" name="org.nlogo.api.ViewInterface">ViewInterface</a> with <a href="ModelSections$$BufSaveable.html" class="extype" name="org.nlogo.api.ModelSections.BufSaveable">BufSaveable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@HubNetInterfaceextendsViewInterfacewithModelSections.BufSaveable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.HubNetWorkspaceInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="HubNetWorkspaceInterfaceextendsCompilerServices"></a>
+      <a id="HubNetWorkspaceInterface:HubNetWorkspaceInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="HubNetWorkspaceInterface.html"><span class="name">HubNetWorkspaceInterface</span></a><span class="result"> extends <a href="CompilerServices.html" class="extype" name="org.nlogo.api.CompilerServices">CompilerServices</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@HubNetWorkspaceInterfaceextendsCompilerServices" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.I18NJava" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="I18NJavaextendsObject"></a>
+      <a id="I18NJava:I18NJava"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="I18NJava.html"><span class="name">I18NJava</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@I18NJavaextendsObject" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ImportErrorHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ImportErrorHandlerextendsAnyRef"></a>
+      <a id="ImportErrorHandler:ImportErrorHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ImportErrorHandler.html"><span class="name">ImportErrorHandler</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ImportErrorHandlerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ImporterUser" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ImporterUserextendsWorldResizer"></a>
+      <a id="ImporterUser:ImporterUser"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ImporterUser.html"><span class="name">ImporterUser</span></a><span class="result"> extends <a href="WorldResizer.html" class="extype" name="org.nlogo.api.WorldResizer">WorldResizer</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ImporterUserextendsWorldResizer" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.JobOwner" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="JobOwnerextendsSourceOwner"></a>
+      <a id="JobOwner:JobOwner"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="JobOwner.html"><span class="name">JobOwner</span></a><span class="result"> extends <a href="SourceOwner.html" class="extype" name="org.nlogo.api.SourceOwner">SourceOwner</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@JobOwnerextendsSourceOwner" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Like source owners, job owners are usually parts of the UI.</p><div class="fullcomment"><div class="comment cmt"><p>Like source owners, job owners are usually parts of the UI.  Jobs are initiated by
+by buttons, by monitors, by the Command Center, and so on.</p><p>The (assorted, disparate) methods here in JobOwner have mainly to do with runtime behavior
+and/or runtime error handling.  (SourceOwner is more about compilation and compile-time errors.)
+</p></div></div>
+    </li><li name="org.nlogo.api.Link" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LinkextendsAgent"></a>
+      <a id="Link:Link"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Link.html"><span class="name">Link</span></a><span class="result"> extends <a href="Agent.html" class="extype" name="org.nlogo.api.Agent">Agent</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LinkextendsAgent" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface provides access to NetLogo links.</p>
+    </li><li name="org.nlogo.api.Link3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Link3DextendsLink"></a>
+      <a id="Link3D:Link3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Link3D.html"><span class="name">Link3D</span></a><span class="result"> extends <a href="Link.html" class="extype" name="org.nlogo.api.Link">Link</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Link3DextendsLink" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.LinkStamp3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LinkStamp3DextendsLink3D"></a>
+      <a id="LinkStamp3D:LinkStamp3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LinkStamp3D.html"><span class="name">LinkStamp3D</span></a><span class="result"> extends <a href="Link3D.html" class="extype" name="org.nlogo.api.Link3D">Link3D</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LinkStamp3DextendsLink3D" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.LocalFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LocalFileextendsFile"></a>
+      <a id="LocalFile:LocalFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LocalFile.html"><span class="name">LocalFile</span></a><span class="result"> extends <a href="../core/File.html" class="extype" name="org.nlogo.core.File">File</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LocalFileextendsFile" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Logger" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LoggerextendsAnyRef"></a>
+      <a id="Logger:Logger"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Logger.html"><span class="name">Logger</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LoggerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.LogoException" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="LogoExceptionextendsRuntimeException"></a>
+      <a id="LogoException:LogoException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LogoException.html"><span class="name">LogoException</span></a><span class="result"> extends <span class="extype" name="scala.RuntimeException">RuntimeException</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LogoExceptionextendsRuntimeException" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A runtime error that has occurred in NetLogo code.</p><div class="fullcomment"><div class="comment cmt"><p>A runtime error that has occurred in NetLogo code.</p><p>As with any Exception, use the getMessage() method to get the error message.
+A LogoExceptions is expected to have a nice end-user-understandable message.</p><p>LogoException is abstract because engine code is supposed to throw
+a concrete subclass like EngineException.
+</p></div></div>
+    </li><li name="org.nlogo.api.LogoHashObject" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LogoHashObjectextendsAnyRef"></a>
+      <a id="LogoHashObject:LogoHashObject"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LogoHashObject.html"><span class="name">LogoHashObject</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LogoHashObjectextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.LogoListBuilder" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LogoListBuilderextendsAnyRef"></a>
+      <a id="LogoListBuilder:LogoListBuilder"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="LogoListBuilder.html"><span class="name">LogoListBuilder</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LogoListBuilderextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.LogoThunkFactory" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="LogoThunkFactoryextendsAnyRef"></a>
+      <a id="LogoThunkFactory:LogoThunkFactory"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="LogoThunkFactory.html"><span class="name">LogoThunkFactory</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LogoThunkFactoryextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Matrix3D" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Matrix3DextendsObject"></a>
+      <a id="Matrix3D:Matrix3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Matrix3D.html"><span class="name">Matrix3D</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Matrix3DextendsObject" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.MersenneTwisterFast" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MersenneTwisterFastextendsRandomwithSerializablewithCloneable"></a>
+      <a id="MersenneTwisterFast:MersenneTwisterFast"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">final </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="MersenneTwisterFast.html"><span class="name">MersenneTwisterFast</span></a><span class="result"> extends <span class="extype" name="java.util.Random">Random</span> with <span class="extype" name="java.io.Serializable">Serializable</span> with <span class="extype" name="java.lang.Cloneable">Cloneable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@MersenneTwisterFastextendsRandomwithSerializablewithCloneable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelRun" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ModelRunextendsAnyRef"></a>
+      <a id="ModelRun:ModelRun"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelRun.html"><span class="name">ModelRun</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelRunextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelSection" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ModelSectionextendsAnyRef"></a>
+      <a id="ModelSection:ModelSection"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelSection.html"><span class="name">ModelSection</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelSectionextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelSections" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ModelSectionsextendsAnyRef"></a>
+      <a id="ModelSections:ModelSections"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelSections.html"><span class="name">ModelSections</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelSectionsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelType" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ModelTypeextendsAnyRef"></a>
+      <a id="ModelType:ModelType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelType.html"><span class="name">ModelType</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelTypeextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">how a model was loaded.</p><div class="fullcomment"><div class="comment cmt"><p>how a model was loaded. NEW is type for new models, NORMAL is a
+model opened normally (e.g. via Open on the File menu),
+LIBRARY a models library model.
+</p></div></div>
+    </li><li name="org.nlogo.api.ModelingCommonsInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ModelingCommonsInterfaceextendsObject"></a>
+      <a id="ModelingCommonsInterface:ModelingCommonsInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelingCommonsInterface.html"><span class="name">ModelingCommonsInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelingCommonsInterfaceextendsObject" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.MultiErrorHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="MultiErrorHandlerextendsAnyRef"></a>
+      <a id="MultiErrorHandler:MultiErrorHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="MultiErrorHandler.html"><span class="name">MultiErrorHandler</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@MultiErrorHandlerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.NetLogoAdapter" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="NetLogoAdapterextendsNetLogoListener"></a>
+      <a id="NetLogoAdapter:NetLogoAdapter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="NetLogoAdapter.html"><span class="name">NetLogoAdapter</span></a><span class="result"> extends <a href="NetLogoListener.html" class="extype" name="org.nlogo.api.NetLogoListener">NetLogoListener</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@NetLogoAdapterextendsNetLogoListener" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Implements NetLogoListener with empty methods, which can be overriden
+in subclasses.</p>
+    </li><li name="org.nlogo.api.NetLogoListener" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="NetLogoListenerextendsEventListener"></a>
+      <a id="NetLogoListener:NetLogoListener"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="NetLogoListener.html"><span class="name">NetLogoListener</span></a><span class="result"> extends <span class="extype" name="java.util.EventListener">EventListener</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@NetLogoListenerextendsEventListener" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A host application should implement this interface in order to be notified of events occurring
+within NetLogo.</p><div class="fullcomment"><div class="comment cmt"><p>A host application should implement this interface in order to be notified of events occurring
+within NetLogo.  Its methods are called by NetLogoListenerManager when these events occur.  The
+events are typically user actions, but may also be triggered programmatically by the model.
+</p></div></div>
+    </li><li name="org.nlogo.api.Observer" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ObserverextendsAgent"></a>
+      <a id="Observer:Observer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Observer.html"><span class="name">Observer</span></a><span class="result"> extends <a href="Agent.html" class="extype" name="org.nlogo.api.Agent">Agent</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ObserverextendsAgent" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ObserverOrientation" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ObserverOrientationextendsAnyRef"></a>
+      <a id="ObserverOrientation:ObserverOrientation"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ObserverOrientation.html"><span class="name">ObserverOrientation</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ObserverOrientationextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Options" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Options[T]extendsAnyRef"></a>
+      <a id="Options[T]:Options[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Options.html"><span class="name">Options</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Options[T]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.OutputDestination" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="OutputDestinationextendsAnyRef"></a>
+      <a id="OutputDestination:OutputDestination"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="OutputDestination.html"><span class="name">OutputDestination</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@OutputDestinationextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Patch" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PatchextendsAgent"></a>
+      <a id="Patch:Patch"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Patch.html"><span class="name">Patch</span></a><span class="result"> extends <a href="Agent.html" class="extype" name="org.nlogo.api.Agent">Agent</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PatchextendsAgent" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Provides access to NetLogo patches.</p>
+    </li><li name="org.nlogo.api.Patch3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Patch3DextendsPatch"></a>
+      <a id="Patch3D:Patch3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Patch3D.html"><span class="name">Patch3D</span></a><span class="result"> extends <a href="Patch.html" class="extype" name="org.nlogo.api.Patch">Patch</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Patch3DextendsPatch" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Perspective" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PerspectiveextendsAnyRef"></a>
+      <a id="Perspective:Perspective"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed abstract </span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Perspective.html"><span class="name">Perspective</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PerspectiveextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.PerspectiveJ" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PerspectiveJextendsObject"></a>
+      <a id="PerspectiveJ:PerspectiveJ"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="PerspectiveJ.html"><span class="name">PerspectiveJ</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PerspectiveJextendsObject" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.PlotAction" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PlotActionextendsAction"></a>
+      <a id="PlotAction:PlotAction"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PlotAction.html"><span class="name">PlotAction</span></a><span class="result"> extends <a href="Action.html" class="extype" name="org.nlogo.api.Action">Action</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PlotActionextendsAction" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.PlotInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PlotInterfaceextendsAnyRef"></a>
+      <a id="PlotInterface:PlotInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PlotInterface.html"><span class="name">PlotInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PlotInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.PlotManagerInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PlotManagerInterfaceextendsAnyRef"></a>
+      <a id="PlotManagerInterface:PlotManagerInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PlotManagerInterface.html"><span class="name">PlotManagerInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PlotManagerInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.PlotState" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PlotStateextendsProductwithSerializable"></a>
+      <a id="PlotState:PlotState"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="PlotState.html"><span class="name">PlotState</span></a><span class="params">(<span name="autoPlotOn">autoPlotOn: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">true</span></span>, <span name="xMin">xMin: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0</span></span>, <span name="xMax">xMax: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">10</span></span>, <span name="yMin">yMin: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0</span></span>, <span name="yMax">yMax: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">10</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PlotStateextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.PreviewCommands" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="PreviewCommandsextendsAnyRef"></a>
+      <a id="PreviewCommands:PreviewCommands"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PreviewCommands.html"><span class="name">PreviewCommands</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PreviewCommandsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A model's &quot;preview commands&quot; are the commands that are used to
+generate the preview that appears in the Models Library dialog,
+the NetLogo website (http://ccl.northwestern.edu/netlogo/models/),
+the Modeling Commons (http://www.modelingcommons.org/) and potentially
+other places.</p><div class="fullcomment"><div class="comment cmt"><p>A model's &quot;preview commands&quot; are the commands that are used to
+generate the preview that appears in the Models Library dialog,
+the NetLogo website (http://ccl.northwestern.edu/netlogo/models/),
+the Modeling Commons (http://www.modelingcommons.org/) and potentially
+other places. By default, they're just <code>setup repeat 75 [ go ]</code> but
+they can be customized. Some models require manually generated previews.</p><p>Preview commands are always run in a fresh headless workspace with
+<code>random-seed 0</code> called before opening the model. The <code>startup</code>
+procedure, if present, runs before the preview commands.
+</p></div></div>
+    </li><li name="org.nlogo.api.PrimitiveManager" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PrimitiveManagerextendsAnyRef"></a>
+      <a id="PrimitiveManager:PrimitiveManager"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="PrimitiveManager.html"><span class="name">PrimitiveManager</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PrimitiveManagerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Ships extension primitives and associated names to NetLogo.</p>
+    </li><li name="org.nlogo.api.Property" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PropertyextendsProductwithSerializable"></a>
+      <a id="Property:Property"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Property.html"><span class="name">Property</span></a><span class="params">(<span name="accessString">accessString: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="tpe">tpe: <a href="Property$$Type.html" class="extype" name="org.nlogo.api.Property.Type">Type</a></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="notes">notes: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="gridWidth">gridWidth: <span class="extype" name="scala.Int">Int</span> = <span class="symbol">GridBagConstraints.REMAINDER</span></span>, <span name="focus">focus: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="setLive">setLive: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">true</span></span>, <span name="collapsible">collapsible: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="collapseByDefault">collapseByDefault: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PropertyextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Protractor" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ProtractorextendsAnyRef"></a>
+      <a id="Protractor:Protractor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Protractor.html"><span class="name">Protractor</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ProtractorextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Protractor3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Protractor3DextendsProtractor"></a>
+      <a id="Protractor3D:Protractor3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Protractor3D.html"><span class="name">Protractor3D</span></a><span class="result"> extends <a href="Protractor.html" class="extype" name="org.nlogo.api.Protractor">Protractor</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Protractor3DextendsProtractor" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.RandomServices" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="RandomServicesextendsAnyRef"></a>
+      <a id="RandomServices:RandomServices"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="RandomServices.html"><span class="name">RandomServices</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@RandomServicesextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.RemoteFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RemoteFileextendsFile"></a>
+      <a id="RemoteFile:RemoteFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="RemoteFile.html"><span class="name">RemoteFile</span></a><span class="result"> extends <a href="../core/File.html" class="extype" name="org.nlogo.core.File">File</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@RemoteFileextendsFile" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.RendererInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="RendererInterfaceextendsAnyRef"></a>
+      <a id="RendererInterface:RendererInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="RendererInterface.html"><span class="name">RendererInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@RendererInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Reporter" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ReporterextendsPrimitiveReporter"></a>
+      <a id="Reporter:Reporter"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Reporter.html"><span class="name">Reporter</span></a><span class="result"> extends <a href="../core/PrimitiveReporter.html" class="extype" name="org.nlogo.core.PrimitiveReporter">PrimitiveReporter</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ReporterextendsPrimitiveReporter" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface for NetLogo reporters.</p><div class="fullcomment"><div class="comment cmt"><p>Interface for NetLogo reporters. Reporters are primitives that
+return a value.  All new reporters must implement this interface.
+</p></div></div>
+    </li><li name="org.nlogo.api.ReporterLogoThunk" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="ReporterLogoThunkextendsAnyRef"></a>
+      <a id="ReporterLogoThunk:ReporterLogoThunk"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ReporterLogoThunk.html"><span class="name">ReporterLogoThunk</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ReporterLogoThunkextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This is used by SliderConstraint.</p><div class="fullcomment"><div class="comment cmt"><p>This is used by SliderConstraint.  Sliders have snippets of Logo code associated with them, which
+need be to be evaluated to produce numbers for the min, max, and increment.  But here in the
+org.nlogo.agent package we don't know anything about Logo code and how to run it.  This interface
+lets other code keep us in the dark by giving us a black box that magically produces an object
+whenever we ask for one.  (In the case of SliderConstraint the object should be a boxed double.)
+</p></div></div>
+    </li><li name="org.nlogo.api.ReporterRunnable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ReporterRunnable[T]extendsAnyRef"></a>
+      <a id="ReporterRunnable[T]:ReporterRunnable[T]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ReporterRunnable.html"><span class="name">ReporterRunnable</span></a><span class="tparams">[<span name="T">T</span>]</span><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ReporterRunnable[T]extendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ReporterTask" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ReporterTaskextendsTask"></a>
+      <a id="ReporterTask:ReporterTask"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ReporterTask.html"><span class="name">ReporterTask</span></a><span class="result"> extends <a href="Task.html" class="extype" name="org.nlogo.api.Task">Task</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ReporterTaskextendsTask" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.SimpleChangeEventPublisher" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SimpleChangeEventPublisherextendsPublisher[org.nlogo.api.SimpleChangeEvent.type]"></a>
+      <a id="SimpleChangeEventPublisher:SimpleChangeEventPublisher"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SimpleChangeEventPublisher.html"><span class="name">SimpleChangeEventPublisher</span></a><span class="result"> extends <span class="extype" name="scala.collection.mutable.Publisher">Publisher</span>[<a href="SimpleChangeEvent$.html" class="extype" name="org.nlogo.api.SimpleChangeEvent">SimpleChangeEvent</a>.type]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@SimpleChangeEventPublisherextendsPublisher[org.nlogo.api.SimpleChangeEvent.type]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">A most basic event publisher only warning subscribers that &quot;something has changed&quot;
+ Currently used by TreeAgentSet to allow the nw extension to listen for changes
+ and update its graph context accordingly.</p><div class="fullcomment"><div class="comment cmt"><p>A most basic event publisher only warning subscribers that &quot;something has changed&quot;
+ Currently used by TreeAgentSet to allow the nw extension to listen for changes
+ and update its graph context accordingly. NP 2013-05-14.
+</p></div></div>
+    </li><li name="org.nlogo.api.SimpleJobOwner" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SimpleJobOwnerextendsJobOwner"></a>
+      <a id="SimpleJobOwner:SimpleJobOwner"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="SimpleJobOwner.html"><span class="name">SimpleJobOwner</span></a><span class="result"> extends <a href="JobOwner.html" class="extype" name="org.nlogo.api.JobOwner">JobOwner</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@SimpleJobOwnerextendsJobOwner" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.SingleErrorHandler" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SingleErrorHandlerextendsAnyRef"></a>
+      <a id="SingleErrorHandler:SingleErrorHandler"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SingleErrorHandler.html"><span class="name">SingleErrorHandler</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@SingleErrorHandlerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.SourceOwner" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="SourceOwnerextendsAnyRef"></a>
+      <a id="SourceOwner:SourceOwner"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SourceOwner.html"><span class="name">SourceOwner</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@SourceOwnerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Source owners are usually parts of the UI.</p><div class="fullcomment"><div class="comment cmt"><p>Source owners are usually parts of the UI.  Code comes from buttons, from monitors, from the
+Code tab, from the Command Center, and so on.</p><p>SourceOwner has mainly to do with compilation and with what to do if an error occurs during
+compilation.</p><p>&quot;Header source&quot; is distinguished from &quot;inner source&quot; because the latter is the code the user
+actually wrote, while header and footer source is extra code we wrapped around it.  This matters
+when showing code and showing positions of errors in the UI; we never want to show the user
+header/footer source, but error locations need to take the length of the header source into
+account.</p><p>See also JobOwner, which extends SourceOwner and adds methods having to do with runtime behavior
+and runtime error-handling.
+</p></div></div>
+    </li><li name="org.nlogo.api.Task" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TaskextendsAnyRef"></a>
+      <a id="Task:Task"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier">sealed </span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Task.html"><span class="name">Task</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@TaskextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Timer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TimerextendsAnyRef"></a>
+      <a id="Timer:Timer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Timer.html"><span class="name">Timer</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@TimerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.TokenHolder" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TokenHolderextendsAnyRef"></a>
+      <a id="TokenHolder:TokenHolder"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TokenHolder.html"><span class="name">TokenHolder</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@TokenHolderextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.TokenizerInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TokenizerInterfaceextendsAnyRef"></a>
+      <a id="TokenizerInterface:TokenizerInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TokenizerInterface.html"><span class="name">TokenizerInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@TokenizerInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.TrailDrawerInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TrailDrawerInterfaceextendsDrawingInterface"></a>
+      <a id="TrailDrawerInterface:TrailDrawerInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TrailDrawerInterface.html"><span class="name">TrailDrawerInterface</span></a><span class="result"> extends <a href="DrawingInterface.html" class="extype" name="org.nlogo.api.DrawingInterface">DrawingInterface</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@TrailDrawerInterfaceextendsDrawingInterface" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Turtle" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TurtleextendsAgent"></a>
+      <a id="Turtle:Turtle"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Turtle.html"><span class="name">Turtle</span></a><span class="result"> extends <a href="Agent.html" class="extype" name="org.nlogo.api.Agent">Agent</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@TurtleextendsAgent" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface provides access to NetLogo turtles.</p>
+    </li><li name="org.nlogo.api.Turtle3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="Turtle3DextendsTurtle"></a>
+      <a id="Turtle3D:Turtle3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Turtle3D.html"><span class="name">Turtle3D</span></a><span class="result"> extends <a href="Turtle.html" class="extype" name="org.nlogo.api.Turtle">Turtle</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Turtle3DextendsTurtle" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.TurtleStamp3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="TurtleStamp3DextendsTurtle3D"></a>
+      <a id="TurtleStamp3D:TurtleStamp3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="TurtleStamp3D.html"><span class="name">TurtleStamp3D</span></a><span class="result"> extends <a href="Turtle3D.html" class="extype" name="org.nlogo.api.Turtle3D">Turtle3D</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@TurtleStamp3DextendsTurtle3D" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ValueConstraint" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ValueConstraintextendsAnyRef"></a>
+      <a id="ValueConstraint:ValueConstraint"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ValueConstraint.html"><span class="name">ValueConstraint</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ValueConstraintextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Interface for objects which provide constraints for values</p>
+    </li><li name="org.nlogo.api.Vect" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="VectextendsProductwithSerializable"></a>
+      <a id="Vect:Vect"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Vect.html"><span class="name">Vect</span></a><span class="params">(<span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="y">y: <span class="extype" name="scala.Double">Double</span></span>, <span name="z">z: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@VectextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ViewInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ViewInterfaceextendsAnyRef"></a>
+      <a id="ViewInterface:ViewInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ViewInterface.html"><span class="name">ViewInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ViewInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ViewSettings" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="ViewSettingsextendsAnyRef"></a>
+      <a id="ViewSettings:ViewSettings"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="ViewSettings.html"><span class="name">ViewSettings</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ViewSettingsextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Workspace" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WorkspaceextendsImporterUserwithLiteralParserwithRandomServiceswithViewSettingswithControllable"></a>
+      <a id="Workspace:Workspace"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Workspace.html"><span class="name">Workspace</span></a><span class="result"> extends <a href="ImporterUser.html" class="extype" name="org.nlogo.api.ImporterUser">ImporterUser</a> with <a href="../core/LiteralParser.html" class="extype" name="org.nlogo.core.LiteralParser">LiteralParser</a> with <a href="RandomServices.html" class="extype" name="org.nlogo.api.RandomServices">RandomServices</a> with <a href="ViewSettings.html" class="extype" name="org.nlogo.api.ViewSettings">ViewSettings</a> with <a href="Controllable.html" class="extype" name="org.nlogo.api.Controllable">Controllable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@WorkspaceextendsImporterUserwithLiteralParserwithRandomServiceswithViewSettingswithControllable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.World" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WorldextendsAnyRef"></a>
+      <a id="World:World"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="World.html"><span class="name">World</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@WorldextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.World3D" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="World3DextendsWorld"></a>
+      <a id="World3D:World3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="World3D.html"><span class="name">World3D</span></a><span class="result"> extends <a href="World.html" class="extype" name="org.nlogo.api.World">World</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@World3DextendsWorld" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.WorldDimensionException" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorldDimensionExceptionextendsException"></a>
+      <a id="WorldDimensionException:WorldDimensionException"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="WorldDimensionException.html"><span class="name">WorldDimensionException</span></a><span class="result"> extends <span class="extype" name="scala.Exception">Exception</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@WorldDimensionExceptionextendsException" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.WorldDimensions3D" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorldDimensions3DextendsWorldDimensions"></a>
+      <a id="WorldDimensions3D:WorldDimensions3D"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="WorldDimensions3D.html"><span class="name">WorldDimensions3D</span></a><span class="result"> extends <a href="../core/WorldDimensions.html" class="extype" name="org.nlogo.core.WorldDimensions">WorldDimensions</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@WorldDimensions3DextendsWorldDimensions" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">for wrapping up dimensions to resize the world using WorldResizer</p>
+    </li><li name="org.nlogo.api.WorldPropertiesInterface" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WorldPropertiesInterfaceextendsAnyRef"></a>
+      <a id="WorldPropertiesInterface:WorldPropertiesInterface"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WorldPropertiesInterface.html"><span class="name">WorldPropertiesInterface</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@WorldPropertiesInterfaceextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.WorldRenderable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WorldRenderableextendsAnyRef"></a>
+      <a id="WorldRenderable:WorldRenderable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WorldRenderable.html"><span class="name">WorldRenderable</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@WorldRenderableextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.WorldResizer" visbl="pub" data-isabs="true" fullComment="yes" group="Ungrouped">
+      <a id="WorldResizerextendsAnyRef"></a>
+      <a id="WorldResizer:WorldResizer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WorldResizer.html"><span class="name">WorldResizer</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@WorldResizerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">used by Importer for resizing the world during an import.</p><div class="fullcomment"><div class="comment cmt"><p>used by Importer for resizing the world during an import.  also used by BehaviorSpace when the
+experiment varies the world size</p></div></div>
+    </li><li name="org.nlogo.api.WorldWithWorldRenderable" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="WorldWithWorldRenderableextendsWorldwithWorldRenderable"></a>
+      <a id="WorldWithWorldRenderable:WorldWithWorldRenderable"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="WorldWithWorldRenderable.html"><span class="name">WorldWithWorldRenderable</span></a><span class="result"> extends <a href="World.html" class="extype" name="org.nlogo.api.World">World</a> with <a href="WorldRenderable.html" class="extype" name="org.nlogo.api.WorldRenderable">WorldRenderable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@WorldWithWorldRenderableextendsWorldwithWorldRenderable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="org.nlogo.api.APIVersion" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="APIVersion"></a>
+      <a id="APIVersion:APIVersion"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="APIVersion$.html"><span class="name">APIVersion</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@APIVersion" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.AgentVariables" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AgentVariables"></a>
+      <a id="AgentVariables:AgentVariables"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="AgentVariables$.html"><span class="name">AgentVariables</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@AgentVariables" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Approximate" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Approximate"></a>
+      <a id="Approximate:Approximate"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Approximate$.html"><span class="name">Approximate</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Approximate" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Color" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Color"></a>
+      <a id="Color:Color"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Color$.html"><span class="name">Color</span></a><span class="result"> extends <a href="../core/Color.html" class="extype" name="org.nlogo.core.Color">core.Color</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Color" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Constants" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Constants"></a>
+      <a id="Constants:Constants"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Constants$.html"><span class="name">Constants</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Constants" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Dump" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Dump"></a>
+      <a id="Dump:Dump"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Dump$.html"><span class="name">Dump</span></a><span class="result"> extends <a href="../core/Dump.html" class="extype" name="org.nlogo.core.Dump">core.Dump</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Dump" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Equality" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Equality"></a>
+      <a id="Equality:Equality"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Equality$.html"><span class="name">Equality</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Equality" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Exceptions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Exceptions"></a>
+      <a id="Exceptions:Exceptions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Exceptions$.html"><span class="name">Exceptions</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Exceptions" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.FileIO" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="FileIO"></a>
+      <a id="FileIO:FileIO"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="FileIO$.html"><span class="name">FileIO</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@FileIO" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.HexString" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HexString"></a>
+      <a id="HexString:HexString"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="HexString$.html"><span class="name">HexString</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@HexString" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.JavaLibraryPath" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="JavaLibraryPath"></a>
+      <a id="JavaLibraryPath:JavaLibraryPath"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="JavaLibraryPath$.html"><span class="name">JavaLibraryPath</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@JavaLibraryPath" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">This code came from http://forum.java.sun.com/thread.jspa?threadID=627890&amp;start=15</p><div class="fullcomment"><div class="comment cmt"><p>This code came from http://forum.java.sun.com/thread.jspa?threadID=627890&amp;start=15</p><p>The Terms of Use for the website, in the &quot;Content Submitted to Sun&quot; section states: You (the
+author) grant Sun and all other users of the Website an irrevocable, worldwide, royalty-free,
+nonexclusive license to use, reproduce, modify, distribute, transmit, display, perform, adapt,
+resell and publish such Content (including in digital form).</p><p>http://www.sun.com/termsofuse.jsp</p><p>The username of the original post has no name or email associated with it.</p><p>Adds a path to the java.library.path System property and updates the ClassLoader. Uses reflection
+to allow update to private system members. Will not work if JVM security policy gets in the way
+(like in an applet).  Will not work if Sun changes the private members.  This really shouldn't be
+used at all...
+</p></div></div>
+    </li><li name="org.nlogo.api.LogoHashObject" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LogoHashObject"></a>
+      <a id="LogoHashObject:LogoHashObject"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="LogoHashObject$.html"><span class="name">LogoHashObject</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@LogoHashObject" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ModelReader"></a>
+      <a id="ModelReader:ModelReader"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelReader$.html"><span class="name">ModelReader</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelReader" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelSection" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ModelSection"></a>
+      <a id="ModelSection:ModelSection"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelSection$.html"><span class="name">ModelSection</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelSection" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelSectionJ" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ModelSectionJ"></a>
+      <a id="ModelSectionJ:ModelSectionJ"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelSectionJ$.html"><span class="name">ModelSectionJ</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelSectionJ" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelSections" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ModelSections"></a>
+      <a id="ModelSections:ModelSections"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelSections$.html"><span class="name">ModelSections</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelSections" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelType" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ModelType"></a>
+      <a id="ModelType:ModelType"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelType$.html"><span class="name">ModelType</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelType" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ModelTypeJ" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ModelTypeJ"></a>
+      <a id="ModelTypeJ:ModelTypeJ"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ModelTypeJ$.html"><span class="name">ModelTypeJ</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ModelTypeJ" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.NetLogoLegacyDialect" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NetLogoLegacyDialect"></a>
+      <a id="NetLogoLegacyDialect:NetLogoLegacyDialect"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NetLogoLegacyDialect$.html"><span class="name">NetLogoLegacyDialect</span></a><span class="result"> extends <a href="../core/Dialect.html" class="extype" name="org.nlogo.core.Dialect">Dialect</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@NetLogoLegacyDialect" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.NetLogoLegacyDialectTokenMapper" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NetLogoLegacyDialectTokenMapper"></a>
+      <a id="NetLogoLegacyDialectTokenMapper:NetLogoLegacyDialectTokenMapper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NetLogoLegacyDialectTokenMapper$.html"><span class="name">NetLogoLegacyDialectTokenMapper</span></a><span class="result"> extends <a href="DelegatingMapper.html" class="extype" name="org.nlogo.api.DelegatingMapper">DelegatingMapper</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@NetLogoLegacyDialectTokenMapper" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.NetLogoThreeDDialect" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NetLogoThreeDDialect"></a>
+      <a id="NetLogoThreeDDialect:NetLogoThreeDDialect"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NetLogoThreeDDialect$.html"><span class="name">NetLogoThreeDDialect</span></a><span class="result"> extends <a href="../core/Dialect.html" class="extype" name="org.nlogo.core.Dialect">Dialect</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@NetLogoThreeDDialect" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.NumberParser" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="NumberParser"></a>
+      <a id="NumberParser:NumberParser"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="NumberParser$.html"><span class="name">NumberParser</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@NumberParser" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Numbers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Numbers"></a>
+      <a id="Numbers:Numbers"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Numbers$.html"><span class="name">Numbers</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Numbers" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.OutputDestination" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OutputDestination"></a>
+      <a id="OutputDestination:OutputDestination"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="OutputDestination$.html"><span class="name">OutputDestination</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@OutputDestination" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.OutputDestinationJ" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="OutputDestinationJ"></a>
+      <a id="OutputDestinationJ:OutputDestinationJ"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="OutputDestinationJ$.html"><span class="name">OutputDestinationJ</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@OutputDestinationJ" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Java can't (I don't think) access Scala inner objects without reflection, so we provide these
+convenience vals for use from Java.</p>
+    </li><li name="org.nlogo.api.PeriodicUpdateDelay" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PeriodicUpdateDelay"></a>
+      <a id="PeriodicUpdateDelay:PeriodicUpdateDelay"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PeriodicUpdateDelay$.html"><span class="name">PeriodicUpdateDelay</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PeriodicUpdateDelay" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Perspective" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Perspective"></a>
+      <a id="Perspective:Perspective"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Perspective$.html"><span class="name">Perspective</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Perspective" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.PlotAction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PlotAction"></a>
+      <a id="PlotAction:PlotAction"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PlotAction$.html"><span class="name">PlotAction</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PlotAction" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.PreviewCommands" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PreviewCommands"></a>
+      <a id="PreviewCommands:PreviewCommands"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="PreviewCommands$.html"><span class="name">PreviewCommands</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@PreviewCommands" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Property" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Property"></a>
+      <a id="Property:Property"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Property$.html"><span class="name">Property</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Property" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.RandomSeedGenerator" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RandomSeedGenerator"></a>
+      <a id="RandomSeedGenerator:RandomSeedGenerator"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="RandomSeedGenerator$.html"><span class="name">RandomSeedGenerator</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@RandomSeedGenerator" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.RemoteFile" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RemoteFile"></a>
+      <a id="RemoteFile:RemoteFile"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="RemoteFile$.html"><span class="name">RemoteFile</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@RemoteFile" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ScalaConversions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ScalaConversions"></a>
+      <a id="ScalaConversions:ScalaConversions"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ScalaConversions$.html"><span class="name">ScalaConversions</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ScalaConversions" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.SimpleChangeEvent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SimpleChangeEvent"></a>
+      <a id="SimpleChangeEvent:SimpleChangeEvent"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SimpleChangeEvent$.html"><span class="name">SimpleChangeEvent</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@SimpleChangeEvent" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.StringUtils" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="StringUtils"></a>
+      <a id="StringUtils:StringUtils"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="StringUtils$.html"><span class="name">StringUtils</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@StringUtils" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ThreeDTokenMapper" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ThreeDTokenMapper"></a>
+      <a id="ThreeDTokenMapper:ThreeDTokenMapper"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ThreeDTokenMapper$.html"><span class="name">ThreeDTokenMapper</span></a><span class="result"> extends <a href="DelegatingMapper.html" class="extype" name="org.nlogo.api.DelegatingMapper">DelegatingMapper</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ThreeDTokenMapper" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.TypeNames" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TypeNames"></a>
+      <a id="TypeNames:TypeNames"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="TypeNames$.html"><span class="name">TypeNames</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@TypeNames" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.ValueConstraint" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ValueConstraint"></a>
+      <a id="ValueConstraint:ValueConstraint"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="ValueConstraint$.html"><span class="name">ValueConstraint</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@ValueConstraint" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Vect" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Vect"></a>
+      <a id="Vect:Vect"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Vect$.html"><span class="name">Vect</span></a><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Vect" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.Version" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Version"></a>
+      <a id="Version:Version"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Version$.html"><span class="name">Version</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@Version" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="org.nlogo.api.VersionHistory" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="VersionHistory"></a>
+      <a id="VersionHistory:VersionHistory"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="VersionHistory$.html"><span class="name">VersionHistory</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#org.nlogo.api.package@VersionHistory" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        <div class="parent" name="scala.AnyRef">
+              <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
+            </div><div class="parent" name="scala.Any">
+              <h3>Inherited from <span class="extype" name="scala.Any">Any</span></h3>
+            </div>
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>

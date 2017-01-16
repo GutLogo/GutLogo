@@ -1,4 +1,3 @@
-extensions [profiler]
 ;///////////////////////////VARIABLES///////////////////////////////////////
 breed [bifidos bifido] ; define the Bifidobacteria breed
 breed [desulfos desulfo] ; define the Desulfovibrio breed

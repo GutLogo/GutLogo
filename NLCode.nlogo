@@ -692,8 +692,8 @@ end
 GRAPHICS-WINDOW
 224
 17
-2338
-80
+2340
+102
 -1
 -1
 6.0
@@ -953,7 +953,7 @@ INPUTBOX
 850
 369
 inConcBacteroides
-0.0
+0
 1
 0
 Number
@@ -964,7 +964,7 @@ INPUTBOX
 850
 429
 inConcBifidos
-0.0
+0
 1
 0
 Number
@@ -975,7 +975,7 @@ INPUTBOX
 981
 369
 inConcClosts
-0.0
+0
 1
 0
 Number
@@ -986,7 +986,7 @@ INPUTBOX
 981
 428
 inConcDesulfos
-0.0
+0
 1
 0
 Number
@@ -1019,7 +1019,7 @@ INPUTBOX
 922
 310
 tickInflow
-1.0
+1
 1
 0
 Number
@@ -1030,7 +1030,7 @@ INPUTBOX
 851
 488
 stuckChance
-50.0
+50
 1
 0
 Number
@@ -1041,7 +1041,7 @@ INPUTBOX
 388
 333
 initNumBifidos
-7854.0
+7854
 1
 0
 Number
@@ -1052,7 +1052,7 @@ INPUTBOX
 388
 393
 initNumBacteroides
-1830.0
+1830
 1
 0
 Number
@@ -1063,7 +1063,7 @@ INPUTBOX
 388
 453
 initNumClosts
-307.0
+307
 1
 0
 Number
@@ -1074,7 +1074,7 @@ INPUTBOX
 388
 513
 initNumDesulfos
-9.0
+9
 1
 0
 Number
@@ -1146,7 +1146,7 @@ INPUTBOX
 855
 547
 unstuckChance
-20.0
+20
 1
 0
 Number
@@ -1157,7 +1157,7 @@ INPUTBOX
 196
 379
 bifidoDoub
-338.0
+338
 1
 0
 Number
@@ -1168,7 +1168,7 @@ INPUTBOX
 196
 438
 desulfoDoub
-908.0
+908
 1
 0
 Number
@@ -1179,7 +1179,7 @@ INPUTBOX
 196
 556
 clostDoub
-190.0
+190
 1
 0
 Number
@@ -1190,7 +1190,7 @@ INPUTBOX
 196
 496
 bacteroidDoub
-180.0
+180
 1
 0
 Number
@@ -1201,7 +1201,7 @@ INPUTBOX
 556
 277
 inFlowInulin
-10.0
+10
 1
 0
 Number
@@ -1223,7 +1223,7 @@ INPUTBOX
 710
 396
 inFlowFO
-10.0
+10
 1
 0
 Number
@@ -1234,7 +1234,7 @@ INPUTBOX
 556
 396
 inFlowLactose
-10.0
+10
 1
 0
 Number
@@ -1245,7 +1245,7 @@ INPUTBOX
 709
 336
 inFlowLactate
-10.0
+10
 1
 0
 Number
@@ -1256,7 +1256,7 @@ INPUTBOX
 710
 276
 inFlowGlucose
-10.0
+10
 1
 0
 Number
@@ -1267,7 +1267,7 @@ INPUTBOX
 556
 337
 inFlowCS
-10.0
+10
 1
 0
 Number
@@ -1278,7 +1278,7 @@ INPUTBOX
 556
 498
 bifido-lactate-production
-1.0
+1
 1
 0
 Number
@@ -1289,7 +1289,7 @@ INPUTBOX
 983
 547
 seedChance
-5.0
+5
 1
 0
 Number
@@ -1732,8 +1732,9 @@ false
 0
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
+
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.0-M6
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1747,7 +1748,7 @@ NetLogo 6.0
   <experiment name="doubGuess" repetitions="3" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
-    <timeLimit steps="100"/>
+    <timeLimit steps="10080"/>
     <metric>count bifidos</metric>
     <metric>count closts</metric>
     <metric>count desulfos</metric>
@@ -1858,6 +1859,7 @@ true
 0
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
+
 @#$#@#$#@
 0
 @#$#@#$#@

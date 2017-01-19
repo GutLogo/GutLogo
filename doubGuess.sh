@@ -3,5 +3,5 @@
 ~/netlogo-6.0/netlogo-headless.sh \
 --model ~/gut-nlogo-model/NLCode.nlogo \
 --experiment doubGuess \
---spreadsheet ~/results/doubGuess.csv
+--spreadsheet ~/results/doubGuess.csv \
 --threads 40

@@ -391,15 +391,16 @@ end
 ; checks if the bacteria should be stuck or unstucked based on the chances
 to checkStuck
   if(not isSeed)[
-    if(not isStuck and (random 100 < stuckChance))[
-	    set isStuck true
-    ]
-    ifelse(isStuck and (random 100 < unstuckChance))[
-	    set isStuck false
-    ][;else
-			if(random 100 < seedChance)[
-			  set isSeed true
-			]
+   ifelse(random 100 < seedChance)[
+	    set isSeed true
+   ]
+   [;else
+     if(not isStuck and (random 100 < stuckChance))[
+       set isStuck true
+     ]
+     if(isStuck and (random 100 < unstuckChance))[
+       set isStuck false
+     ]
 		]
   ]
 end
@@ -934,23 +935,6 @@ Percentage Vulgatus
 2
 1
 11
-
-BUTTON
-26
-54
-97
-87
-Profiler
-setup                  ;; set up the model\nprofiler:start         ;; start profiling\nrepeat 30 [ go ]       ;; run something you want to measure\nprofiler:stop          ;; stop profiling\nprint profiler:report  ;; view the results\nprofiler:reset         ;; clear the data
-NIL
-1
-T
-OBSERVER
-NIL
-NIL
-NIL
-NIL
-1
 
 SWITCH
 1194

@@ -1179,7 +1179,7 @@ INPUTBOX
 196
 556
 clostDoub
-170.0
+190.0
 1
 0
 Number
@@ -1190,7 +1190,7 @@ INPUTBOX
 196
 496
 bacteroidDoub
-171.0
+180.0
 1
 0
 Number
@@ -1747,91 +1747,13 @@ NetLogo 6.0
   <experiment name="doubGuess" repetitions="3" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
-    <timeLimit steps="10080"/>
+    <timeLimit steps="100"/>
     <metric>count bifidos</metric>
     <metric>count closts</metric>
     <metric>count desulfos</metric>
-    <metric>count vulgats</metric>
-    <enumeratedValueSet variable="initial-number-desulfos">
-      <value value="20"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="vulgatDoub" first="170" step="10" last="250"/>
-    <enumeratedValueSet variable="inConcVulgats">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="initial-number-closts">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="randDist">
-      <value value="0.1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="stuckChance">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="absorption">
-      <value value="0.1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowFO">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcDesulfos">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="desulfoDoub">
-      <value value="908"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="unstuckChance">
-      <value value="20"/>
-    </enumeratedValueSet>
+    <metric>count bacteroides</metric>
+    <steppedValueSet variable="bacteroidDoub" first="170" step="10" last="250"/>
     <steppedValueSet variable="clostDoub" first="150" step="10" last="250"/>
-    <enumeratedValueSet variable="seedChance">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowLactate">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowCS">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bifidoDoub">
-      <value value="338"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowInulin">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcBifidos">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowGlucose">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="flowDist">
-      <value value="0.972"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="plots-on?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="initial-number-vulgats">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="reserveFraction">
-      <value value="0.9"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="initial-number-bifidos">
-      <value value="10000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="tickInflow">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcClosts">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bifido-lactate-production">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowLactose">
-      <value value="10"/>
-    </enumeratedValueSet>
   </experiment>
   <experiment name="testCluster" repetitions="25" runMetricsEveryStep="true">
     <setup>setup</setup>

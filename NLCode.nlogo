@@ -2,7 +2,7 @@
 breed [bifidos bifido] ; define the Bifidobacteria breed
 breed [desulfos desulfo] ; define the Desulfovibrio breed
 breed [closts clost] ; define the Clostridia breed
-breed [vulgats vulgat]; define the Bacteriodes Vulgatus breed
+breed [bacteroides bacteroid]; define the bacteroides bacteroidus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
 patches-own [glucose FO lactose lactate inulin CS glucosePrev FOPrev lactosePrev
 lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve inulinReserve CSReserve avaMetas]
@@ -70,8 +70,8 @@ to setup
     setxy random-xcor random-ycor
   ]
 
-  set-default-shape vulgats "bacteria"
-  create-vulgats initNumVulgats [
+  set-default-shape bacteroides "bacteria"
+  create-bacteroides initNumbacteroides [
     set color grey
     set size 1
     set energy 100
@@ -110,7 +110,7 @@ to setup
   ; Healthy bacteria gut percentages. This allows the absorption to change due to
   ; bacteria populations, simulating immune response.
   set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
-  (1 * ((count closts) / (count turtles)))+(1.2 * ((count vulgats) / (count turtles))) +
+  (1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
   (0.7 * ((count bifidos) / (count turtles)))))
 
   ; Setup for stop if negative metas
@@ -130,7 +130,7 @@ to go
   ; Healthy bacteria gut percentages. This allows the absorption to change due to
   ; bacteria populations, simulating immune response.
   set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
-  (1 * ((count closts) / (count turtles)))+(1.2 * ((count vulgats) / (count turtles))) +
+  (1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
   (0.7 * ((count bifidos) / (count turtles)))))
 
   ; Modify the energy levels of each turtles and metaohydrate
@@ -194,8 +194,8 @@ to deathDesulfos
   if excrete [die]
 end
 
-; Vulgatus die if below energy threshold or if excreted
-to deathVulgats
+; bacteroidus die if below energy threshold or if excreted
+to deathbacteroides
   if energy <= 0 [
     die
   ]
@@ -326,12 +326,12 @@ to bactTickBehavior
   	set age (age + 1)
   ]
 
-  ask vulgats [;controls the behavior for the vulgats
+  ask bacteroides [;controls the behavior for the bacteroides
     flowMove
     randMove
 	  checkStuck
-    deathVulgats
-    if (age mod vulgatDoub / doubConst = 0 and age != 0)[
+    deathbacteroides
+    if (age mod bacteroidDoub / doubConst = 0 and age != 0)[
       reproduceBact
     ]
   	set age (age + 1)
@@ -452,7 +452,7 @@ to inConc
     setxy min-pxcor - 0.5 random-ycor
 
   ]
-  create-vulgats inConcVulgats [
+  create-bacteroides inConcBacteroides [
     set color grey
     set size 1
     set energy 100
@@ -488,7 +488,7 @@ to bactEat [metaNum]
   ]
 
   if (metaNum = 11)[;FO
-    ifelse (breed = closts or breed = vulgats)[
+    ifelse (breed = closts or breed = bacteroides)[
       set energy (energy + 25)
       ask patch-here [
         set FO (FO - 1)
@@ -516,7 +516,7 @@ to bactEat [metaNum]
   ]
 
   if (metaNum = 12)[;GLUCOSE
-    ifelse (breed = closts or breed = vulgats)[
+    ifelse (breed = closts or breed = bacteroides)[
       set energy (energy + 50)
       ask patch-here [
         set glucose (glucose - 1)
@@ -544,7 +544,7 @@ to bactEat [metaNum]
   ]
 
   if (metaNum = 13)[;INULIN
-    ifelse (breed = closts or breed = vulgats)[
+    ifelse (breed = closts or breed = bacteroides)[
       set energy (energy + 25)
       ask patch-here [
         set inulin (inulin - 1)
@@ -587,7 +587,7 @@ to bactEat [metaNum]
   ]
 
   ifelse (metaNum = 15)[;LACTOSE
-    ifelse (breed = closts or breed = vulgats)[
+    ifelse (breed = closts or breed = bacteroides)[
       ifelse (breed = closts)[
         set energy (energy + 25)
       ]
@@ -769,7 +769,7 @@ PENS
 "Closts" 1.0 0 -2674135 true "" "plot count closts"
 "Bifidos" 1.0 0 -13345367 true "" "plot count bifidos"
 "Desulfos" 1.0 0 -10899396 true "" "plot count desulfos"
-"Vulgats" 1.0 0 -7500403 true "" "plot count vulgats"
+"Bacteroides" 1.0 0 -7500403 true "" "plot count bacteroides"
 
 MONITOR
 321
@@ -915,12 +915,12 @@ sum [Lactose] of patches
 11
 
 MONITOR
-596
-585
-656
-630
-Vulgatus
-count vulgats
+593
+584
+662
+629
+Bacteroides
+count bacteroides
 17
 1
 11
@@ -928,10 +928,10 @@ count vulgats
 MONITOR
 781
 635
-908
+925
 680
-Percentage Vulgatus
-100 * count vulgats / count turtles
+Percentage Bacteroides
+100 * count bacteroides / count turtles
 2
 1
 11
@@ -952,7 +952,7 @@ INPUTBOX
 309
 850
 369
-inConcVulgats
+inConcBacteroides
 0.0
 1
 0
@@ -1041,7 +1041,7 @@ INPUTBOX
 388
 333
 initNumBifidos
-10000.0
+7854.0
 1
 0
 Number
@@ -1051,8 +1051,8 @@ INPUTBOX
 333
 388
 393
-initNumVulgats
-200.0
+initNumBacteroides
+1830.0
 1
 0
 Number
@@ -1063,7 +1063,7 @@ INPUTBOX
 388
 453
 initNumClosts
-300.0
+307.0
 1
 0
 Number
@@ -1074,7 +1074,7 @@ INPUTBOX
 388
 513
 initNumDesulfos
-20.0
+9.0
 1
 0
 Number
@@ -1189,7 +1189,7 @@ INPUTBOX
 436
 196
 496
-vulgatDoub
+bacteroidDoub
 171.0
 1
 0
@@ -1744,7 +1744,7 @@ NetLogo 6.0
     <timeLimit steps="5000"/>
     <metric>count turtles</metric>
   </experiment>
-  <experiment name="clostDoub Check" repetitions="1" runMetricsEveryStep="true">
+  <experiment name="doubGuess" repetitions="3" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="10080"/>
@@ -1755,9 +1755,7 @@ NetLogo 6.0
     <enumeratedValueSet variable="initial-number-desulfos">
       <value value="20"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="vulgatDoub">
-      <value value="171"/>
-    </enumeratedValueSet>
+    <steppedValueSet variable="vulgatDoub" first="170" step="10" last="250"/>
     <enumeratedValueSet variable="inConcVulgats">
       <value value="0"/>
     </enumeratedValueSet>

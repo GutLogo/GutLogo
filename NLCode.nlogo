@@ -1030,7 +1030,7 @@ INPUTBOX
 851
 488
 stuckChance
-50
+5
 1
 0
 Number
@@ -1146,7 +1146,7 @@ INPUTBOX
 855
 547
 unstuckChance
-20
+5
 1
 0
 Number
@@ -1289,7 +1289,7 @@ INPUTBOX
 983
 547
 seedChance
-5
+1
 1
 0
 Number

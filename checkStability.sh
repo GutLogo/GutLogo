@@ -3,5 +3,5 @@
 ~/netlogo-6.0/netlogo-headless.sh \
 --model ~/gut-nlogo-model/NLCode.nlogo \
 --experiment checkStable \
---spreadsheet ~/results/stableCheck.csv \
+--table ~/results/stableCheck.csv \
 --threads 40

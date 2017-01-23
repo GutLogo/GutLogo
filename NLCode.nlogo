@@ -1041,7 +1041,7 @@ INPUTBOX
 388
 333
 initNumBifidos
-15708
+23562
 1
 0
 Number
@@ -1052,7 +1052,7 @@ INPUTBOX
 388
 393
 initNumBacteroides
-3660
+5490
 1
 0
 Number
@@ -1063,7 +1063,7 @@ INPUTBOX
 388
 453
 initNumClosts
-614
+921
 1
 0
 Number
@@ -1074,7 +1074,7 @@ INPUTBOX
 388
 513
 initNumDesulfos
-18
+27
 1
 0
 Number

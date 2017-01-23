@@ -6,7 +6,7 @@ breed [bacteroides bacteroid]; define the bacteroides bacteroidus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
 patches-own [glucose FO lactose lactate inulin CS glucosePrev FOPrev lactosePrev
 lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve inulinReserve CSReserve avaMetas]
-globals [trueAbsorption negMeta]
+globals [trueAbsorption negMeta testConstant]
 ;///////////////////////////VARIABLES///////////////////////////////////////
 
 ;///////////////////////////DISPLAY-LABELS///////////////////////////////////////
@@ -151,14 +151,16 @@ to go
   ; Increment time
   tick
 
-  ; Stop if negative number of metas calculated
-  if negMeta [stop]
+  stopCheck
 end
 ;///////////////////////////GO///////////////////////////////////////
 
 ;///////////////////////////stopCheck///////////////////////////////////////
 to stopCheck
   ; code for stopping the simulation
+
+  ; Stop if negative number of metas calculated
+  if negMeta [stop]
 
   ; Stop if any population hits 0 or there are too many turtles
   if count turtles > 1000000 [stop]
@@ -298,7 +300,7 @@ to bactTickBehavior
     randMove ; movement of the bacteria by a combination of motility and other random forces
 	  checkStuck ; check if the bacteria becomes stuck or unstuck
     deathBifidos ; check that the energy of the bacteria is enough, otherwise bacteria dies
-    if (age mod bifidoDoub / doubConst = 0 and age != 0)[ ;this line controls on what tick mod reproduce
+    if (age mod bifidoDoub = 0 and age != 0)[ ;this line controls on what tick mod reproduce
       reproduceBact ; run the reproduce code for bacteria
     ]
   	set age (age + 1) ; increase the age of the bacteria with each tick
@@ -309,7 +311,7 @@ to bactTickBehavior
     randMove
 	  checkStuck
     deathDesulfos
-    if (age mod desulfoDoub / doubConst = 0 and age != 0)[
+    if (age mod desulfoDoub = 0 and age != 0)[
       reproduceBact
     ]
   	set age (age + 1)
@@ -320,7 +322,7 @@ to bactTickBehavior
     randMove
 	  checkStuck
     deathClosts
-    if (age mod clostDoub / doubConst = 0 and age != 0)[
+    if (age mod clostDoub = 0 and age != 0)[
       reproduceBact
     ]
   	set age (age + 1)
@@ -331,7 +333,7 @@ to bactTickBehavior
     randMove
 	  checkStuck
     deathbacteroides
-    if (age mod bacteroidDoub / doubConst = 0 and age != 0)[
+    if (age mod bacteroidDoub = 0 and age != 0)[
       reproduceBact
     ]
   	set age (age + 1)
@@ -657,6 +659,7 @@ to patchEat
 end
 ;///////////////////////////patchEat///////////////////////////////////////
 
+;CarbReporters
 ; Returns glucose value at passed coordinate
 to-report get-glucose [target-patch-x-coord target-patch-y-coord]
     report [glucosePrev] of patch-at target-patch-x-coord target-patch-y-coord
@@ -685,6 +688,43 @@ end
 ; Returns CS value at passed coordinate
 to-report get-CS [target-patch-x-coord target-patch-y-coord]
     report [CSPrev] of patch-at target-patch-x-coord target-patch-y-coord
+end
+
+;testReporters
+;gets bacteria count 100 ticks
+to-report testGetBifidos
+  if (ticks mod 100) = 0[
+    report count bifidos
+  ]
+end
+
+to-report testGetClosts
+  if (ticks mod 100) = 0[
+    report count closts
+  ]
+end
+
+to-report testGetBacteroides
+  if (ticks mod 100) = 0[
+    report count bacteroides
+  ]
+end
+
+to-report testGetDesulfos
+  if (ticks mod 100) = 0[
+    report count desulfos
+  ]
+end
+
+;Tests
+to flowRateTest
+  ;changes the flowrate by testConstant after 1 week of time then reduces it after another week
+  if (ticks = 10080)[
+    set flowDist (flowDist * testConstant)
+  ]
+  if (ticks = 20160)[
+    set flowDist (flowDist / testConstant)
+  ]
 end
 
 ;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1847,6 +1887,105 @@ NetLogo 6.0-M6
     </enumeratedValueSet>
     <enumeratedValueSet variable="inFlowGlucose">
       <value value="10"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="flowTest" repetitions="100" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go
+flowRateTest</go>
+    <timeLimit steps="30240"/>
+    <metric>testGetBifidos</metric>
+    <metric>testGetClosts</metric>
+    <metric>testGetBacteroides</metric>
+    <metric>testGetDesulfos</metric>
+    <enumeratedValueSet variable="inFlowFO">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="stuckChance">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="unstuckChance">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactose">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcClosts">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBifidos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="absorption">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="randDist">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seedChance">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="desulfoDoub">
+      <value value="908"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactate">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifido-lactate-production">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="tickInflow">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="plots-on?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="flowDist">
+      <value value="0.972"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowInulin">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="23562"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="27"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBacteroides">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="clostDoub">
+      <value value="280"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="921"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="reserveFraction">
+      <value value="0.9"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowCS">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcDesulfos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bacteroidDoub">
+      <value value="330"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowGlucose">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5490"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifidoDoub">
+      <value value="338"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="testConstant">
+      <value value="0.75"/>
+      <value value="1"/>
+      <value value="1.25"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

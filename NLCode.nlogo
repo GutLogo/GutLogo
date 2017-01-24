@@ -690,32 +690,6 @@ to-report get-CS [target-patch-x-coord target-patch-y-coord]
     report [CSPrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
 
-;testReporters
-;gets bacteria count 100 ticks
-to-report testGetBifidos
-  if (ticks mod 100) = 0[
-    report count bifidos
-  ]
-end
-
-to-report testGetClosts
-  if (ticks mod 100) = 0[
-    report count closts
-  ]
-end
-
-to-report testGetBacteroides
-  if (ticks mod 100) = 0[
-    report count bacteroides
-  ]
-end
-
-to-report testGetDesulfos
-  if (ticks mod 100) = 0[
-    report count desulfos
-  ]
-end
-
 ;Tests
 to flowRateTest
   ;changes the flowrate by testConstant after 1 week of time then reduces it after another week
@@ -1891,9 +1865,9 @@ NetLogo 6.0-M6
   </experiment>
   <experiment name="flowTest" repetitions="100" runMetricsEveryStep="true">
     <setup>setup</setup>
-    <go>go
+    <go>repeat 100 [go]
 flowRateTest</go>
-    <timeLimit steps="30240"/>
+    <timeLimit steps="302"/>
     <metric>testGetBifidos</metric>
     <metric>testGetClosts</metric>
     <metric>testGetBacteroides</metric>
@@ -1986,6 +1960,103 @@ flowRateTest</go>
       <value value="0.75"/>
       <value value="1"/>
       <value value="1.25"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="flowTest" repetitions="1" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>repeat 100 [go]
+flowRateTest</go>
+    <timeLimit steps="302"/>
+    <metric>testGetBifidos</metric>
+    <metric>testGetClosts</metric>
+    <metric>testGetBacteroides</metric>
+    <metric>testGetDesulfos</metric>
+    <enumeratedValueSet variable="inFlowFO">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="stuckChance">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="unstuckChance">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactose">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcClosts">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBifidos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="absorption">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="randDist">
+      <value value="0.1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seedChance">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="desulfoDoub">
+      <value value="908"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactate">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifido-lactate-production">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="tickInflow">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="plots-on?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="flowDist">
+      <value value="0.972"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowInulin">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="23562"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="27"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBacteroides">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="clostDoub">
+      <value value="280"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="921"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="reserveFraction">
+      <value value="0.9"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowCS">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcDesulfos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bacteroidDoub">
+      <value value="330"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowGlucose">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5490"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifidoDoub">
+      <value value="338"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="testConstant">
+      <value value="1"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

@@ -1326,7 +1326,7 @@ INPUTBOX
 1487
 593
 testConst
-3.0
+1.0
 1
 0
 Number
@@ -1890,6 +1890,22 @@ NetLogo 6.0
       <value value="0.333"/>
       <value value="1"/>
       <value value="3"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="flowTestSmall" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>repeat 100 [
+  go
+  flowRateTest
+]</go>
+    <timeLimit steps="9"/>
+    <metric>flowDist</metric>
+    <metric>count bifidos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <enumeratedValueSet variable="testConst">
+      <value value="1"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

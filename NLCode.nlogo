@@ -1764,14 +1764,16 @@ NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="checkStable" repetitions="40" runMetricsEveryStep="false">
+  <experiment name="checkStable" repetitions="500" sequentialRunOrder="false" runMetricsEveryStep="false">
     <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="10080"/>
-    <metric>100 * count bifidos / count turtles</metric>
-    <metric>100 * count desulfos / count turtles</metric>
-    <metric>100 * count bacteroides / count turtles</metric>
-    <metric>100 * count closts / count turtles</metric>
+    <go>repeat 100[
+  go
+]</go>
+    <timeLimit steps="108"/>
+    <metric>count bifidos</metric>
+    <metric>count desulfos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
   </experiment>
   <experiment name="doubGuess" repetitions="3" runMetricsEveryStep="true">
     <setup>setup</setup>

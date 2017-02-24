@@ -232,7 +232,7 @@ to makeMetabolites
   set glucose (glucose * remainFactor)
   set CS (CS * remainFactor)
 
-  ifelse (pxcor < (min-pxcor + ceiling (flowDist)))[
+  ifelse (pxcor = min-pxcor)[ ; check this later with JOSH
     set inulin ((inulin) + (inFlowInulin))
     set FO ((FO) + (inFlowFO))
     set lactose ((lactose) + (inFlowLactose))
@@ -715,13 +715,13 @@ to CSTest
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-224
-17
-2338
-80
+13
+56
+2021
+85
 -1
 -1
-6.0
+20.0
 1
 10
 1
@@ -732,9 +732,9 @@ GRAPHICS-WINDOW
 1
 1
 0
-350
+99
 0
-8
+0
 1
 1
 1
@@ -1022,7 +1022,7 @@ INPUTBOX
 1277
 649
 randDist
-0.1
+0.03
 1
 0
 Number
@@ -1033,7 +1033,7 @@ INPUTBOX
 982
 488
 flowDist
-0.972
+0.278
 1
 0
 Number
@@ -1061,9 +1061,9 @@ stuckChance
 Number
 
 INPUTBOX
-233
+234
 273
-388
+389
 333
 initNumBifidos
 23562.0
@@ -1314,7 +1314,7 @@ INPUTBOX
 983
 547
 seedChance
-1.0
+0.5
 1
 0
 Number
@@ -1936,5 +1936,5 @@ true
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
 @#$#@#$#@
-0
+1
 @#$#@#$#@

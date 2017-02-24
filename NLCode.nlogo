@@ -691,6 +691,8 @@ to-report get-CS [target-patch-x-coord target-patch-y-coord]
     report [CSPrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
 
+;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 ;Tests
 to flowRateTest
   ;changes the flowrate by testConst after 1 week of time then reduces it after another week
@@ -702,7 +704,15 @@ to flowRateTest
   ]
 end
 
-;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+to CSTest
+  ;changes the CS inConc for carb experiment
+  if (ticks = 10080)[
+    set inFlowCS (inFlowCS * testConst)
+  ]
+  if (ticks = 20160)[
+    set inFlowCS (inFlowCS / testConst)
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 224
@@ -1894,20 +1904,22 @@ NetLogo 6.0
       <value value="3"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="flowTestSmall" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="CSTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100 [
   go
-  flowRateTest
+  CSTest
 ]</go>
-    <timeLimit steps="9"/>
+    <timeLimit steps="303"/>
     <metric>flowDist</metric>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
     <metric>count desulfos</metric>
     <enumeratedValueSet variable="testConst">
+      <value value="0.5"/>
       <value value="1"/>
+      <value value="2"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

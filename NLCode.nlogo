@@ -231,8 +231,9 @@ to makeMetabolites
   set lactate (lactate * remainFactor)
   set glucose (glucose * remainFactor)
   set CS (CS * remainFactor)
-
-  ifelse (pxcor = min-pxcor)[ ; check this later with JOSH
+  
+  ;each left-most patch gets the inFlow number of metas
+  ifelse (pxcor = min-pxcor)[
     set inulin ((inulin) + (inFlowInulin))
     set FO ((FO) + (inFlowFO))
     set lactose ((lactose) + (inFlowLactose))
@@ -362,6 +363,7 @@ end
 
 ;///////////////////////////randMove///////////////////////////////////////
 ; Defines random movement of turtles
+; DISABLED
 to randMove
 ; rotates the orientation of the bacteria randomly within 180 degrees front-facing then moves forward the bacteria's randDist
 ;may disable with motility assumption
@@ -411,7 +413,7 @@ end
 
 ;///////////////////////////inConc///////////////////////////////////////
 to inConc
-;controls the amount of each type of bacteria flowing in to the simulation
+; controls the amount of each type of bacteria flowing in to the simulation
 ; similar to the code in go, but bacteria are now placed at only in the first column
 
   create-bifidos inConcBifidos [

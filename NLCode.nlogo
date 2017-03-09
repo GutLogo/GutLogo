@@ -88,12 +88,12 @@ to setup
 
 	; initializes the patch variables
   ask patches [
-    set glucose 5
-    set FO 5
-    set lactose 5
-    set lactate 5
-    set inulin 5
-    set CS 5
+    set glucose 0
+    set FO 0
+    set lactose 0
+    set lactate 0
+    set inulin 0
+    set CS 0
     set glucosePrev 0
     set FOPrev 0
     set lactosePrev 0
@@ -635,7 +635,7 @@ end
 to patchEat
 ; run this on a ask patches to have them start the turtle eating process
   ask turtles-here [
-    set remAttempts 5 ; reset the number of attempts
+    set remAttempts 2 ; reset the number of attempts
     set energy (energy - (100 / 1440)) ; decrease the energy of the bacteria, currently survive 24 hours no eat
   ]
   let allMetas (list CS FO glucose inulin lactate lactose); list containing numbers of all the metas
@@ -653,9 +653,8 @@ to patchEat
   ; do the eating till no metas or not hungry
   while [(length(avaMetas) > 0) and any? hungryBact] [
     ; code here to randomly select a turtle from hungryBact and then ask it to run bactEat with a random meta from ava. list
-    let metaNum one-of avaMetas
     ask one-of hungryBact [
-      bactEat(metaNum)
+      bactEat(one-of avaMetas)
       set remAttempts remAttempts - 1
     ]
     set hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
@@ -780,10 +779,10 @@ NIL
 0
 
 PLOT
-1028
-177
-1431
-493
+885
+85
+1288
+401
 Populations
 Time
 Populations
@@ -801,10 +800,10 @@ PENS
 "Bacteroides" 1.0 0 -7500403 true "" "plot count bacteroides"
 
 MONITOR
-321
-586
-395
-631
+93
+415
+167
+460
 Cloststridia
 count closts
 17
@@ -812,10 +811,10 @@ count closts
 11
 
 MONITOR
-405
-586
-493
-631
+167
+415
+255
+460
 Bifidobacteria
 count bifidos
 17
@@ -823,10 +822,10 @@ count bifidos
 11
 
 MONITOR
-501
-585
-586
-630
+255
+415
+340
+460
 Desulfovibrio
 count desulfos
 17
@@ -834,10 +833,10 @@ count desulfos
 11
 
 MONITOR
-320
-633
-451
-678
+5
+460
+136
+505
 Percentage Clostridia
 100 * count closts / count turtles
 2
@@ -845,10 +844,10 @@ Percentage Clostridia
 11
 
 MONITOR
-458
-634
-613
-679
+136
+460
+291
+505
 Percentage Bifidobacteria
 100 * count bifidos / count turtles
 2
@@ -856,10 +855,10 @@ Percentage Bifidobacteria
 11
 
 MONITOR
-622
-634
-773
-679
+291
+460
+442
+505
 Percentage Desulfovibrio
 100 * count desulfos / count turtles
 2
@@ -867,10 +866,10 @@ Percentage Desulfovibrio
 11
 
 MONITOR
-222
-586
-311
-631
+5
+415
+94
+460
 Total Bacteria
 count turtles
 3
@@ -878,10 +877,10 @@ count turtles
 11
 
 MONITOR
-926
-583
-983
-628
+637
+415
+694
+460
 Glucose
 sum [glucose] of patches
 0
@@ -889,10 +888,10 @@ sum [glucose] of patches
 11
 
 MONITOR
-861
-583
-918
-628
+580
+415
+637
+460
 FO
 sum [FO] of patches
 2
@@ -900,10 +899,10 @@ sum [FO] of patches
 11
 
 MONITOR
-734
-585
-791
-630
+466
+415
+523
+460
 Lactate
 sum [lactate] of patches
 2
@@ -911,10 +910,10 @@ sum [lactate] of patches
 11
 
 MONITOR
-991
-583
-1048
-628
+694
+415
+751
+460
 CS
 sum [CS] of patches
 2
@@ -922,10 +921,10 @@ sum [CS] of patches
 11
 
 MONITOR
-669
-584
-726
-629
+409
+415
+466
+460
 Inulin
 sum [inulin] of patches
 2
@@ -933,10 +932,10 @@ sum [inulin] of patches
 11
 
 MONITOR
-800
-584
-857
-629
+523
+415
+580
+460
 Lactose
 sum [Lactose] of patches
 2
@@ -944,10 +943,10 @@ sum [Lactose] of patches
 11
 
 MONITOR
-593
-584
-662
-629
+340
+415
+409
+460
 Bacteroides
 count bacteroides
 17
@@ -955,10 +954,10 @@ count bacteroides
 11
 
 MONITOR
-781
-635
-925
-680
+442
+460
+586
+505
 Percentage Bacteroides
 100 * count bacteroides / count turtles
 2
@@ -966,21 +965,21 @@ Percentage Bacteroides
 11
 
 SWITCH
-1194
-504
-1300
-537
+885
+400
+991
+433
 plots-on?
 plots-on?
-0
+1
 1
 -1000
 
 INPUTBOX
-724
-309
-850
-369
+630
+85
+756
+145
 inConcBacteroides
 0.0
 1
@@ -988,10 +987,10 @@ inConcBacteroides
 Number
 
 INPUTBOX
-724
-369
-850
-429
+630
+145
+756
+205
 inConcBifidos
 0.0
 1
@@ -999,10 +998,10 @@ inConcBifidos
 Number
 
 INPUTBOX
-849
-309
-981
-369
+755
+85
+887
+145
 inConcClosts
 0.0
 1
@@ -1010,10 +1009,10 @@ inConcClosts
 Number
 
 INPUTBOX
-849
-368
-981
-428
+755
+145
+887
+205
 inConcDesulfos
 0.0
 1
@@ -1021,10 +1020,10 @@ inConcDesulfos
 Number
 
 INPUTBOX
-1150
-589
-1277
-649
+1390
+125
+1517
+185
 randDist
 0.0
 1
@@ -1032,10 +1031,10 @@ randDist
 Number
 
 INPUTBOX
-850
-428
-982
-488
+756
+205
+887
+265
 flowDist
 0.278
 1
@@ -1043,10 +1042,10 @@ flowDist
 Number
 
 INPUTBOX
-767
-250
-922
-310
+675
+323
+830
+383
 tickInflow
 1.0
 1
@@ -1054,10 +1053,10 @@ tickInflow
 Number
 
 INPUTBOX
-724
-428
-851
-488
+630
+205
+757
+265
 stuckChance
 5.0
 1
@@ -1065,10 +1064,10 @@ stuckChance
 Number
 
 INPUTBOX
-234
-273
-389
-333
+165
+85
+320
+145
 initNumBifidos
 23562.0
 1
@@ -1076,10 +1075,10 @@ initNumBifidos
 Number
 
 INPUTBOX
-233
-333
-388
-393
+165
+145
+320
+205
 initNumBacteroides
 5490.0
 1
@@ -1087,10 +1086,10 @@ initNumBacteroides
 Number
 
 INPUTBOX
-233
-393
-388
-453
+165
+205
+320
+265
 initNumClosts
 921.0
 1
@@ -1098,10 +1097,10 @@ initNumClosts
 Number
 
 INPUTBOX
-233
-453
-388
-513
+165
+265
+320
+325
 initNumDesulfos
 27.0
 1
@@ -1109,60 +1108,60 @@ initNumDesulfos
 Number
 
 TEXTBOX
+710
+384
 802
-227
-894
-245
+402
 Flow Variables
 14
 0.0
 1
 
 TEXTBOX
-506
-184
-649
-202
+420
+385
+563
+403
 Metabolite Variables
 14
 0.0
 1
 
 TEXTBOX
-1184
-550
-1288
-601
+1424
+86
+1528
+137
 randFlow Variables\n
 14
 0.0
 1
 
 TEXTBOX
-266
-251
-351
-269
+200
+330
+285
+348
 Initial Bacteria
 14
 0.0
 1
 
 TEXTBOX
-52
-292
-193
-310
+20
+330
+161
+348
 Bacteria Reproduction
 14
 0.0
 1
 
 MONITOR
-926
-636
-1028
-681
+586
+460
+688
+505
 True Absorption
 trueAbsorption
 6
@@ -1170,10 +1169,10 @@ trueAbsorption
 11
 
 INPUTBOX
-723
-487
-855
-547
+630
+264
+757
+324
 unstuckChance
 5.0
 1
@@ -1181,10 +1180,10 @@ unstuckChance
 Number
 
 INPUTBOX
-41
-319
-196
-379
+10
+85
+165
+145
 bifidoDoub
 338.0
 1
@@ -1192,10 +1191,10 @@ bifidoDoub
 Number
 
 INPUTBOX
-40
-378
-196
-438
+10
+145
+165
+205
 desulfoDoub
 908.0
 1
@@ -1203,10 +1202,10 @@ desulfoDoub
 Number
 
 INPUTBOX
-41
-496
-196
-556
+10
+265
+165
+325
 clostDoub
 280.0
 1
@@ -1214,10 +1213,10 @@ clostDoub
 Number
 
 INPUTBOX
-41
-436
-196
-496
+10
+205
+165
+265
 bacteroidDoub
 330.0
 1
@@ -1225,10 +1224,10 @@ bacteroidDoub
 Number
 
 INPUTBOX
-401
-217
-556
-277
+320
+85
+475
+145
 inFlowInulin
 20.0
 1
@@ -1236,10 +1235,10 @@ inFlowInulin
 Number
 
 INPUTBOX
-556
-438
-711
-498
+475
+265
+630
+325
 absorption
 0.1
 1
@@ -1247,10 +1246,10 @@ absorption
 Number
 
 INPUTBOX
-555
-336
-710
-396
+320
+205
+475
+265
 inFlowFO
 20.0
 1
@@ -1258,10 +1257,10 @@ inFlowFO
 Number
 
 INPUTBOX
-401
-336
-556
-396
+475
+205
+630
+265
 inFlowLactose
 20.0
 1
@@ -1269,10 +1268,10 @@ inFlowLactose
 Number
 
 INPUTBOX
-554
-276
-709
-336
+475
+145
+630
+205
 inFlowLactate
 20.0
 1
@@ -1280,10 +1279,10 @@ inFlowLactate
 Number
 
 INPUTBOX
-556
-216
-710
-276
+475
+85
+630
+145
 inFlowGlucose
 20.0
 1
@@ -1291,10 +1290,10 @@ inFlowGlucose
 Number
 
 INPUTBOX
-401
-277
-556
-337
+320
+145
+475
+205
 inFlowCS
 20.0
 1
@@ -1302,10 +1301,10 @@ inFlowCS
 Number
 
 INPUTBOX
-401
-438
-556
-498
+320
+265
+475
+325
 bifido-lactate-production
 1.0
 1
@@ -1313,10 +1312,10 @@ bifido-lactate-production
 Number
 
 INPUTBOX
-855
-487
-983
-547
+756
+264
+887
+324
 seedChance
 0.5
 1
@@ -1324,10 +1323,10 @@ seedChance
 Number
 
 INPUTBOX
-478
-502
-633
-562
+400
+325
+555
+385
 reserveFraction
 0.9
 1
@@ -1335,15 +1334,32 @@ reserveFraction
 Number
 
 INPUTBOX
-1420
-533
-1487
-593
+1220
+400
+1287
+460
 testConst
 1.0
 1
 0
 Number
+
+BUTTON
+191
+13
+262
+46
+Profiler
+setup                  ;; set up the model\nprofiler:start         ;; start profiling\nrepeat 500 [ go ]      ;; run something you want to measure\nprofiler:stop          ;; stop profiling\nprint profiler:report  ;; view the results\nprofiler:reset         ;; clear the data
+NIL
+1
+T
+OBSERVER
+NIL
+NIL
+NIL
+NIL
+1
 
 @#$#@#$#@
 ## Model Summary
@@ -1940,5 +1956,5 @@ true
 Line -7500403 true 150 150 90 180
 Line -7500403 true 150 150 210 180
 @#$#@#$#@
-1
+0
 @#$#@#$#@

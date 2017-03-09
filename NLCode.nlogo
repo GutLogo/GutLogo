@@ -9,6 +9,8 @@ lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateRes
 globals [trueAbsorption negMeta]
 ;///////////////////////////VARIABLES///////////////////////////////////////
 
+extensions [profiler]
+
 ;///////////////////////////DISPLAY-LABELS///////////////////////////////////////
 ; Shows levels of energy on the turtles in the viewer
 to display-labels
@@ -231,7 +233,7 @@ to makeMetabolites
   set lactate (lactate * remainFactor)
   set glucose (glucose * remainFactor)
   set CS (CS * remainFactor)
-  
+
   ;each left-most patch gets the inFlow number of metas
   ifelse (pxcor = min-pxcor)[
     set inulin ((inulin) + (inFlowInulin))
@@ -299,7 +301,7 @@ end
 to bactTickBehavior
   ask bifidos [
     flowMove ; movement of the bacteria by flow
-    randMove ; movement of the bacteria by a combination of motility and other random forces
+    ;randMove ; movement of the bacteria by a combination of motility and other random forces
 	  checkStuck ; check if the bacteria becomes stuck or unstuck
     deathBifidos ; check that the energy of the bacteria is enough, otherwise bacteria dies
     if (age mod bifidoDoub = 0 and age != 0)[ ;this line controls on what tick mod reproduce
@@ -310,7 +312,7 @@ to bactTickBehavior
 
   ask desulfos [;controls the behavior for the desulfos bacteria
     flowMove
-    randMove
+    ;randMove
 	  checkStuck
     deathDesulfos
     if (age mod desulfoDoub = 0 and age != 0)[
@@ -321,7 +323,7 @@ to bactTickBehavior
 
   ask closts [;controls the behavior for the closts
     flowMove
-    randMove
+    ;randMove
 	  checkStuck
     deathClosts
     if (age mod clostDoub = 0 and age != 0)[
@@ -332,7 +334,7 @@ to bactTickBehavior
 
   ask bacteroides [;controls the behavior for the bacteroides
     flowMove
-    randMove
+    ;randMove
 	  checkStuck
     deathbacteroides
     if (age mod bacteroidDoub = 0 and age != 0)[
@@ -347,7 +349,7 @@ end
 ;///////////////////////////reproduceBact///////////////////////////////////////:
 ;reproduce the chosen turtle
 to reproduceBact
-  if energy > 50 [
+  if energy > 50 and count turtles-here < 2000[ ;turtles-here check to model space limit
     let tmp (energy / 2 )
     set energy (tmp) ; parent's energy is halved
     hatch 1 [
@@ -1024,7 +1026,7 @@ INPUTBOX
 1277
 649
 randDist
-0.03
+0.0
 1
 0
 Number
@@ -1228,7 +1230,7 @@ INPUTBOX
 556
 277
 inFlowInulin
-10.0
+20.0
 1
 0
 Number
@@ -1250,7 +1252,7 @@ INPUTBOX
 710
 396
 inFlowFO
-10.0
+20.0
 1
 0
 Number
@@ -1261,7 +1263,7 @@ INPUTBOX
 556
 396
 inFlowLactose
-10.0
+20.0
 1
 0
 Number
@@ -1272,7 +1274,7 @@ INPUTBOX
 709
 336
 inFlowLactate
-10.0
+20.0
 1
 0
 Number
@@ -1283,7 +1285,7 @@ INPUTBOX
 710
 276
 inFlowGlucose
-10.0
+20.0
 1
 0
 Number
@@ -1294,7 +1296,7 @@ INPUTBOX
 556
 337
 inFlowCS
-10.0
+20.0
 1
 0
 Number

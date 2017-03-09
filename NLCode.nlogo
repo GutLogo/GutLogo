@@ -349,7 +349,7 @@ end
 ;///////////////////////////reproduceBact///////////////////////////////////////:
 ;reproduce the chosen turtle
 to reproduceBact
-  if energy > 50 and count turtles-here < 2000[ ;turtles-here check to model space limit
+  if energy > 50 and count turtles-here < 1000[ ;turtles-here check to model space limit
     let tmp (energy / 2 )
     set energy (tmp) ; parent's energy is halved
     hatch 1 [
@@ -707,13 +707,13 @@ to flowRateTest
   ]
 end
 
-to CSTest
+to glucTest
   ;changes the CS inConc for carb experiment
   if (ticks = 10080)[
-    set inFlowCS (inFlowCS * testConst)
+    set inFlowGlucose (inFlowGlucose * testConst)
   ]
   if (ticks = 20160)[
-    set inFlowCS (inFlowCS / testConst)
+    set inFlowGlucose (inFlowGlucose / testConst)
   ]
 end
 @#$#@#$#@
@@ -971,7 +971,7 @@ SWITCH
 433
 plots-on?
 plots-on?
-1
+0
 1
 -1000
 
@@ -1128,10 +1128,10 @@ Metabolite Variables
 1
 
 TEXTBOX
-1424
-86
-1528
-137
+1426
+186
+1530
+237
 randFlow Variables\n
 14
 0.0
@@ -1306,7 +1306,7 @@ INPUTBOX
 475
 325
 bifido-lactate-production
-1.0
+0.0
 1
 0
 Number
@@ -1918,17 +1918,24 @@ NetLogo 6.0
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
     <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
     <enumeratedValueSet variable="testConst">
       <value value="0.333"/>
       <value value="1"/>
       <value value="3"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="CSTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="glucTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100 [
   go
-  CSTest
+  glucTest
 ]</go>
     <timeLimit steps="303"/>
     <metric>flowDist</metric>
@@ -1936,6 +1943,13 @@ NetLogo 6.0
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
     <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
     <enumeratedValueSet variable="testConst">
       <value value="0.5"/>
       <value value="1"/>

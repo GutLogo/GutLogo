@@ -650,14 +650,16 @@ to patchEat
     ]
     set i (i + 1)
   ]
+  let iter 0 ; used to limit the number of times the next while loop will occur, aribitrary
   ; do the eating till no metas or not hungry
-  while [(length(avaMetas) > 0) and any? hungryBact] [
+  while [(length(avaMetas) > 0) and any? hungryBact and iter < 100] [
     ; code here to randomly select a turtle from hungryBact and then ask it to run bactEat with a random meta from ava. list
     ask one-of hungryBact [
       bactEat(one-of avaMetas)
       set remAttempts remAttempts - 1
     ]
     set hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
+    set iter (iter + 1)
   ]
 
 end
@@ -1317,7 +1319,7 @@ INPUTBOX
 887
 324
 seedChance
-0.5
+0.0
 1
 0
 Number
@@ -1794,12 +1796,12 @@ NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="checkStable" repetitions="500" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="checkStable" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100[
   go
 ]</go>
-    <timeLimit steps="108"/>
+    <timeLimit steps="304"/>
     <metric>count bifidos</metric>
     <metric>count desulfos</metric>
     <metric>count bacteroides</metric>

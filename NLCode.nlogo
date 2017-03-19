@@ -1796,16 +1796,24 @@ NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="checkStable" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="checkStable" repetitions="500" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100[
   go
 ]</go>
-    <timeLimit steps="304"/>
+    <timeLimit steps="50"/>
+    <metric>flowDist</metric>
     <metric>count bifidos</metric>
-    <metric>count desulfos</metric>
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
   </experiment>
   <experiment name="doubGuess" repetitions="3" runMetricsEveryStep="true">
     <setup>setup</setup>

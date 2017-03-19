@@ -1,5 +1,6 @@
 #PBS -N gutSim -S /bin/sh
 #PBS -l nodes=1:ppn=40
+#PBD -M charliel@udel.edu
 
 # -Xmx1024m                     use up to 1GB RAM (edit to increase)
 # -Dfile.encoding=UTF-8         ensure Unicode characters in model files are compatible cross-platform

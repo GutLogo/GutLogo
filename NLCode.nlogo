@@ -1796,7 +1796,7 @@ NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="checkStable" repetitions="500" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="checkStable" repetitions="40" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100[
   go

@@ -11,5 +11,5 @@ java -Xmx4096m -Dfile.encoding=UTF-8 \
 -classpath ~/netlogo-6.0/app/netlogo-6.0.0.jar org.nlogo.headless.Main "$@" \
 --model ~/gut-nlogo-model/NLCode.nlogo \
 --experiment checkStable \
---table ~/results/stableCheck.csv \
+--table ~/results/checkStable.csv \
 --threads 40

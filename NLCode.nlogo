@@ -9,8 +9,6 @@ lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateRes
 globals [trueAbsorption negMeta]
 ;///////////////////////////VARIABLES///////////////////////////////////////
 
-extensions [profiler]
-
 ;///////////////////////////DISPLAY-LABELS///////////////////////////////////////
 ; Shows levels of energy on the turtles in the viewer
 to display-labels
@@ -1826,96 +1824,6 @@ NetLogo 6.0
     <steppedValueSet variable="bacteroidDoub" first="170" step="10" last="250"/>
     <steppedValueSet variable="clostDoub" first="150" step="10" last="250"/>
   </experiment>
-  <experiment name="testCluster" repetitions="25" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>count turtles</metric>
-    <enumeratedValueSet variable="initNumClosts">
-      <value value="300"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcVulgats">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowFO">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="vulgatDoub">
-      <value value="171"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="clostDoub">
-      <value value="170"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcBifidos">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="unstuckChance">
-      <value value="20"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="desulfoDoub">
-      <value value="908"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seedChance">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="initNumDesulfos">
-      <value value="20"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="reserveFraction">
-      <value value="0.9"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowLactate">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="randDist">
-      <value value="0.1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="flowDist">
-      <value value="0.972"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowCS">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcDesulfos">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="initNumVulgats">
-      <value value="200"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bifidoDoub">
-      <value value="338"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcClosts">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="tickInflow">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bifido-lactate-production">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="plots-on?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="absorption">
-      <value value="0.1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="initNumBifidos">
-      <value value="10000"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="stuckChance">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowLactose">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowInulin">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowGlucose">
-      <value value="10"/>
-    </enumeratedValueSet>
-  </experiment>
   <experiment name="flowTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100 [
@@ -1965,6 +1873,25 @@ NetLogo 6.0
       <value value="1"/>
       <value value="2"/>
     </enumeratedValueSet>
+  </experiment>
+  <experiment name="checkCluster" repetitions="10" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>repeat 100[
+  go
+]</go>
+    <timeLimit steps="50"/>
+    <metric>flowDist</metric>
+    <metric>count bifidos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
   </experiment>
 </experiments>
 @#$#@#$#@

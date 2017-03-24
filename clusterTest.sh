@@ -10,6 +10,6 @@
 java -Xmx4096m -Dfile.encoding=UTF-8 \
 -classpath ~/netlogo-6.0/app/netlogo-6.0.0.jar org.nlogo.headless.Main "$@" \
 --model ~/gut-nlogo-model/NLCode.nlogo \
---experiment clusterCheck \
---table ~/results/stableCheck.csv \
+--experiment checkCluster \
+--table ~/results/checkCluster.csv \
 --threads 10

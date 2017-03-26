@@ -1802,6 +1802,7 @@ NetLogo 6.0
   go
 ]</go>
     <timeLimit steps="50"/>
+    <metric>testConst</metric>
     <metric>flowDist</metric>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>

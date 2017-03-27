@@ -6,7 +6,7 @@ breed [bacteroides bacteroid]; define the bacteroides bacteroidus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
 patches-own [glucose FO lactose lactate inulin CS glucosePrev FOPrev lactosePrev
 lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve inulinReserve CSReserve avaMetas]
-globals [trueAbsorption negMeta]
+globals [trueAbsorption negMeta testState]
 ;///////////////////////////VARIABLES///////////////////////////////////////
 
 ;///////////////////////////DISPLAY-LABELS///////////////////////////////////////
@@ -118,6 +118,9 @@ to setup
 
   ;set time to zero
   reset-ticks
+
+  ;reset the testState
+  set testState 0
 
 end
 
@@ -698,22 +701,36 @@ end
 
 ;Tests
 to flowRateTest
-  ;changes the flowrate by testConst after 1 week of time then reduces it after another week
-  if (ticks = 10080)[
+  ;changes the flowrate by testConst after at S-S then reduces it after a week of time
+  if (ticks >= 2500 and testState = 0)[
     set flowDist (flowDist * testConst)
+    set testState 1
   ]
-  if (ticks = 20160)[
+  if (ticks >= 12500 and testState = 1)[
     set flowDist (flowDist / testConst)
+    set testState 2
   ]
 end
 
 to glucTest
   ;changes the CS inConc for carb experiment
-  if (ticks = 10080)[
+  if (ticks >= 2500 and testState = 0)[
     set inFlowGlucose (inFlowGlucose * testConst)
   ]
-  if (ticks = 20160)[
+  if (ticks >= 12500 and testState = 1)[
     set inFlowGlucose (inFlowGlucose / testConst)
+    set testState 2
+  ]
+end
+
+to bifidosTest
+  ;changes inConcBifidos for probiotic experiment
+  if (ticks >= 2500 and testState = 0)[
+    set inConcBifidos (100 * testConst)
+  ]
+  if (ticks >= 12500 and testState = 1)[
+    set inConcBifidos (0)
+    set testState 2
   ]
 end
 @#$#@#$#@
@@ -1047,7 +1064,7 @@ INPUTBOX
 830
 383
 tickInflow
-1.0
+720.0
 1
 0
 Number
@@ -1829,9 +1846,9 @@ NetLogo 6.0
     <setup>setup</setup>
     <go>repeat 100 [
   go
-  flowRateTest
-]</go>
-    <timeLimit steps="303"/>
+]
+flowRateTest</go>
+    <timeLimit steps="225"/>
     <metric>flowDist</metric>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
@@ -1849,14 +1866,26 @@ NetLogo 6.0
       <value value="1"/>
       <value value="3"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="23562"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5490"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="921"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="27"/>
+    </enumeratedValueSet>
   </experiment>
   <experiment name="glucTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100 [
   go
-  glucTest
-]</go>
-    <timeLimit steps="303"/>
+]
+glucTest</go>
+    <timeLimit steps="225"/>
     <metric>flowDist</metric>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
@@ -1873,6 +1902,18 @@ NetLogo 6.0
       <value value="0.5"/>
       <value value="1"/>
       <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="23562"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5490"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="921"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="27"/>
     </enumeratedValueSet>
   </experiment>
   <experiment name="checkCluster" repetitions="10" sequentialRunOrder="false" runMetricsEveryStep="true">
@@ -1893,6 +1934,43 @@ NetLogo 6.0
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+  </experiment>
+  <experiment name="bifidosTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>bifidosTest
+repeat 100 [
+  go
+]</go>
+    <timeLimit steps="225"/>
+    <metric>flowDist</metric>
+    <metric>count bifidos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
+    <enumeratedValueSet variable="testConst">
+      <value value="0"/>
+      <value value="1"/>
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="23562"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5490"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="921"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="27"/>
+    </enumeratedValueSet>
   </experiment>
 </experiments>
 @#$#@#$#@

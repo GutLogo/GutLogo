@@ -27,7 +27,7 @@ to setup
 
   ; Initializing the turtles and patches
 	; populates the world with the bacteria population at the initial-numbers set by the user
-  set-default-shape bifidos "bacteria"
+  set-default-shape bifidos "dot"
   create-bifidos initNumBifidos [
     set color blue
     set size 1
@@ -42,7 +42,7 @@ to setup
     setxy random-xcor random-ycor
 
   ]
-  set-default-shape desulfos "bacteria"
+  set-default-shape desulfos "dot"
   create-desulfos initNumDesulfos [
     set color green
     set size 1
@@ -56,7 +56,7 @@ to setup
     setxy random-xcor random-ycor
   ]
 
-  set-default-shape closts "bacteria"
+  set-default-shape closts "dot"
   create-closts initNumClosts [
     set color red
     set size 1
@@ -70,7 +70,7 @@ to setup
     setxy random-xcor random-ycor
   ]
 
-  set-default-shape bacteroides "bacteria"
+  set-default-shape bacteroides "dot"
   create-bacteroides initNumbacteroides [
     set color grey
     set size 1
@@ -767,6 +767,7 @@ to glucTest
   ;changes the CS inConc for carb experiment
   if (ticks >= 2500 and testState = 0)[
     set inFlowGlucose (inFlowGlucose * testConst)
+    set testState 1
   ]
   if (ticks >= 12500 and testState = 1)[
     set inFlowGlucose (inFlowGlucose / testConst)
@@ -777,7 +778,8 @@ end
 to bifidosTest
   ;changes inConcBifidos for probiotic experiment
   if (ticks >= 2500 and testState = 0)[
-    set inConcBifidos (100 * testConst)
+    set inConcBifidos (5000 * testConst)
+    set testState 1
   ]
   if (ticks >= 12500 and testState = 1)[
     set inConcBifidos (0)
@@ -1115,7 +1117,7 @@ INPUTBOX
 830
 383
 tickInflow
-720.0
+480.0
 1
 0
 Number
@@ -1407,7 +1409,7 @@ INPUTBOX
 1287
 460
 testConst
-0.333
+0.0
 1
 0
 Number

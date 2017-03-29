@@ -1086,7 +1086,7 @@ INPUTBOX
 320
 145
 initNumBifidos
-23562.0
+22793.0
 1
 0
 Number
@@ -1097,7 +1097,7 @@ INPUTBOX
 320
 205
 initNumBacteroides
-5490.0
+5311.0
 1
 0
 Number
@@ -1108,7 +1108,7 @@ INPUTBOX
 320
 265
 initNumClosts
-921.0
+1842.0
 1
 0
 Number
@@ -1119,7 +1119,7 @@ INPUTBOX
 320
 325
 initNumDesulfos
-27.0
+54.0
 1
 0
 Number
@@ -1356,7 +1356,7 @@ INPUTBOX
 1287
 460
 testConst
-1.0
+0.333
 1
 0
 Number
@@ -1830,6 +1830,18 @@ NetLogo 6.0
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="23562"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5490"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="921"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="27"/>
+    </enumeratedValueSet>
   </experiment>
   <experiment name="doubGuess" repetitions="3" runMetricsEveryStep="true">
     <setup>setup</setup>
@@ -1970,6 +1982,115 @@ repeat 100 [
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
       <value value="27"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="flowTestB" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>repeat 100 [
+  go
+]
+flowRateTest</go>
+    <timeLimit steps="225"/>
+    <metric>flowDist</metric>
+    <metric>count bifidos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
+    <enumeratedValueSet variable="testConst">
+      <value value="0.333"/>
+      <value value="1"/>
+      <value value="3"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="22793"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5311"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="1842"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="54"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="glucTestB" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>repeat 100 [
+  go
+]
+glucTest</go>
+    <timeLimit steps="225"/>
+    <metric>count bifidos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
+    <enumeratedValueSet variable="testConst">
+      <value value="0.5"/>
+      <value value="1"/>
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="22793"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5311"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="1842"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="54"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="bifidosTestB" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>bifidosTest
+repeat 100 [
+  go
+]</go>
+    <timeLimit steps="225"/>
+    <metric>count bifidos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
+    <enumeratedValueSet variable="testConst">
+      <value value="0"/>
+      <value value="1"/>
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="22793"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5311"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="1842"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="54"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

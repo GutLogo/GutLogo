@@ -246,27 +246,78 @@ to makeMetabolites
   ]
   [
     let added ((get-inulin (- (ceiling flowDist)) 0) * (1 - remainFactor))
-    set inulin (inulin + (added))
+    ifelse (inulin + added) < 1000[
+      set inulin (inulin + (added))
+    ]
+		[
+			set CS (1000)
+		]
 
     set added ((get-FO (- (ceiling flowDist)) 0) * (1 - remainFactor))
-    set FO (FO + (added))
+    ifelse (FO + added) < 1000[
+      set FO (FO + (added))
+    ]
+		[
+			set FO (1000)
+		]
 
     set added ((get-lactose (- (ceiling flowDist)) 0) * (1 - remainFactor))
-    set lactose (lactose + (added))
+    ifelse (lactose + added) < 1000[
+      set lactose (lactose + (added))
+    ]
+		[
+			set lactose (1000)
+		]
 
     set added ((get-lactate (- (ceiling flowDist)) 0) * (1 - remainFactor))
-    if (lactate + added) < 200[
+    ifelse (lactate + added) < 1000[
       set lactate (lactate + (added))
     ]
+		[
+			set lactate (200)
+		]
 
     set added ((get-glucose (- (ceiling flowDist)) 0) * (1 - remainFactor))
-    set glucose (glucose + (added))
+    ifelse (glucose + added) < 1000[
+      set glucose (glucose + (added))
+    ]
+		[
+			set glucose (1000)
+		]
 
     set added ((get-CS (- (ceiling flowDist)) 0) * (1 - remainFactor))
-    if (CS + added) < 200[
+    ifelse (CS + added) < 1000[
       set CS (CS + (added))
     ]
+		[
+			set CS (1000)
+		]
   ]
+
+  if ((inulin < 0.001)) [
+    set inulin 0
+  ]
+
+	if ((CS < 0.001)) [
+		set CS 0
+	]
+
+	if ((FO < 0.001)) [
+		set FO 0
+	]
+
+	if ((lactose < 0.001)) [
+		set lactose 0
+	]
+
+	if ((lactate < 0.001)) [
+		set lactate 0
+	]
+
+	if ((glucose < 0.001)) [
+		set glucose 0
+	]
+
   set inulinReserve ((inulin) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
   set FOReserve ((FO) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
   set lactoseReserve ((lactose) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))

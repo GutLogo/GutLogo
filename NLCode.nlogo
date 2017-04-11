@@ -5,7 +5,8 @@ breed [closts clost] ; define the Clostridia breed
 breed [bacteroides bacteroid]; define the bacteroides bacteroidus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
 patches-own [glucose FO lactose lactate inulin CS glucosePrev FOPrev lactosePrev
-lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve inulinReserve CSReserve avaMetas]
+lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve
+inulinReserve CSReserve avaMetas stuckChance]
 globals [trueAbsorption negMeta testState]
 ;///////////////////////////VARIABLES///////////////////////////////////////
 
@@ -112,14 +113,17 @@ to setup
   set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
   (1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
   (0.7 * ((count bifidos) / (count turtles)))))
+  
+  ; setup the stuckChance
+  stuckFunc
 
   ; Setup for stop if negative metas
   set negMeta false
 
-  ;set time to zero
+  ; set time to zero
   reset-ticks
 
-  ;reset the testState
+  ; reset the testState
   set testState 0
 
 end
@@ -143,11 +147,13 @@ to go
     patchEat
     storeMetabolites
   ]
+  ; make meta must be in seperate ask, sequential tasks
   ask patches[
     makeMetabolites
   ]
   bactTickBehavior
-
+  
+  ; controls when probiotics enter system
   if ticks mod tickInflow = 0[
     inConc
   ]
@@ -156,6 +162,7 @@ to go
   tick
 
   stopCheck
+
 end
 ;///////////////////////////GO///////////////////////////////////////
 
@@ -173,6 +180,13 @@ to stopCheck
 
 end
 ;///////////////////////////stopCheck///////////////////////////////////////
+
+;///////////////////////////stuckFunc///////////////////////////////////////
+to stuckFunc
+  ; controls stuckChance, function of patch population, linear function into asymptote
+  
+end
+;///////////////////////////stuckFunc///////////////////////////////////////
 
 ;///////////////////////////deathBacteria///////////////////////////////////////
 ; Each of these functions are currently equivalent, different function so we can expand on it if needed
@@ -454,13 +468,15 @@ to checkStuck
 	    set isSeed true
    ]
    [;else
-     if(not isStuck and (random 100 < stuckChance))[
+     ifelse(not isStuck and (random 100 < stuckChance))[
        set isStuck true
      ]
-     if(isStuck and (random 100 < unstuckChance))[
-       set isStuck false
+     [;else
+       if(isStuck and (random 100 < unstuckChance))[
+         set isStuck false
+       ]
      ]
-		]
+	  ]
   ]
 end
 ;///////////////////////////checkStuck///////////////////////////////////////
@@ -531,6 +547,7 @@ end
 ;///////////////////////////bactEat///////////////////////////////////////
 to bactEat [metaNum]
 ;run this through a turtle with a metaNum parameter to have them try to eat the carb
+
   if (metaNum = 10)[;CS
     ifelse (breed = desulfos)[; check correct breed
       set energy (energy + 50); increase the energy of the bacteria
@@ -692,10 +709,10 @@ to patchEat
   ]
   let allMetas (list CS FO glucose inulin lactate lactose); list containing numbers of all the metas
   set avaMetas []
-
+mpl
   ; initialize the two lists
   let hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
-  let i 1
+  let i 0
   while [i < (length(allMetas))][
     if (item i allMetas >= 1) [
       set avaMetas lput (i + 10) avaMetas
@@ -710,7 +727,9 @@ to patchEat
       bactEat(one-of avaMetas)
       set remAttempts remAttempts - 1
     ]
+    ;re-bound agent set
     set hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
+
     set iter (iter + 1)
   ]
 

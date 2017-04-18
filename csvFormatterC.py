@@ -22,7 +22,7 @@ with open(filename, 'rb') as csvfile:
 
 #list of entries to avg and format
 entryList = ['count closts', 'count bifidos', 'count bacteroides', 'count desulfos','glucose','lactose',
-'inulin','lactose','CS','FO','true absorption']
+'inulin','lactose','CS','FO','trueAbsorption']
 
 testSet = set()
 stepSet = set()
@@ -55,7 +55,14 @@ with open('csvData.csv', 'w+') as file:
 # get the mean, stddev, median, and write to a csv file
 	rowData = list()
 	datawriter = csv.writer(file, delimiter=',',quotechar='|',quoting=csv.QUOTE_MINIMAL)
-	datawriter.writerow(['testConst', 'step', 'avg closts','std closts','median closts', 'avg bifidos','std bifidos','median bifidos', 'avg bacteroides','std bacteroides','median bacteroides', 'avg desulfos','std desulfos','median desulfos'])
+	rowData.append('testConst')
+	rowData.append('step')
+	for entry in entryList:
+		rowData.append('avg ' + entry)
+		rowData.append('std ' + entry)
+		rowData.append('median ' + entry)
+	datawriter.writerow(rowData)
+	rowData = list()
 	for x in range(0, len(testList)):
 		for y in range(0, len(testList[x])):
 			rowData.append(testSorted[x])

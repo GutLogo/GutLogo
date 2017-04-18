@@ -1,44 +1,41 @@
-;///////////////////////////VARIABLES///////////////////////////////////////
-breed [bifidos bifido] ; define the Bifidobacteria breed
-breed [desulfos desulfo] ; define the Desulfovibrio breed
-breed [closts clost] ; define the Clostridia breed
-breed [bacteroides bacteroid]; define the bacteroides bacteroidus breed
+breed [bifidos bifido] ;; define the Bifidobacteria breed
+breed [desulfos desulfo] ;; define the Desulfovibrio breed
+breed [closts clost] ;; define the Clostridia breed
+breed [bacteroides bacteroid];; define the bacteroides bacteroidus breed
 turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
 patches-own [glucose FO lactose lactate inulin CS glucosePrev FOPrev lactosePrev
 lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve
 inulinReserve CSReserve avaMetas stuckChance]
 globals [trueAbsorption negMeta testState]
-;///////////////////////////VARIABLES///////////////////////////////////////
 
-;///////////////////////////DISPLAY-LABELS///////////////////////////////////////
-; Shows levels of energy on the turtles in the viewer
+
 to display-labels
+;; Shows levels of energy on the turtles in the viewer
   ask turtles [set label ""]
   ask desulfos [set label round energy ]
   ask bifidos [set label round energy ]
   ask closts [set label round energy ]
 end
-;///////////////////////////DISPLAY-LABELS///////////////////////////////////////
 
-;///////////////////////////SETUP///////////////////////////////////////
+
 to setup
 
-  ; ensure the model starts from scratch
+  ;; ensure the model starts from scratch
   clear-all
 
-  ; Initializing the turtles and patches
-	; populates the world with the bacteria population at the initial-numbers set by the user
+  ;; Initializing the turtles and patches
+	;; populates the world with the bacteria population at the initial-numbers set by the user
   set-default-shape bifidos "dot"
   create-bifidos initNumBifidos [
     set color blue
-    set size 1
+    set size 0.25
     set label-color blue - 2
     set energy 100
     set excrete false
     set isSeed true
     set isStuck true
     set age random 1000
-	  set flowConst 1 ; can use this to edit the breed specfic flow distance
+	  set flowConst 1 ;; can use this to edit the breed specfic flow distance
 	  set doubConst 1
     setxy random-xcor random-ycor
 
@@ -46,7 +43,7 @@ to setup
   set-default-shape desulfos "dot"
   create-desulfos initNumDesulfos [
     set color green
-    set size 1
+    set size 0.25
     set energy 100
     set excrete false
     set isSeed true
@@ -60,7 +57,7 @@ to setup
   set-default-shape closts "dot"
   create-closts initNumClosts [
     set color red
-    set size 1
+    set size 0.25
     set energy 100
     set excrete false
     set isSeed true
@@ -74,7 +71,7 @@ to setup
   set-default-shape bacteroides "dot"
   create-bacteroides initNumbacteroides [
     set color grey
-    set size 1
+    set size 0.25
     set energy 100
     set excrete false
     set isSeed true
@@ -85,7 +82,7 @@ to setup
     setxy random-xcor random-ycor
   ]
 
-	; initializes the patch variables
+	;; initializes the patch variables
   ask patches [
     set glucose 0
     set FO 0
@@ -105,130 +102,155 @@ to setup
     set lactateReserve 0
     set inulinReserve 0
     set CSReserve 0
+    set stuckChance 0
   ]
 
-  ; 0.723823204 is the weighted average immune response coefficient calculated for
-  ; Healthy bacteria gut percentages. This allows the absorption to change due to
-  ; bacteria populations, simulating immune response.
-  set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
-  (1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
-  (0.7 * ((count bifidos) / (count turtles)))))
-  
-  ; setup the stuckChance
-  stuckFunc
+  ;; setup the true absorption rate
+  setTrueAbs
 
-  ; Setup for stop if negative metas
+  ;; setup the stuckChance
+  setStuckChance
+
+  ;; Setup for stop if negative metas
   set negMeta false
 
-  ; set time to zero
+  ;; set time to zero
   reset-ticks
 
-  ; reset the testState
+  ;; reset the testState
   set testState 0
 
 end
 
-;///////////////////////////SETUP///////////////////////////////////////
 
-;///////////////////////////GO///////////////////////////////////////
-; This function determines the behavior at each time tick
 to go
+;; This function determines the behavior at each time tick
 
-  ; 0.723823204 is the weighted average immune response coefficient calculated for
-  ; Healthy bacteria gut percentages. This allows the absorption to change due to
-  ; bacteria populations, simulating immune response.
-  set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
-  (1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
-  (0.7 * ((count bifidos) / (count turtles)))))
-
-  ; Modify the energy levels of each turtles and metaohydrate
-  ; level of each patch
+  ;; Modify the energy level of each turtle and metabolite level of each patch
   ask patches [
     patchEat
     storeMetabolites
   ]
-  ; make meta must be in seperate ask, sequential tasks
+  ;; make meta must be in seperate ask, sequential tasks
   ask patches[
     makeMetabolites
   ]
-  bactTickBehavior
-  
-  ; controls when probiotics enter system
-  if ticks mod tickInflow = 0[
-    inConc
-  ]
 
-  ; Increment time
+  ;; agents do their other procedures for this tick
+  bactTickBehavior
+
+  ;; set the new stuckChance for the patches
+  setStuckChance
+
+  ;; make agents into seeds
+  createSeeds
+
+  ;; Increment time
   tick
 
+  ;; stop if error or unexpected output
   stopCheck
 
 end
-;///////////////////////////GO///////////////////////////////////////
 
-;///////////////////////////stopCheck///////////////////////////////////////
+
 to stopCheck
-  ; code for stopping the simulation
+;; code for stopping the simulation on unexpected output
 
-  ; Stop if negative number of metas calculated
+  ;; Stop if negative number of metas calculated
   if negMeta [stop]
 
-  ; Stop if any population hits 0 or there are too many turtles
+  ;; Stop if any population hits 0 or there are too many turtles
   if count turtles > 1000000 [stop]
-  if not any? turtles [ stop ] ; stop if all turtles are dead
+  if not any? turtles [ stop ] ;; stop if all turtles are dead
 
 end
-;///////////////////////////stopCheck///////////////////////////////////////
 
-;///////////////////////////stuckFunc///////////////////////////////////////
-to stuckFunc
-  ; controls stuckChance, function of patch population, linear function into asymptote
+
+to setStuckChance
+;; controls stuckChance, function of patch population, linear function into asymptote
   ask patches[
-    let population (turtles-here)
+    let population count(turtles-here)
+    ;; 1 - Michaelis-Menten like function
     set stuckChance (1 - (maxStuckChance * population / (midStuckConc + population)))
   ]
 
 end
-;///////////////////////////stuckFunc///////////////////////////////////////
 
-;///////////////////////////deathBacteria///////////////////////////////////////
-; Each of these functions are currently equivalent, different function so we can expand on it if needed
-; Bifidobacteria die if below the energy threshold or if excreted
+
+to createSeeds
+;; controls whether an agent becomes a seed or not
+;; first checks if the agent is stuck or not
+  ask patches[
+    ask turtles-here[
+      if (isStuck and (random 100 < seedChance))[
+        set isSeed true
+      ]
+    ]
+  ]
+end
+
+
+to setTrueAbs
+  ;; controls the true absorption rate
+
+  ;; 0.723823204 is the weighted average immune response coefficient calculated for
+  ;; Healthy bacteria gut percentages. This allows the absorption to change due to
+  ;; bacteria populations, simulating immune response.
+
+  set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
+  (1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
+  (0.7 * ((count bifidos) / (count turtles)))))
+end
+
+
+to bactIn
+  ;; controls when probiotics enter system
+  if ticks mod tickInflow = 0[
+    inConc
+  ]
+end
+
+
+;; Each of these functions are currently equivalent, different function so we can expand on it if needed
 to deathBifidos
+;; Bifidobacteria die if below the energy threshold or if excreted
   if energy <= 0[
     die
   ]
   if excrete [die]
 end
 
-; Clostrida die if below the energy threshold or if excreted
+
 to deathClosts
+;; Clostrida die if below the energy threshold or if excreted
   if energy <= 0 [
     die
   ]
   if excrete [die]
 end
 
-; Desulfovibrio die if below the energy threshold or if excreted
+
 to deathDesulfos
+;; Desulfovibrio die if below the energy threshold or if excreted
   if energy <= 0 [
     die
   ]
   if excrete [die]
 end
 
-; bacteroidus die if below energy threshold or if excreted
+
 to deathbacteroides
+;; bacteroides die if below energy threshold or if excreted
   if energy <= 0 [
     die
   ]
   if excrete [die]
 end
-;///////////////////////////deathBacteria///////////////////////////////////////
 
-;///////////////////////////makeMetabolites///////////////////////////////////////
-; Runs through all the metabolites and makes them, and moves them.
+
 to makeMetabolites
+;; Runs through all the metabolites and makes them, and moves them.
 
   if ((inulin < 0) or (CS < 0) or (FO < 0) or (lactose < 0) or (lactate < 0) or (glucose < 0)) [
     print "ERROR! Patch reported negative metabolite. Problem with simulation leading to inaccurate results. Terminating Program."
@@ -252,7 +274,7 @@ to makeMetabolites
   set glucose (glucose * remainFactor)
   set CS (CS * remainFactor)
 
-  ;each left-most patch gets the inFlow number of metas
+  ;;each left-most patch gets the inFlow number of metas
   ifelse (pxcor = min-pxcor)[
     set inulin ((inulin) + (inFlowInulin))
     set FO ((FO) + (inFlowFO))
@@ -349,12 +371,11 @@ to makeMetabolites
   set glucose ((glucose - glucoseReserve) * (1 - trueAbsorption))
   set CS ((CS - CSReserve) * (1 - trueAbsorption))
 end
-;///////////////////////////makeMetabolites///////////////////////////////////////
 
-;///////////////////////////storeMetabolites///////////////////////////////////////
-; Sets previous metaohydrate variables to current levels to allow for correct
-; transfer on ticks
+
 to storeMetabolites
+;; Sets previous metaohydrate variables to current levels to allow for correct
+;; transfer on ticks
   set inulinPrev ((inulin + inulinReserve))
   set FOPrev ((FO + FOReserve))
   set lactosePrev ((lactose + lactoseReserve))
@@ -362,26 +383,24 @@ to storeMetabolites
   set glucosePrev ((glucose + glucoseReserve))
   set CSPrev ((CS + CSReserve))
 end
-;///////////////////////////storeMetabolites///////////////////////////////////////
 
-;///////////////////////////bactTickBehavior///////////////////////////////////////
-; Determines the turtle behavior for this tick
 
 to bactTickBehavior
+;; reproduce the chosen turtle
   ask bifidos [
-    flowMove ; movement of the bacteria by flow
-    ;randMove ; movement of the bacteria by a combination of motility and other random forces
-	  checkStuck ; check if the bacteria becomes stuck or unstuck
-    deathBifidos ; check that the energy of the bacteria is enough, otherwise bacteria dies
-    if (age mod bifidoDoub = 0 and age != 0)[ ;this line controls on what tick mod reproduce
-      reproduceBact ; run the reproduce code for bacteria
+    flowMove ;; movement of the bacteria by flow
+  ;;randMove ;; movement of the bacteria by a combination of motility and other random forces
+	  checkStuck ;; check if the bacteria becomes stuck or unstuck
+    deathBifidos ;; check that the energy of the bacteria is enough, otherwise bacteria dies
+    if (age mod bifidoDoub = 0 and age != 0)[ ;;this line controls on what tick mod reproduce
+      reproduceBact ;; run the reproduce code for bacteria
     ]
-  	set age (age + 1) ; increase the age of the bacteria with each tick
+  	set age (age + 1) ;; increase the age of the bacteria with each tick
   ]
 
-  ask desulfos [;controls the behavior for the desulfos bacteria
+  ask desulfos [;;controls the behavior for the desulfos bacteria
     flowMove
-    ;randMove
+  ;;randMove
 	  checkStuck
     deathDesulfos
     if (age mod desulfoDoub = 0 and age != 0)[
@@ -390,9 +409,9 @@ to bactTickBehavior
   	set age (age + 1)
   ]
 
-  ask closts [;controls the behavior for the closts
+  ask closts [;;controls the behavior for the closts
     flowMove
-    ;randMove
+  ;;randMove
 	  checkStuck
     deathClosts
     if (age mod clostDoub = 0 and age != 0)[
@@ -401,9 +420,9 @@ to bactTickBehavior
   	set age (age + 1)
   ]
 
-  ask bacteroides [;controls the behavior for the bacteroides
+  ask bacteroides [;;controls the behavior for the bacteroides
     flowMove
-    ;randMove
+  ;;randMove
 	  checkStuck
     deathbacteroides
     if (age mod bacteroidDoub = 0 and age != 0)[
@@ -413,32 +432,29 @@ to bactTickBehavior
   ]
 
 end
-;///////////////////////////bactTickBehavior///////////////////////////////////////
 
-;///////////////////////////reproduceBact///////////////////////////////////////:
-;reproduce the chosen turtle
+
 to reproduceBact
-  if energy > 50 and count turtles-here < 1000[ ;turtles-here check to model space limit
+;; reproduce the chosen turtle
+  if energy > 50 and count turtles-here < 1000[ ;;turtles-here check to model space limit
     let tmp (energy / 2 )
-    set energy (tmp) ; parent's energy is halved
+    set energy (tmp) ;; parent's energy is halved
     hatch 1 [
       rt random-float 360
-      set energy tmp ; child gets half of parent's energy
+      set energy tmp ;; child gets half of parent's energy
       set isSeed false
       set isStuck false
 	    set age 0
     ]
   ]
 end
-;///////////////////////////reproduceBact///////////////////////////////////////
 
-;///////////////////////////randMove///////////////////////////////////////
-; Defines random movement of turtles
-; DISABLED
+
 to randMove
-; rotates the orientation of the bacteria randomly within 180 degrees front-facing then moves forward the bacteria's randDist
-;may disable with motility assumption
-; if it would hit go through the simulation boundaries, sets excrete to true
+;; DISABLED
+;; Defines random movement of turtles
+;; rotates the orientation of the bacteria randomly within 180 degrees front-facing then moves forward the bacteria's randDist
+;; if it would hit go through the simulation boundaries, sets excrete to true
   if (isStuck = false)[
     rt (random 360)
 
@@ -448,46 +464,37 @@ to randMove
   ]
 
 end
-;///////////////////////////randMove///////////////////////////////////////
 
-;///////////////////////////flowMove///////////////////////////////////////
+
 to flowMove
-; moves the bacteria by the flow distance * the bacteria's flow constant
-;if xcor would pass the max-pxcor with movement, sets excrete to true
-  if (isStuck = false)[
+;; moves the bacteria by the flow distance * the bacteria's flow constant
+;; if xcor would pass the max-pxcor with movement, sets excrete to true
+  if (isStuck = false and isSeed = false)[
     ifelse (xcor + flowDist * flowConst >= (max-pxcor + 0.5))
       [set excrete true]
       [set xcor (xcor + flowDist * flowConst)]
   ]
 
 end
-;///////////////////////////flowMove///////////////////////////////////////
 
-;///////////////////////////checkStuck///////////////////////////////////////
-; checks if the bacteria should be stuck or unstucked based on the chances
+
 to checkStuck
-  if(not isSeed)[
-   ifelse(random 100 < seedChance)[
-	    set isSeed true
-   ]
-   [;else
-     ifelse(not isStuck and (random 100 < stuckChance))[
-       set isStuck true
-     ]
-     [;else
-       if(isStuck and (random 100 < unstuckChance))[
-         set isStuck false
-       ]
-     ]
-	  ]
+;; checks if the bacteria should be stuck or unstucked based on the chances
+;; also handles making a an agent into a seed
+  ifelse(not isStuck and (random 100 < stuckChance))[
+    set isStuck true
+  ]
+  [;;else
+    if(isStuck and (random 100 < unstuckChance))[
+      set isStuck false
+    ]
   ]
 end
-;///////////////////////////checkStuck///////////////////////////////////////
 
-;///////////////////////////inConc///////////////////////////////////////
+
 to inConc
-; controls the amount of each type of bacteria flowing in to the simulation
-; similar to the code in go, but bacteria are now placed at only in the first column
+;; controls the amount of each type of bacteria flowing in to the simulation
+;; similar to the code in go, but bacteria are now placed at only in the first column
 
   create-bifidos inConcBifidos [
     set color blue
@@ -544,29 +551,27 @@ to inConc
 
   ]
 end
-;///////////////////////////inConc///////////////////////////////////////
 
 
-;///////////////////////////bactEat///////////////////////////////////////
 to bactEat [metaNum]
-;run this through a turtle with a metaNum parameter to have them try to eat the carb
+;; run this through a turtle with a metaNum parameter to have them try to eat the carb
 
-  if (metaNum = 10)[;CS
-    ifelse (breed = desulfos)[; check correct breed
-      set energy (energy + 50); increase the energy of the bacteria
+  if (metaNum = 10)[;;CS
+    ifelse (breed = desulfos)[;; check correct breed
+      set energy (energy + 50);; increase the energy of the bacteria
       ask patch-here [
-          set CS (CS - 1); reduce the meta count
-        if (CS < 1)[; remove the meta from avaMetas if there is no more of it
+          set CS (CS - 1);; reduce the meta count
+        if (CS < 1)[;; remove the meta from avaMetas if there is no more of it
           set avaMetas remove 10 avaMetas
         ]
       ]
     ]
-    [;else
-      ;do nothing
+    [;;else
+      ;;do nothing
     ]
   ]
 
-  if (metaNum = 11)[;FO
+  if (metaNum = 11)[;;FO
     ifelse (breed = closts or breed = bacteroides)[
       set energy (energy + 25)
       ask patch-here [
@@ -576,7 +581,7 @@ to bactEat [metaNum]
         ]
       ]
     ]
-    [;else
+    [;;else
       if(breed = bifidos)[
         set energy (energy + 50)
         ask patch-here [
@@ -591,10 +596,10 @@ to bactEat [metaNum]
           ]
         ]
       ]
-    ];end else
+    ];;end else
   ]
 
-  if (metaNum = 12)[;GLUCOSE
+  if (metaNum = 12)[;;GLUCOSE
     ifelse (breed = closts or breed = bacteroides)[
       set energy (energy + 50)
       ask patch-here [
@@ -604,7 +609,7 @@ to bactEat [metaNum]
         ]
       ]
     ]
-    [;else
+    [;;else
       if (breed = bifidos) [
         set energy (energy + 25)
         ask patch-here [
@@ -619,10 +624,10 @@ to bactEat [metaNum]
           ]
         ]
       ]
-    ];end else
+    ];;end else
   ]
 
-  if (metaNum = 13)[;INULIN
+  if (metaNum = 13)[;;INULIN
     ifelse (breed = closts or breed = bacteroides)[
       set energy (energy + 25)
       ask patch-here [
@@ -632,7 +637,7 @@ to bactEat [metaNum]
         ]
       ]
     ]
-    [;else
+    [;;else
       if (breed = bifidos) [
       set energy (energy + 25)
         ask patch-here [
@@ -647,10 +652,10 @@ to bactEat [metaNum]
           ]
         ]
       ]
-    ];end else
+    ];;end else
   ]
 
-  if (metaNum = 14)[;LACTATE
+  if (metaNum = 14)[;;LACTATE
     ifelse (breed = (desulfos))[
       set energy (energy + 50)
       ask patch-here [
@@ -660,19 +665,19 @@ to bactEat [metaNum]
         ]
       ]
     ]
-    [;else
-      ;do nothing
+    [;;else
+      ;;do nothing
     ]
   ]
 
-  ifelse (metaNum = 15)[;LACTOSE
+  ifelse (metaNum = 15)[;;LACTOSE
     ifelse (breed = closts or breed = bacteroides)[
       ifelse (breed = closts)[
         set energy (energy + 25)
       ]
-      [;else
+      [;;else
         set energy (energy + 50)
-      ];end else
+      ];;end else
       ask patch-here [
         set lactose (lactose - 1)
         if (lactose < 1)[
@@ -680,7 +685,7 @@ to bactEat [metaNum]
         ]
       ]
     ]
-    [;else
+    [;;else
       if (breed = bifidos) [
         set energy (energy + 50)
         ask patch-here [
@@ -695,25 +700,23 @@ to bactEat [metaNum]
           ]
         ]
       ]
-    ];end else
+    ];;end else
   ]
-  [;else
-    ;do nothing
+  [;;else
+    ;;do nothing
   ]
 end
-;///////////////////////////bactEat///////////////////////////////////////
 
-;///////////////////////////patchEat///////////////////////////////////////
 to patchEat
-; run this on a ask patches to have them start the turtle eating process
+;; run this on a ask patches to have them start the turtle eating process
   ask turtles-here [
-    set remAttempts 2 ; reset the number of attempts
-    set energy (energy - (100 / 1440)) ; decrease the energy of the bacteria, currently survive 24 hours no eat
+    set remAttempts 2 ;; reset the number of attempts
+    set energy (energy - (100 / 1440)) ;; decrease the energy of the bacteria, currently survive 24 hours no eat
   ]
-  let allMetas (list CS FO glucose inulin lactate lactose); list containing numbers of all the metas
+  let allMetas (list CS FO glucose inulin lactate lactose);; list containing numbers of all the metas
   set avaMetas []
-mpl
-  ; initialize the two lists
+
+  ;; initialize the two lists
   let hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
   let i 0
   while [i < (length(allMetas))][
@@ -722,59 +725,64 @@ mpl
     ]
     set i (i + 1)
   ]
-  let iter 0 ; used to limit the number of times the next while loop will occur, aribitrary
-  ; do the eating till no metas or not hungry
+  let iter 0 ;; used to limit the number of times the next while loop will occur, aribitrary
+  ;; do the eating till no metas or not hungry
   while [(length(avaMetas) > 0) and any? hungryBact and iter < 100] [
-    ; code here to randomly select a turtle from hungryBact and then ask it to run bactEat with a random meta from ava. list
+    ;; code here to randomly select a turtle from hungryBact and then ask it to run bactEat with a random meta from ava. list
     ask one-of hungryBact [
       bactEat(one-of avaMetas)
       set remAttempts remAttempts - 1
     ]
-    ;re-bound agent set
+    ;;re-bound agent set
     set hungryBact (turtles-here with [(energy < 80) and (remAttempts > 0)])
 
     set iter (iter + 1)
   ]
 
 end
-;///////////////////////////patchEat///////////////////////////////////////
 
-;CarbReporters
-; Returns glucose value at passed coordinate
+;; CarbReporters
+
 to-report get-glucose [target-patch-x-coord target-patch-y-coord]
+;; Returns glucose value at passed coordinate
     report [glucosePrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
 
-; Returns lactose value at passed coordinate
+
 to-report get-lactose [target-patch-x-coord target-patch-y-coord]
+;; Returns lactose value at passed coordinate
     report [lactosePrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
 
-; Returns inulin value at passed coordinate
+
 to-report get-inulin [target-patch-x-coord target-patch-y-coord]
+;; Returns inulin value at passed coordinate
     report [inulinPrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
 
-; Returns lactate value at passed coordinate
+
 to-report get-lactate [target-patch-x-coord target-patch-y-coord]
+;; Returns lactate value at passed coordinate
     report [lactatePrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
 
-; Returns FO value at passed coordinate
+
 to-report get-FO [target-patch-x-coord target-patch-y-coord]
+;; Returns FO value at passed coordinate
     report [FOPrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
 
-; Returns CS value at passed coordinate
+
 to-report get-CS [target-patch-x-coord target-patch-y-coord]
+;; Returns CS value at passed coordinate
     report [CSPrev] of patch-at target-patch-x-coord target-patch-y-coord
 end
 
-;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-;Tests
+;; Experiments, used in the cluster runs to control the simulation
+
 to flowRateTest
-  ;changes the flowrate by testConst after at S-S then reduces it after a week of time
+;; changes the flowrate by testConst after at S-S then reduces it after a week of time
   if (ticks >= 2500 and testState = 0)[
     set flowDist (flowDist * testConst)
     set testState 1
@@ -786,7 +794,7 @@ to flowRateTest
 end
 
 to glucTest
-  ;changes the CS inConc for carb experiment
+;; changes the CS inConc for carb experiment
   if (ticks >= 2500 and testState = 0)[
     set inFlowGlucose (inFlowGlucose * testConst)
     set testState 1
@@ -798,7 +806,7 @@ to glucTest
 end
 
 to bifidosTest
-  ;changes inConcBifidos for probiotic experiment
+;; changes inConcBifidos for probiotic experiment
   if (ticks >= 2500 and testState = 0)[
     set inConcBifidos (5000 * testConst)
     set testState 1
@@ -1058,9 +1066,9 @@ Percentage Bacteroides
 
 SWITCH
 885
-400
+401
 991
-433
+434
 plots-on?
 plots-on?
 0
@@ -1134,9 +1142,9 @@ flowDist
 Number
 
 INPUTBOX
-675
+755
 323
-830
+886
 383
 tickInflow
 480.0
@@ -1149,8 +1157,8 @@ INPUTBOX
 205
 757
 265
-stuckChance
-5.0
+maxStuckChance
+65.0
 1
 0
 Number
@@ -1200,10 +1208,10 @@ initNumDesulfos
 Number
 
 TEXTBOX
-710
-384
-802
-402
+743
+385
+835
+403
 Flow Variables
 14
 0.0
@@ -1262,9 +1270,9 @@ trueAbsorption
 
 INPUTBOX
 630
-264
+323
 757
-324
+383
 unstuckChance
 5.0
 1
@@ -1322,17 +1330,6 @@ INPUTBOX
 145
 inFlowInulin
 20.0
-1
-0
-Number
-
-INPUTBOX
-475
-265
-630
-325
-absorption
-0.1
 1
 0
 Number
@@ -1409,7 +1406,7 @@ INPUTBOX
 887
 324
 seedChance
-0.0
+50.0
 1
 0
 Number
@@ -1452,6 +1449,28 @@ NIL
 NIL
 NIL
 1
+
+INPUTBOX
+630
+265
+757
+325
+midStuckConc
+200.0
+1
+0
+Number
+
+INPUTBOX
+475
+265
+630
+325
+absorption
+0.1
+1
+0
+Number
 
 @#$#@#$#@
 ## Model Summary
@@ -1881,7 +1900,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.0.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

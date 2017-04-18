@@ -163,7 +163,6 @@ to stopCheck
   ;; Stop if any population hits 0 or there are too many turtles
   if count turtles > 1000000 [stop]
   if not any? turtles [ stop ] ;; stop if all turtles are dead
-
 end
 
 
@@ -172,9 +171,8 @@ to setStuckChance
   ask patches[
     let population count(turtles-here)
     ;; 1 - Michaelis-Menten like function
-    set stuckChance (1 - (maxStuckChance * population / (midStuckConc + population)))
+    set stuckChance (maxStuckChance - ((maxStuckChance) * population / (midStuckConc + population)))
   ]
-
 end
 
 
@@ -738,7 +736,6 @@ to patchEat
 
     set iter (iter + 1)
   ]
-
 end
 
 ;; CarbReporters

@@ -177,14 +177,17 @@ to stopCheck
   if count turtles > 1000000 [stop]
   if not any? turtles [ stop ] ; stop if all turtles are dead
 
-
 end
 ;///////////////////////////stopCheck///////////////////////////////////////
 
 ;///////////////////////////stuckFunc///////////////////////////////////////
 to stuckFunc
   ; controls stuckChance, function of patch population, linear function into asymptote
-  
+  ask patches[
+    let population (turtles-here)
+    set stuckChance (1 - (maxStuckChance * population / (midStuckConc + population)))
+  ]
+
 end
 ;///////////////////////////stuckFunc///////////////////////////////////////
 

@@ -388,7 +388,7 @@ to bactTickBehavior
   ask bifidos [
     flowMove ;; movement of the bacteria by flow
   ;;randMove ;; movement of the bacteria by a combination of motility and other random forces
-	  checkStuck ;; check if the bacteria becomes stuck or unstuck
+    checkStuck ;; check if the bacteria becomes stuck or unstuck
     deathBifidos ;; check that the energy of the bacteria is enough, otherwise bacteria dies
     if (age mod bifidoDoub = 0 and age != 0)[ ;;this line controls on what tick mod reproduce
       reproduceBact ;; run the reproduce code for bacteria
@@ -399,7 +399,7 @@ to bactTickBehavior
   ask desulfos [;;controls the behavior for the desulfos bacteria
     flowMove
   ;;randMove
-	  checkStuck
+    checkStuck
     deathDesulfos
     if (age mod desulfoDoub = 0 and age != 0)[
       reproduceBact
@@ -410,7 +410,7 @@ to bactTickBehavior
   ask closts [;;controls the behavior for the closts
     flowMove
   ;;randMove
-	  checkStuck
+    checkStuck
     deathClosts
     if (age mod clostDoub = 0 and age != 0)[
       reproduceBact
@@ -421,7 +421,7 @@ to bactTickBehavior
   ask bacteroides [;;controls the behavior for the bacteroides
     flowMove
   ;;randMove
-	  checkStuck
+    checkStuck
     deathbacteroides
     if (age mod bacteroidDoub = 0 and age != 0)[
       reproduceBact
@@ -478,7 +478,6 @@ end
 
 to checkStuck
 ;; checks if the bacteria should be stuck or unstucked based on the chances
-;; also handles making a an agent into a seed
   ifelse(not isStuck and (random 100 < stuckChance))[
     set isStuck true
   ]

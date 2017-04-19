@@ -738,6 +738,18 @@ to patchEat
   ]
 end
 
+to-report getAllBactPatchLin
+;; Returns a list of the number of bacteria on each patch
+;; Only works properly with a world with height of 1
+  report (map getNumBactLin (range min-pxcor max-pxcor)
+end
+
+to-report getNumBactLin [xVal]
+;; Returns the number of bacteria on the patch at given x-coord
+;; Only works properly with a world with height of 1
+  report count(turtles-here) of patch-at xVal 0
+end
+
 ;; CarbReporters
 
 to-report get-glucose [target-patch-x-coord target-patch-y-coord]

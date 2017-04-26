@@ -32,7 +32,11 @@ to setup
     set label-color blue - 2
     set energy 100
     set excrete false
-    set isSeed true
+    ifelse (random 100 < 5)[
+      set isSeed true
+    ][
+      set isSeed false
+    ]
     set isStuck true
     set age random 1000
 	  set flowConst 1 ;; can use this to edit the breed specfic flow distance
@@ -46,7 +50,11 @@ to setup
     set size 0.25
     set energy 100
     set excrete false
-    set isSeed true
+    ifelse (random 100 < 5)[
+      set isSeed true
+    ][
+      set isSeed false
+    ]
     set isStuck true
 	  set age random 1000
 	  set flowConst 1
@@ -60,7 +68,11 @@ to setup
     set size 0.25
     set energy 100
     set excrete false
-    set isSeed true
+    ifelse (random 100 < 5)[
+      set isSeed true
+    ][
+      set isSeed false
+    ]
     set isStuck true
 	  set age random 1000
 	  set flowConst 1
@@ -74,7 +86,11 @@ to setup
     set size 0.25
     set energy 100
     set excrete false
-    set isSeed true
+    ifelse (random 100 < 5)[
+      set isSeed true
+    ][
+      set isSeed false
+    ]
     set isStuck true
 	  set age random 1000
 	  set flowConst 1
@@ -287,7 +303,7 @@ to makeMetabolites
       set inulin (inulin + (added))
     ]
 		[
-			set CS (1000)
+			set inulin (1000)
 		]
 
     set added ((get-FO (- (ceiling flowDist)) 0) * (1 - remainFactor))
@@ -1166,7 +1182,7 @@ INPUTBOX
 757
 265
 maxStuckChance
-65.0
+75.0
 1
 0
 Number
@@ -1337,7 +1353,7 @@ INPUTBOX
 475
 145
 inFlowInulin
-20.0
+100.0
 1
 0
 Number
@@ -1348,7 +1364,7 @@ INPUTBOX
 475
 265
 inFlowFO
-20.0
+100.0
 1
 0
 Number
@@ -1359,7 +1375,7 @@ INPUTBOX
 630
 265
 inFlowLactose
-20.0
+100.0
 1
 0
 Number
@@ -1370,7 +1386,7 @@ INPUTBOX
 630
 205
 inFlowLactate
-20.0
+100.0
 1
 0
 Number
@@ -1381,7 +1397,7 @@ INPUTBOX
 630
 145
 inFlowGlucose
-20.0
+100.0
 1
 0
 Number
@@ -1392,7 +1408,7 @@ INPUTBOX
 475
 205
 inFlowCS
-20.0
+100.0
 1
 0
 Number
@@ -1414,7 +1430,7 @@ INPUTBOX
 887
 324
 seedChance
-50.0
+5.0
 1
 0
 Number
@@ -1464,7 +1480,7 @@ INPUTBOX
 757
 325
 midStuckConc
-200.0
+50.0
 1
 0
 Number
@@ -1908,7 +1924,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.1
+NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

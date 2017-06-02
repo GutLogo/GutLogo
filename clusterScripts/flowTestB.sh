@@ -1,4 +1,4 @@
-#PBS -N gutSim -S /bin/sh
+#PBS -N flowTestB -S /bin/sh
 #PBS -l nodes=1:ppn=12
 
 # -Xmx1024m                     use up to 1GB RAM (edit to increase)

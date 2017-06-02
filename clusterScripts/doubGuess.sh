@@ -1,4 +1,4 @@
-#PBS -N gutSim -S /bin/sh
+#PBS -N doubGuess -S /bin/sh
 #PBS -l nodes=1:ppn=12
 ~/netlogo-6.0/netlogo-headless.sh \
 --model ~/gut-nlogo-model/NLCode.nlogo \

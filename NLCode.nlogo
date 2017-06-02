@@ -2298,98 +2298,17 @@ repeat 100 [
     <enumeratedValueSet variable="initNumClosts">
       <value value="921"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="midStuckConc">
-      <value value="25"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bacteroidDoub">
-      <value value="330"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowFO">
-      <value value="25"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="clostDoub">
-      <value value="330"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcBifidos">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="unstuckChance">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="testConst">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="desulfoDoub">
-      <value value="908"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seedChance">
-      <value value="5"/>
-    </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
       <value value="27"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="reserveFraction">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowLactate">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="randDist">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcBacteroides">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="flowDist">
-      <value value="0.278"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowCS">
-      <value value="0.5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcDesulfos">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lowStuckBound">
-      <value value="2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bifidoDoub">
-      <value value="330"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="tickInflow">
-      <value value="480"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seedPercent">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcClosts">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bifido-lactate-production">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="plots-on?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="absorption">
-      <value value="0.01"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
       <value value="23562"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowLactose">
-      <value value="15"/>
-    </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBacteroides">
       <value value="5490"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowInulin">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="maxStuckChance">
-      <value value="75"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowGlucose">
-      <value value="30"/>
+    <enumeratedValueSet variable="testConst">
+      <value value="1"/>
     </enumeratedValueSet>
   </experiment>
   <experiment name="controlAutistic" repetitions="100" runMetricsEveryStep="true">
@@ -2409,90 +2328,6 @@ repeat 100 [
     <metric>trueAbsorption</metric>
     <metric>getNumSeeds</metric>
     <metric>getAllBactPatchLin</metric>
-    <enumeratedValueSet variable="midStuckConc">
-      <value value="25"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bacteroidDoub">
-      <value value="330"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowFO">
-      <value value="25"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="clostDoub">
-      <value value="330"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcBifidos">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="unstuckChance">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="testConst">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="desulfoDoub">
-      <value value="908"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seedChance">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="reserveFraction">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowLactate">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="randDist">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcBacteroides">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="flowDist">
-      <value value="0.278"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowCS">
-      <value value="0.5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcDesulfos">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lowStuckBound">
-      <value value="2"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bifidoDoub">
-      <value value="330"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="tickInflow">
-      <value value="480"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="seedPercent">
-      <value value="5"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inConcClosts">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="bifido-lactate-production">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="plots-on?">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="absorption">
-      <value value="0.01"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowLactose">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowInulin">
-      <value value="10"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="maxStuckChance">
-      <value value="75"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="inFlowGlucose">
-      <value value="30"/>
-    </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
       <value value="22793"/>
     </enumeratedValueSet>
@@ -2504,6 +2339,9 @@ repeat 100 [
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
       <value value="54"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="testConst">
+      <value value="1"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>

@@ -26,35 +26,58 @@ to setup
   ;; Initializing the turtles and patches
 	;; populates the world with the bacteria population at the initial-numbers set by the user
   set-default-shape bifidos "dot"
-  create-bifidos initNumBifidos [
+  create-bifidos (initNumBifidos * (1 - seedPercent / 100)) [
+    ;;create non-seeds
     set color blue
     set size 0.25
     set label-color blue - 2
     set energy 100
     set excrete false
-    ifelse (random 100 < 5)[
-      set isSeed true
-    ][
-      set isSeed false
-    ]
+    set isSeed false
     set isStuck true
     set age random 1000
 	  set flowConst 1 ;; can use this to edit the breed specfic flow distance
 	  set doubConst 1
     setxy random-xcor random-ycor
-
   ]
+
+    create-bifidos (initNumBifidos * (seedPercent / 100)) [
+    ;;create seeds
+    set color blue
+    set size 0.25
+    set label-color blue - 2
+    set energy 100
+    set excrete false
+    set isSeed true
+    set isStuck true
+    set age random 1000
+	  set flowConst 1 ;; can use this to edit the breed specfic flow distance
+	  set doubConst 1
+    setxy random-xcor random-ycor
+  ]
+
   set-default-shape desulfos "dot"
-  create-desulfos initNumDesulfos [
+  create-desulfos (initNumDesulfos * (1 - seedPercent / 100)) [
+    ;;create non-seeds
     set color green
     set size 0.25
     set energy 100
     set excrete false
-    ifelse (random 100 < 5)[
-      set isSeed true
-    ][
-      set isSeed false
-    ]
+    set isSeed false
+    set isStuck true
+	  set age random 1000
+	  set flowConst 1
+	  set doubConst 1
+    setxy random-xcor random-ycor
+  ]
+
+  create-desulfos (initNumDesulfos * (seedPercent / 100)) [
+    ;;create seeds
+    set color green
+    set size 0.25
+    set energy 100
+    set excrete false
+    set isSeed true
     set isStuck true
 	  set age random 1000
 	  set flowConst 1
@@ -63,16 +86,27 @@ to setup
   ]
 
   set-default-shape closts "dot"
-  create-closts initNumClosts [
+  create-closts (initNumClosts * (1 - seedPercent / 100)) [
+    ;;create non-seeds
     set color red
     set size 0.25
     set energy 100
     set excrete false
-    ifelse (random 100 < 5)[
-      set isSeed true
-    ][
-      set isSeed false
-    ]
+    set isSeed false
+    set isStuck true
+	  set age random 1000
+	  set flowConst 1
+	  set doubConst 1
+    setxy random-xcor random-ycor
+  ]
+
+    create-closts (initNumClosts * (seedPercent / 100)) [
+    ;;create seeds
+    set color red
+    set size 0.25
+    set energy 100
+    set excrete false
+    set isSeed true
     set isStuck true
 	  set age random 1000
 	  set flowConst 1
@@ -81,16 +115,27 @@ to setup
   ]
 
   set-default-shape bacteroides "dot"
-  create-bacteroides initNumbacteroides [
+  create-bacteroides (initNumBacteroides * (1 - seedPercent / 100)) [
+    ;;create non-seeds
     set color grey
     set size 0.25
     set energy 100
     set excrete false
-    ifelse (random 100 < 5)[
-      set isSeed true
-    ][
-      set isSeed false
-    ]
+    set isSeed false
+    set isStuck true
+	  set age random 1000
+	  set flowConst 1
+	  set doubConst 1
+    setxy random-xcor random-ycor
+  ]
+
+  create-bacteroides (initNumBacteroides * (seedPercent / 100)) [
+    ;;create seeds
+    set color grey
+    set size 0.25
+    set energy 100
+    set excrete false
+    set isSeed true
     set isStuck true
 	  set age random 1000
 	  set flowConst 1
@@ -176,6 +221,12 @@ to stopCheck
   ;; Stop if negative number of metas calculated
   if negMeta [stop]
 
+  ;; Stop if flowDist > 1
+  if flowDist > 1 [
+    print "ERROR! flowDist > 1, portions of simulation will not work properly. Terminating Program."
+    stop
+  ]
+
   ;; Stop if any population hits 0 or there are too many turtles
   if count turtles > 1000000 [stop]
   if not any? turtles [ stop ] ;; stop if all turtles are dead
@@ -186,8 +237,9 @@ to setStuckChance
 ;; controls stuckChance, function of patch population, linear function into asymptote
   ask patches[
     let population count(turtles-here)
-    ;; 1 - Michaelis-Menten like function
+    ;; 1 - exponential-like function
     set stuckChance (maxStuckChance - ((maxStuckChance) * population / (midStuckConc + population)))
+    if stuckChance < lowStuckBound [set stuckChance 0];; lower bound
   ]
 end
 
@@ -494,11 +546,11 @@ end
 
 to checkStuck
 ;; checks if the bacteria should be stuck or unstucked based on the chances
-  ifelse(not isStuck and (random 100 < stuckChance))[
+  ifelse(not isStuck and (random-float 100 < stuckChance))[
     set isStuck true
   ]
   [;;else
-    if(isStuck and (random 100 < unstuckChance))[
+    if(isStuck and (random-float 100 < unstuckChance))[
       set isStuck false
     ]
   ]
@@ -603,10 +655,8 @@ to bactEat [metaNum]
             set avaMetas remove 11 avaMetas
           ]
         ]
-        if (random-float 100 < bifido-lactate-production) [
-          ask patch-here [
-            set lactate (lactate + 1)
-          ]
+        ask patch-here [
+          set lactate (lactate + bifido-lactate-production)
         ]
       ]
     ];;end else
@@ -631,10 +681,8 @@ to bactEat [metaNum]
             set avaMetas remove 12 avaMetas
           ]
         ]
-        if (random-float 100 < bifido-lactate-production) [
-          ask patch-here [
-            set lactate (lactate + 1)
-          ]
+        ask patch-here [
+          set lactate (lactate + bifido-lactate-production)
         ]
       ]
     ];;end else
@@ -659,10 +707,8 @@ to bactEat [metaNum]
             set avaMetas remove 13 avaMetas
           ]
         ]
-        if (random-float 100 < bifido-lactate-production) [
-          ask patch-here [
-            set lactate (lactate + 1)
-          ]
+        ask patch-here [
+          set lactate (lactate + bifido-lactate-production)
         ]
       ]
     ];;end else
@@ -707,10 +753,8 @@ to bactEat [metaNum]
             set avaMetas remove 15 avaMetas
           ]
         ]
-        if (random-float 100 < bifido-lactate-production) [
-          ask patch-here [
-            set lactate (lactate + 1)
-          ]
+        ask patch-here [
+          set lactate (lactate + bifido-lactate-production)
         ]
       ]
     ];;end else
@@ -756,13 +800,19 @@ end
 to-report getAllBactPatchLin
 ;; Returns a list of the number of bacteria on each patch
 ;; Only works properly with a world with height of 1
-  report (map getNumBactLin (range min-pxcor max-pxcor))
+  let data map getNumBactLin (range min-pxcor (max-pxcor + 1))
+  report (data)
 end
 
 to-report getNumBactLin [xVal]
 ;; Returns the number of bacteria on the patch at given x-coord
 ;; Only works properly with a world with height of 1
-  report [count(turtles-here)] of patch-at xVal 0
+  report [count(turtles-here)] of patch xVal 0
+end
+
+to-report getNumSeeds
+;; Returns the number of bacteria with isSeed set to true
+  report count turtles with [isSeed = true]
 end
 
 ;; CarbReporters
@@ -805,13 +855,14 @@ end
 
 ;; Experiments, used in the cluster runs to control the simulation
 
+;; note that these controllers won't actually work on ticks not multiple of 100 because of how BehaviorSpace is set up
 to flowRateTest
 ;; changes the flowrate by testConst after at S-S then reduces it after a week of time
-  if (ticks >= 2500 and testState = 0)[
+  if (ticks >= 10080 and testState = 0)[
     set flowDist (flowDist * testConst)
     set testState 1
   ]
-  if (ticks >= 12500 and testState = 1)[
+  if (ticks >= 20160 and testState = 1)[
     set flowDist (flowDist / testConst)
     set testState 2
   ]
@@ -819,11 +870,11 @@ end
 
 to glucTest
 ;; changes the CS inConc for carb experiment
-  if (ticks >= 2500 and testState = 0)[
+  if (ticks >= 10080 and testState = 0)[
     set inFlowGlucose (inFlowGlucose * testConst)
     set testState 1
   ]
-  if (ticks >= 12500 and testState = 1)[
+  if (ticks >= 20160 and testState = 1)[
     set inFlowGlucose (inFlowGlucose / testConst)
     set testState 2
   ]
@@ -831,11 +882,11 @@ end
 
 to bifidosTest
 ;; changes inConcBifidos for probiotic experiment
-  if (ticks >= 2500 and testState = 0)[
+  if (ticks >= 10080 and testState = 0)[
     set inConcBifidos (5000 * testConst)
     set testState 1
   ]
-  if (ticks >= 12500 and testState = 1)[
+  if (ticks >= 20160 and testState = 1)[
     set inConcBifidos (0)
     set testState 2
   ]
@@ -924,10 +975,10 @@ PENS
 "Bacteroides" 1.0 0 -7500403 true "" "plot count bacteroides"
 
 MONITOR
-93
-415
-167
-460
+90
+442
+164
+487
 Cloststridia
 count closts
 17
@@ -935,10 +986,10 @@ count closts
 11
 
 MONITOR
-167
-415
-255
-460
+164
+442
+252
+487
 Bifidobacteria
 count bifidos
 17
@@ -946,10 +997,10 @@ count bifidos
 11
 
 MONITOR
-255
-415
-340
-460
+252
+442
+337
+487
 Desulfovibrio
 count desulfos
 17
@@ -957,10 +1008,10 @@ count desulfos
 11
 
 MONITOR
-5
-460
-136
-505
+2
+487
+133
+532
 Percentage Clostridia
 100 * count closts / count turtles
 2
@@ -968,10 +1019,10 @@ Percentage Clostridia
 11
 
 MONITOR
-136
-460
-291
-505
+133
+487
+288
+532
 Percentage Bifidobacteria
 100 * count bifidos / count turtles
 2
@@ -979,10 +1030,10 @@ Percentage Bifidobacteria
 11
 
 MONITOR
-291
-460
-442
-505
+288
+487
+439
+532
 Percentage Desulfovibrio
 100 * count desulfos / count turtles
 2
@@ -990,10 +1041,10 @@ Percentage Desulfovibrio
 11
 
 MONITOR
-5
-415
-94
-460
+2
+442
+91
+487
 Total Bacteria
 count turtles
 3
@@ -1001,10 +1052,10 @@ count turtles
 11
 
 MONITOR
-637
-415
-694
-460
+634
+442
+691
+487
 Glucose
 sum [glucose] of patches
 0
@@ -1012,10 +1063,10 @@ sum [glucose] of patches
 11
 
 MONITOR
-580
-415
-637
-460
+577
+442
+634
+487
 FO
 sum [FO] of patches
 2
@@ -1023,10 +1074,10 @@ sum [FO] of patches
 11
 
 MONITOR
-466
-415
-523
-460
+463
+442
+520
+487
 Lactate
 sum [lactate] of patches
 2
@@ -1034,10 +1085,10 @@ sum [lactate] of patches
 11
 
 MONITOR
-694
-415
-751
-460
+691
+442
+748
+487
 CS
 sum [CS] of patches
 2
@@ -1045,10 +1096,10 @@ sum [CS] of patches
 11
 
 MONITOR
-409
-415
-466
-460
+406
+442
+463
+487
 Inulin
 sum [inulin] of patches
 2
@@ -1056,10 +1107,10 @@ sum [inulin] of patches
 11
 
 MONITOR
-523
-415
-580
-460
+520
+442
+577
+487
 Lactose
 sum [Lactose] of patches
 2
@@ -1067,10 +1118,10 @@ sum [Lactose] of patches
 11
 
 MONITOR
-340
-415
-409
-460
+337
+442
+406
+487
 Bacteroides
 count bacteroides
 17
@@ -1078,10 +1129,10 @@ count bacteroides
 11
 
 MONITOR
-442
-460
-586
-505
+439
+487
+583
+532
 Percentage Bacteroides
 100 * count bacteroides / count turtles
 2
@@ -1193,7 +1244,7 @@ INPUTBOX
 320
 145
 initNumBifidos
-22793.0
+23562.0
 1
 0
 Number
@@ -1204,7 +1255,7 @@ INPUTBOX
 320
 205
 initNumBacteroides
-5311.0
+5490.0
 1
 0
 Number
@@ -1215,7 +1266,7 @@ INPUTBOX
 320
 265
 initNumClosts
-1842.0
+921.0
 1
 0
 Number
@@ -1226,16 +1277,16 @@ INPUTBOX
 320
 325
 initNumDesulfos
-54.0
+27.0
 1
 0
 Number
 
 TEXTBOX
-743
-385
-835
-403
+774
+389
+866
+407
 Flow Variables
 14
 0.0
@@ -1262,10 +1313,10 @@ randFlow Variables\n
 1
 
 TEXTBOX
-200
-330
-285
-348
+217
+392
+302
+410
 Initial Bacteria
 14
 0.0
@@ -1282,10 +1333,10 @@ Bacteria Reproduction
 1
 
 MONITOR
-586
-460
-688
-505
+583
+487
+685
+532
 True Absorption
 trueAbsorption
 6
@@ -1293,12 +1344,12 @@ trueAbsorption
 11
 
 INPUTBOX
-630
-323
-757
-383
+632
+381
+758
+441
 unstuckChance
-5.0
+10.0
 1
 0
 Number
@@ -1309,7 +1360,7 @@ INPUTBOX
 165
 145
 bifidoDoub
-338.0
+330.0
 1
 0
 Number
@@ -1331,7 +1382,7 @@ INPUTBOX
 165
 325
 clostDoub
-280.0
+330.0
 1
 0
 Number
@@ -1353,7 +1404,7 @@ INPUTBOX
 475
 145
 inFlowInulin
-100.0
+10.0
 1
 0
 Number
@@ -1364,7 +1415,7 @@ INPUTBOX
 475
 265
 inFlowFO
-100.0
+25.0
 1
 0
 Number
@@ -1375,7 +1426,7 @@ INPUTBOX
 630
 265
 inFlowLactose
-100.0
+15.0
 1
 0
 Number
@@ -1386,7 +1437,7 @@ INPUTBOX
 630
 205
 inFlowLactate
-100.0
+0.0
 1
 0
 Number
@@ -1397,7 +1448,7 @@ INPUTBOX
 630
 145
 inFlowGlucose
-100.0
+30.0
 1
 0
 Number
@@ -1408,7 +1459,7 @@ INPUTBOX
 475
 205
 inFlowCS
-100.0
+0.5
 1
 0
 Number
@@ -1419,7 +1470,7 @@ INPUTBOX
 475
 325
 bifido-lactate-production
-0.0
+0.01
 1
 0
 Number
@@ -1441,7 +1492,7 @@ INPUTBOX
 555
 385
 reserveFraction
-0.9
+0.0
 1
 0
 Number
@@ -1452,7 +1503,7 @@ INPUTBOX
 1287
 460
 testConst
-0.0
+0.333
 1
 0
 Number
@@ -1480,7 +1531,7 @@ INPUTBOX
 757
 325
 midStuckConc
-50.0
+25.0
 1
 0
 Number
@@ -1491,7 +1542,29 @@ INPUTBOX
 630
 325
 absorption
-0.1
+0.01
+1
+0
+Number
+
+INPUTBOX
+166
+326
+322
+386
+seedPercent
+5.0
+1
+0
+Number
+
+INPUTBOX
+632
+323
+757
+383
+lowStuckBound
+2.0
 1
 0
 Number
@@ -1929,7 +2002,7 @@ NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="checkStable" repetitions="500" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="checkStable" repetitions="4" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100[
   go
@@ -1948,6 +2021,8 @@ NetLogo 6.0
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="initNumBifidos">
       <value value="23562"/>
     </enumeratedValueSet>
@@ -1961,25 +2036,13 @@ NetLogo 6.0
       <value value="27"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="doubGuess" repetitions="3" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="10080"/>
-    <metric>count bifidos</metric>
-    <metric>count closts</metric>
-    <metric>count desulfos</metric>
-    <metric>count bacteroides</metric>
-    <steppedValueSet variable="bacteroidDoub" first="170" step="10" last="250"/>
-    <steppedValueSet variable="clostDoub" first="150" step="10" last="250"/>
-  </experiment>
-  <experiment name="flowTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="flowTest" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100 [
   go
 ]
 flowRateTest</go>
-    <timeLimit steps="225"/>
-    <metric>flowDist</metric>
+    <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
@@ -1991,9 +2054,10 @@ flowRateTest</go>
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="testConst">
       <value value="0.333"/>
-      <value value="1"/>
       <value value="3"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
@@ -2007,6 +2071,9 @@ flowRateTest</go>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
       <value value="27"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="flowDist">
+      <value value="0.278"/>
     </enumeratedValueSet>
   </experiment>
   <experiment name="glucTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
@@ -2015,8 +2082,7 @@ flowRateTest</go>
   go
 ]
 glucTest</go>
-    <timeLimit steps="225"/>
-    <metric>flowDist</metric>
+    <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
@@ -2028,9 +2094,10 @@ glucTest</go>
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="testConst">
       <value value="0.5"/>
-      <value value="1"/>
       <value value="2"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
@@ -2045,25 +2112,9 @@ glucTest</go>
     <enumeratedValueSet variable="initNumDesulfos">
       <value value="27"/>
     </enumeratedValueSet>
-  </experiment>
-  <experiment name="checkCluster" repetitions="10" sequentialRunOrder="false" runMetricsEveryStep="true">
-    <setup>setup</setup>
-    <go>repeat 100[
-  go
-]</go>
-    <timeLimit steps="50"/>
-    <metric>flowDist</metric>
-    <metric>count bifidos</metric>
-    <metric>count bacteroides</metric>
-    <metric>count closts</metric>
-    <metric>count desulfos</metric>
-    <metric>sum [inulin] of patches</metric>
-    <metric>sum [lactate] of patches</metric>
-    <metric>sum [lactose] of patches</metric>
-    <metric>sum [FO] of patches</metric>
-    <metric>sum [glucose] of patches</metric>
-    <metric>sum [CS] of patches</metric>
-    <metric>trueAbsorption</metric>
+    <enumeratedValueSet variable="inFlowGlucose">
+      <value value="30"/>
+    </enumeratedValueSet>
   </experiment>
   <experiment name="bifidosTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
@@ -2071,8 +2122,7 @@ glucTest</go>
 repeat 100 [
   go
 ]</go>
-    <timeLimit steps="225"/>
-    <metric>flowDist</metric>
+    <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
@@ -2084,9 +2134,10 @@ repeat 100 [
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="testConst">
       <value value="0"/>
-      <value value="1"/>
       <value value="2"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
@@ -2100,6 +2151,9 @@ repeat 100 [
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
       <value value="27"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBifidos">
+      <value value="0"/>
     </enumeratedValueSet>
   </experiment>
   <experiment name="flowTestB" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
@@ -2108,7 +2162,8 @@ repeat 100 [
   go
 ]
 flowRateTest</go>
-    <timeLimit steps="225"/>
+    <timeLimit steps="303"/>
+    <metric>testConst</metric>
     <metric>flowDist</metric>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
@@ -2121,9 +2176,10 @@ flowRateTest</go>
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="testConst">
       <value value="0.333"/>
-      <value value="1"/>
       <value value="3"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
@@ -2138,6 +2194,9 @@ flowRateTest</go>
     <enumeratedValueSet variable="initNumDesulfos">
       <value value="54"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="flowDist">
+      <value value="0.278"/>
+    </enumeratedValueSet>
   </experiment>
   <experiment name="glucTestB" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
@@ -2145,7 +2204,7 @@ flowRateTest</go>
   go
 ]
 glucTest</go>
-    <timeLimit steps="225"/>
+    <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
@@ -2157,9 +2216,10 @@ glucTest</go>
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="testConst">
       <value value="0.5"/>
-      <value value="1"/>
       <value value="2"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
@@ -2174,6 +2234,9 @@ glucTest</go>
     <enumeratedValueSet variable="initNumDesulfos">
       <value value="54"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowGlucose">
+      <value value="30"/>
+    </enumeratedValueSet>
   </experiment>
   <experiment name="bifidosTestB" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
@@ -2181,7 +2244,7 @@ glucTest</go>
 repeat 100 [
   go
 ]</go>
-    <timeLimit steps="225"/>
+    <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
     <metric>count closts</metric>
@@ -2193,10 +2256,218 @@ repeat 100 [
     <metric>sum [glucose] of patches</metric>
     <metric>sum [CS] of patches</metric>
     <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="testConst">
       <value value="0"/>
-      <value value="1"/>
       <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="22793"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5311"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="1842"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="54"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBifidos">
+      <value value="0"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="controlHealthy" repetitions="100" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="303"/>
+    <metric>count turtles</metric>
+    <enumeratedValueSet variable="initNumClosts">
+      <value value="921"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="midStuckConc">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bacteroidDoub">
+      <value value="330"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowFO">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="clostDoub">
+      <value value="330"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBifidos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="unstuckChance">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="testConst">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="desulfoDoub">
+      <value value="908"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seedChance">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumDesulfos">
+      <value value="27"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="reserveFraction">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactate">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="randDist">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBacteroides">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="flowDist">
+      <value value="0.278"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowCS">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcDesulfos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lowStuckBound">
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifidoDoub">
+      <value value="330"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="tickInflow">
+      <value value="480"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seedPercent">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcClosts">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifido-lactate-production">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="plots-on?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="absorption">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBifidos">
+      <value value="23562"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactose">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="initNumBacteroides">
+      <value value="5490"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowInulin">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="maxStuckChance">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowGlucose">
+      <value value="30"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="controlAutistic" repetitions="100" runMetricsEveryStep="true">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="303"/>
+    <metric>count turtles</metric>
+    <enumeratedValueSet variable="midStuckConc">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bacteroidDoub">
+      <value value="330"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowFO">
+      <value value="25"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="clostDoub">
+      <value value="330"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBifidos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="unstuckChance">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="testConst">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="desulfoDoub">
+      <value value="908"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seedChance">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="reserveFraction">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactate">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="randDist">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcBacteroides">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="flowDist">
+      <value value="0.278"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowCS">
+      <value value="0.5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcDesulfos">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lowStuckBound">
+      <value value="2"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifidoDoub">
+      <value value="330"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="tickInflow">
+      <value value="480"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="seedPercent">
+      <value value="5"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inConcClosts">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="bifido-lactate-production">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="plots-on?">
+      <value value="true"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="absorption">
+      <value value="0.01"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowLactose">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowInulin">
+      <value value="10"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="maxStuckChance">
+      <value value="75"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="inFlowGlucose">
+      <value value="30"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
       <value value="22793"/>

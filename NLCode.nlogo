@@ -2036,7 +2036,7 @@ NetLogo 6.0
       <value value="27"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="flowTest" repetitions="1" sequentialRunOrder="false" runMetricsEveryStep="true">
+  <experiment name="flowTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
     <go>repeat 100 [
   go
@@ -2282,7 +2282,19 @@ repeat 100 [
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="303"/>
-    <metric>count turtles</metric>
+    <metric>count bifidos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="initNumClosts">
       <value value="921"/>
     </enumeratedValueSet>
@@ -2384,7 +2396,19 @@ repeat 100 [
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="303"/>
-    <metric>count turtles</metric>
+    <metric>count bifidos</metric>
+    <metric>count bacteroides</metric>
+    <metric>count closts</metric>
+    <metric>count desulfos</metric>
+    <metric>sum [inulin] of patches</metric>
+    <metric>sum [lactate] of patches</metric>
+    <metric>sum [lactose] of patches</metric>
+    <metric>sum [FO] of patches</metric>
+    <metric>sum [glucose] of patches</metric>
+    <metric>sum [CS] of patches</metric>
+    <metric>trueAbsorption</metric>
+    <metric>getNumSeeds</metric>
+    <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="midStuckConc">
       <value value="25"/>
     </enumeratedValueSet>

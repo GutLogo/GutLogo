@@ -1,5 +1,5 @@
 #PBS -N gutSim -S /bin/sh
-#PBS -l nodes=1:ppn=40
+#PBS -l nodes=1:ppn=12
 
 # -Xmx1024m                     use up to 1GB RAM (edit to increase)
 # -Dfile.encoding=UTF-8         ensure Unicode characters in model files are compatible cross-platform
@@ -12,4 +12,4 @@ java -Xmx4096m -Dfile.encoding=UTF-8 \
 --model ~/gut-nlogo-model/NLCode.nlogo \
 --experiment glucTest \
 --table ~/results/glucTest.csv \
---threads 40
+--threads 12

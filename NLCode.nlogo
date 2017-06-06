@@ -2280,7 +2280,9 @@ repeat 100 [
   </experiment>
   <experiment name="controlHealthy" repetitions="100" runMetricsEveryStep="true">
     <setup>setup</setup>
-    <go>go</go>
+    <go>repeat 100 [
+  go
+]</go>
     <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
@@ -2313,7 +2315,9 @@ repeat 100 [
   </experiment>
   <experiment name="controlAutistic" repetitions="100" runMetricsEveryStep="true">
     <setup>setup</setup>
-    <go>go</go>
+    <go>repeat 100 [
+  go
+]</go>
     <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>

@@ -16,21 +16,29 @@ def median(lst):
 	
 filename = str(sys.argv[1])
 outName1 = str(sys.argv[2])
-outName2 = str(sys.argv[3])
 with open(filename, 'rb') as csvfile:
 	#opens csv file and makes dict reader
 	reader = csv.DictReader(csvfile)
 	dataList = list(reader)#list of dictionaries
 
+#split up the spatial data
+for row in dataList:
+    data = row['getAllBactPatchLin']
+    #remove first and last character
+    data = data[1:-1]
+    splitData = data.split()
+    for i in range(len(splitData)):
+        row['row ' + str(i)] = splitData[i]
+
 #list of entries to avg and format
 entryList = sorted(dataList[0].keys())
-entryList.remove('getAllBactPatchLin')
 entryList.remove('[run number]')
 entryList.remove('[step]')
 entryList.remove('initNumBacteroides')
 entryList.remove('initNumBifidos')
 entryList.remove('initNumClosts')
 entryList.remove('initNumDesulfos')
+entryList.remove('getAllBactPatchLin')
 
 testSet = set()
 stepSet = set()
@@ -60,7 +68,7 @@ for data in dataList:
 		testList[i][j][k].append(float(data[entryList[k]]))
 
 x = 0 # for testConst
-for name in [outName1, outName2]:
+for name in [outName1]:
     with open(name, 'w+') as file:
         # get the mean, stddev, median, and write to a csv file
         rowData = list()

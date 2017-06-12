@@ -206,6 +206,9 @@ to go
   ;; make agents into seeds
   createSeeds
 
+  ;; Probiotics or bacteria in
+  bactIn
+
   ;; Increment time
   tick
 
@@ -942,7 +945,7 @@ BUTTON
 176
 47
 Go
-go
+go\nbifidosTest
 T
 1
 T
@@ -1503,7 +1506,7 @@ INPUTBOX
 1287
 460
 testConst
-0.333
+1.0
 1
 0
 Number
@@ -2118,10 +2121,10 @@ glucTest</go>
   </experiment>
   <experiment name="bifidosTest" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
-    <go>bifidosTest
-repeat 100 [
+    <go>repeat 100 [
   go
-]</go>
+]
+bifidosTest</go>
     <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
@@ -2137,7 +2140,7 @@ repeat 100 [
     <metric>getNumSeeds</metric>
     <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="testConst">
-      <value value="0"/>
+      <value value="1"/>
       <value value="2"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
@@ -2240,10 +2243,10 @@ glucTest</go>
   </experiment>
   <experiment name="bifidosTestB" repetitions="100" sequentialRunOrder="false" runMetricsEveryStep="true">
     <setup>setup</setup>
-    <go>bifidosTest
-repeat 100 [
+    <go>repeat 100 [
   go
-]</go>
+]
+bifidosTest</go>
     <timeLimit steps="303"/>
     <metric>count bifidos</metric>
     <metric>count bacteroides</metric>
@@ -2259,7 +2262,7 @@ repeat 100 [
     <metric>getNumSeeds</metric>
     <metric>getAllBactPatchLin</metric>
     <enumeratedValueSet variable="testConst">
-      <value value="0"/>
+      <value value="1"/>
       <value value="2"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">

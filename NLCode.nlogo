@@ -206,6 +206,9 @@ to go
   ;; set the new stuckChance for the patches
   setStuckChance
 
+  ;; change the trueAbsorption
+  setTrueAbs
+
   ;; make agents into seeds
   createSeeds
 

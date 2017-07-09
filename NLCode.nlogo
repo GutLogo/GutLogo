@@ -6,7 +6,7 @@ turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
 patches-own [glucose FO lactose lactate inulin CS glucosePrev FOPrev lactosePrev
 lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve
 inulinReserve CSReserve avaMetas stuckChance]
-globals [trueAbsorption negMeta testState]
+globals [trueAbsorption negMeta testState result]
 
 
 to display-labels
@@ -187,6 +187,9 @@ end
 to go
 ;; This function determines the behavior at each time tick
 
+  ;; stop if error or unexpected output
+  stopCheck
+
   ;; Modify the energy level of each turtle and metabolite level of each patch
   ask patches [
     patchEat
@@ -203,6 +206,9 @@ to go
   ;; set the new stuckChance for the patches
   setStuckChance
 
+  ;; change the trueAbsorption
+  setTrueAbs
+
   ;; make agents into seeds
   createSeeds
 
@@ -211,9 +217,6 @@ to go
 
   ;; Increment time
   tick
-
-  ;; stop if error or unexpected output
-  stopCheck
 
 end
 
@@ -231,7 +234,7 @@ to stopCheck
   ]
 
   ;; Stop if any population hits 0 or there are too many turtles
-  if count turtles > 1000000 [stop]
+  if (count turtles > 1000000) [ stop ]
   if not any? turtles [ stop ] ;; stop if all turtles are dead
 end
 
@@ -382,7 +385,7 @@ to makeMetabolites
       set lactate (lactate + (added))
     ]
 		[
-			set lactate (200)
+			set lactate (1000)
 		]
 
     set added ((get-glucose (- (ceiling flowDist)) 0) * (1 - remainFactor))
@@ -426,19 +429,28 @@ to makeMetabolites
 		set glucose 0
 	]
 
-  set inulinReserve ((inulin) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set FOReserve ((FO) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set lactoseReserve ((lactose) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set lactateReserve ((lactate) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set glucoseReserve ((glucose) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
-  set CSReserve ((CS) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+	ifelse (((max-pxcor - min-pxcor) < 1))[
+		set inulinReserve (0)
+  	set FOReserve (0)
+  	set lactoseReserve (0)
+  	set lactateReserve (0)
+  	set glucoseReserve (0)
+  	set CSReserve (0)
+	][
+  	set inulinReserve ((inulin) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  	set FOReserve ((FO) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  	set lactoseReserve ((lactose) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  	set lactateReserve ((lactate) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  	set glucoseReserve ((glucose) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+  	set CSReserve ((CS) * reserveFraction * ((max-pxcor - pxcor)/(max-pxcor - min-pxcor)))
+	]
 
-  set inulin ((inulin - inulinReserve) * (1 - trueAbsorption))
-  set FO ((FO - FOReserve) * (1 - trueAbsorption))
-  set lactose ((lactose - lactoseReserve) * (1 - trueAbsorption))
-  set lactate ((lactate - lactateReserve) * (1 - trueAbsorption))
-  set glucose ((glucose - glucoseReserve) * (1 - trueAbsorption))
-  set CS ((CS - CSReserve) * (1 - trueAbsorption))
+  	set inulin ((inulin - inulinReserve) * (1 - trueAbsorption))
+  	set FO ((FO - FOReserve) * (1 - trueAbsorption))
+  	set lactose ((lactose - lactoseReserve) * (1 - trueAbsorption))
+  	set lactate ((lactate - lactateReserve) * (1 - trueAbsorption))
+  	set glucose ((glucose - glucoseReserve) * (1 - trueAbsorption))
+  	set CS ((CS - CSReserve) * (1 - trueAbsorption))
 end
 
 
@@ -816,6 +828,21 @@ end
 to-report getNumSeeds
 ;; Returns the number of bacteria with isSeed set to true
   report count turtles with [isSeed = true]
+end
+
+to-report getStuckChance [xVal]
+;; Needed to run JUnit tests
+  report [stuckChance] of patch xVal 0
+end
+
+to-report gettrueAbs
+;; Needed to run JUnit tests
+  report trueAbsorption
+end
+
+to-report getResult
+;; Needed to run JUnit tests
+  report result
 end
 
 ;; CarbReporters

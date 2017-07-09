@@ -945,7 +945,7 @@ BUTTON
 176
 47
 Go
-go\nbifidosTest
+go
 T
 1
 T
@@ -1220,9 +1220,9 @@ flowDist
 Number
 
 INPUTBOX
-755
+756
 323
-886
+887
 383
 tickInflow
 480.0
@@ -1236,7 +1236,7 @@ INPUTBOX
 757
 265
 maxStuckChance
-75.0
+50.0
 1
 0
 Number
@@ -1280,7 +1280,7 @@ INPUTBOX
 320
 325
 initNumDesulfos
-27.0
+70.0
 1
 0
 Number
@@ -1340,7 +1340,7 @@ MONITOR
 487
 685
 532
-True Absorption
+gutPerm
 trueAbsorption
 6
 1
@@ -1348,9 +1348,9 @@ trueAbsorption
 
 INPUTBOX
 632
-381
+383
 758
-441
+443
 unstuckChance
 10.0
 1
@@ -1374,7 +1374,7 @@ INPUTBOX
 165
 205
 desulfoDoub
-908.0
+330.0
 1
 0
 Number
@@ -1462,7 +1462,7 @@ INPUTBOX
 475
 205
 inFlowCS
-0.5
+0.1
 1
 0
 Number
@@ -1473,7 +1473,7 @@ INPUTBOX
 475
 325
 bifido-lactate-production
-0.01
+0.005
 1
 0
 Number
@@ -1534,7 +1534,7 @@ INPUTBOX
 757
 325
 midStuckConc
-25.0
+10.0
 1
 0
 Number
@@ -1545,16 +1545,16 @@ INPUTBOX
 630
 325
 absorption
-0.01
+0.0
 1
 0
 Number
 
 INPUTBOX
-166
-326
-322
-386
+165
+324
+321
+384
 seedPercent
 5.0
 1
@@ -1563,14 +1563,32 @@ Number
 
 INPUTBOX
 632
-323
+324
 757
-383
+384
 lowStuckBound
 2.0
 1
 0
 Number
+
+PLOT
+860
+460
+1287
+718
+plot 1
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot count desulfos"
 
 @#$#@#$#@
 ## Model Summary
@@ -2073,7 +2091,7 @@ flowRateTest</go>
       <value value="921"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
-      <value value="27"/>
+      <value value="70"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="flowDist">
       <value value="0.278"/>
@@ -2113,7 +2131,7 @@ glucTest</go>
       <value value="921"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
-      <value value="27"/>
+      <value value="70"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="inFlowGlucose">
       <value value="30"/>
@@ -2153,7 +2171,7 @@ bifidosTest</go>
       <value value="921"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
-      <value value="27"/>
+      <value value="70"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="inConcBifidos">
       <value value="0"/>
@@ -2304,7 +2322,7 @@ bifidosTest</go>
       <value value="921"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumDesulfos">
-      <value value="27"/>
+      <value value="70"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="initNumBifidos">
       <value value="23562"/>

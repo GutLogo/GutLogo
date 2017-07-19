@@ -984,9 +984,9 @@ NIL
 0
 
 PLOT
-885
+887
 85
-1288
+1290
 401
 Populations
 Time
@@ -1236,34 +1236,12 @@ randDist
 Number
 
 INPUTBOX
-756
-205
-887
+630
 265
-flowDist
-0.278
-1
-0
-Number
-
-INPUTBOX
-756
-323
-887
-383
+757
+325
 tickInflow
 480.0
-1
-0
-Number
-
-INPUTBOX
-630
-205
-757
-265
-maxStuckChance
-50.0
 1
 0
 Number
@@ -1313,20 +1291,20 @@ initNumDesulfos
 Number
 
 TEXTBOX
-774
-389
-866
-407
+716
+384
+808
+402
 Flow Variables
 14
 0.0
 1
 
 TEXTBOX
-420
-385
-563
-403
+417
+335
+560
+353
 Metabolite Variables
 14
 0.0
@@ -1343,10 +1321,10 @@ randFlow Variables\n
 1
 
 TEXTBOX
-217
-392
-302
-410
+200
+363
+285
+381
 Initial Bacteria
 14
 0.0
@@ -1372,17 +1350,6 @@ trueAbsorption
 6
 1
 11
-
-INPUTBOX
-632
-383
-758
-443
-unstuckChance
-10.0
-1
-0
-Number
 
 INPUTBOX
 10
@@ -1506,32 +1473,10 @@ bifido-lactate-production
 Number
 
 INPUTBOX
-756
-264
-887
-324
-seedChance
-5.0
-1
-0
-Number
-
-INPUTBOX
-400
-325
-555
-385
-reserveFraction
-0.0
-1
-0
-Number
-
-INPUTBOX
-1220
-400
-1287
-460
+1223
+401
+1290
+461
 testConst
 1.0
 1
@@ -1557,65 +1502,134 @@ NIL
 
 INPUTBOX
 630
-265
+205
 757
-325
+265
 midStuckConc
 10.0
 1
 0
 Number
 
-INPUTBOX
+SLIDER
+164
+325
+321
+358
+seedPercent
+seedPercent
+0
+100
+5.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
 475
 265
 630
-325
+298
 absorption
+absorption
+0
+100
 0.0
 1
-0
-Number
-
-INPUTBOX
-165
-324
-321
-384
-seedPercent
-5.0
 1
-0
-Number
+NIL
+HORIZONTAL
 
-INPUTBOX
-632
-324
+SLIDER
 757
-384
+303
+887
+336
+unstuckChance
+unstuckChance
+0
+100
+10.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+757
+270
+887
+303
 lowStuckBound
+lowStuckBound
+0
+10
 2.0
 1
-0
-Number
+1
+NIL
+HORIZONTAL
 
-PLOT
-860
-460
-1287
-718
-plot 1
+SLIDER
+757
+237
+887
+270
+seedChance
+seedChance
+0
+100
+5.0
+1
+1
 NIL
+HORIZONTAL
+
+SLIDER
+757
+205
+887
+238
+flowDist
+flowDist
+0
+1
+0.278
+0.01
+1
 NIL
+HORIZONTAL
+
+SLIDER
+757
+336
+887
+369
+maxStuckChance
+maxStuckChance
+0
+100
+50.0
+1
+1
+NIL
+HORIZONTAL
+
+SLIDER
+475
+298
+630
+331
+reserveFraction
+reserveFraction
+0
+100
 0.0
-10.0
-0.0
-10.0
-true
-false
-"" ""
-PENS
-"default" 1.0 0 -16777216 true "" "plot count desulfos"
+1
+1
+NIL
+HORIZONTAL
 
 @#$#@#$#@
 ## Model Summary
@@ -1676,10 +1690,10 @@ Look into precise lactate production by bifodobacteria
 The table below is easier to read in edit mode.
 
 
-                                       | Healthy (n = 34)    | Inﬂammatory bowel disease (n = 11)
+                                       | Healthy (n = 34)    | In?ammatory bowel disease (n = 11)
      Bacterial Group                   | %    | count        | %   | count
      Total bacteria                    | 100  | 10.28 ± 0.14 | 100 | 10.04 ± 0.22
-     Biﬁdobacterium spp.               | 91.2 | 9.34  ± 1.20 | 64  | 7.56  ± 0.93
+     Bi?dobacterium spp.               | 91.2 | 9.34  ± 1.20 | 64  | 7.56  ± 0.93
      Clostridium histolyticum subgp.   | 97.1 | 7.92  ± 0.68 | 100 | 8.12  ± 0.58
      Lactobacillus/Enterococcus subgp. | 97.1 | 8.68  ± 0.74 | 100 | 8.59  ± 0.32
      Bacteroides spp.                  | 100  | 9.07  ± 0.56 | 100 | 8.31  ± 0.48

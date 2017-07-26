@@ -1237,9 +1237,9 @@ Number
 
 INPUTBOX
 627
-299
+239
 754
-359
+299
 tickInflow
 480.0
 1
@@ -1485,9 +1485,9 @@ Number
 
 INPUTBOX
 627
-239
-754
 299
+754
+359
 midStuckConc
 10.0
 1

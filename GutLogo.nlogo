@@ -984,9 +984,9 @@ NIL
 0
 
 PLOT
-884
+1014
 119
-1287
+1417
 435
 Populations
 Time
@@ -1005,10 +1005,10 @@ PENS
 "Bacteroides" 1.0 0 -7500403 true "" "plot count bacteroides"
 
 MONITOR
-87
-476
-161
-521
+89
+458
+163
+503
 Cloststridia
 count closts
 17
@@ -1016,10 +1016,10 @@ count closts
 11
 
 MONITOR
-161
-476
-249
-521
+163
+458
+251
+503
 Bifidobacteria
 count bifidos
 17
@@ -1027,10 +1027,10 @@ count bifidos
 11
 
 MONITOR
-249
-476
-334
-521
+251
+458
+336
+503
 Desulfovibrio
 count desulfos
 17
@@ -1038,10 +1038,10 @@ count desulfos
 11
 
 MONITOR
--1
-521
-130
-566
+1
+503
+132
+548
 Percentage Clostridia
 100 * count closts / count turtles
 2
@@ -1049,10 +1049,10 @@ Percentage Clostridia
 11
 
 MONITOR
-130
-521
-285
-566
+132
+503
+287
+548
 Percentage Bifidobacteria
 100 * count bifidos / count turtles
 2
@@ -1060,10 +1060,10 @@ Percentage Bifidobacteria
 11
 
 MONITOR
-285
-521
-436
-566
+287
+503
+438
+548
 Percentage Desulfovibrio
 100 * count desulfos / count turtles
 2
@@ -1071,10 +1071,10 @@ Percentage Desulfovibrio
 11
 
 MONITOR
--1
-476
-88
-521
+1
+458
+90
+503
 Total Bacteria
 count turtles
 3
@@ -1082,10 +1082,10 @@ count turtles
 11
 
 MONITOR
-631
-476
-688
-521
+633
+458
+690
+503
 Glucose
 sum [glucose] of patches
 0
@@ -1093,10 +1093,10 @@ sum [glucose] of patches
 11
 
 MONITOR
-574
-476
-631
-521
+576
+458
+633
+503
 FO
 sum [FO] of patches
 2
@@ -1104,10 +1104,10 @@ sum [FO] of patches
 11
 
 MONITOR
-460
-476
-517
-521
+462
+458
+519
+503
 Lactate
 sum [lactate] of patches
 2
@@ -1115,10 +1115,10 @@ sum [lactate] of patches
 11
 
 MONITOR
-688
-476
-745
-521
+690
+458
+747
+503
 CS
 sum [CS] of patches
 2
@@ -1126,10 +1126,10 @@ sum [CS] of patches
 11
 
 MONITOR
-403
-476
-460
-521
+405
+458
+462
+503
 Inulin
 sum [inulin] of patches
 2
@@ -1137,10 +1137,10 @@ sum [inulin] of patches
 11
 
 MONITOR
-517
-476
-574
-521
+519
+458
+576
+503
 Lactose
 sum [Lactose] of patches
 2
@@ -1148,10 +1148,10 @@ sum [Lactose] of patches
 11
 
 MONITOR
-334
-476
-403
-521
+336
+458
+405
+503
 Bacteroides
 count bacteroides
 17
@@ -1159,10 +1159,10 @@ count bacteroides
 11
 
 MONITOR
-436
-521
-580
-566
+438
+503
+582
+548
 Percentage Bacteroides
 100 * count bacteroides / count turtles
 2
@@ -1170,9 +1170,9 @@ Percentage Bacteroides
 11
 
 SWITCH
-882
+1014
 435
-988
+1120
 468
 plots-on?
 plots-on?
@@ -1182,9 +1182,9 @@ plots-on?
 
 INPUTBOX
 627
-119
-753
 179
+753
+239
 inConcBacteroides
 0.0
 1
@@ -1193,9 +1193,9 @@ Number
 
 INPUTBOX
 627
-179
-753
 239
+753
+299
 inConcBifidos
 0.0
 1
@@ -1203,10 +1203,10 @@ inConcBifidos
 Number
 
 INPUTBOX
-752
-119
-884
+753
 179
+885
+239
 inConcClosts
 0.0
 1
@@ -1214,10 +1214,10 @@ inConcClosts
 Number
 
 INPUTBOX
-752
-179
-884
+753
 239
+885
+299
 inConcDesulfos
 0.0
 1
@@ -1225,10 +1225,10 @@ inConcDesulfos
 Number
 
 INPUTBOX
-1387
-159
-1514
-219
+1450
+177
+1577
+237
 randDist
 0.0
 1
@@ -1237,9 +1237,9 @@ Number
 
 INPUTBOX
 627
-239
-754
 299
+753
+359
 tickInflow
 480.0
 1
@@ -1248,9 +1248,9 @@ Number
 
 INPUTBOX
 162
-119
+178
 317
-179
+238
 initNumBifidos
 23562.0
 1
@@ -1259,9 +1259,9 @@ Number
 
 INPUTBOX
 162
-179
+238
 317
-239
+298
 initNumBacteroides
 5490.0
 1
@@ -1270,9 +1270,9 @@ Number
 
 INPUTBOX
 162
-239
+298
 317
-299
+358
 initNumClosts
 921.0
 1
@@ -1281,9 +1281,9 @@ Number
 
 INPUTBOX
 162
-299
+358
 317
-359
+418
 initNumDesulfos
 70.0
 1
@@ -1291,60 +1291,60 @@ initNumDesulfos
 Number
 
 TEXTBOX
-713
-418
-805
-436
+687
+154
+834
+184
 Flow Variables
-14
+20
 0.0
 1
 
 TEXTBOX
-414
-369
-557
-387
+377
+152
+570
+183
 Metabolite Variables
-14
+20
 0.0
 1
 
 TEXTBOX
-1423
-220
-1491
-271
+1489
+237
+1557
+288
 randFlow Variables\n(Disabled)
 14
 0.0
 1
 
 TEXTBOX
-197
-397
-282
-415
+176
+152
+317
+181
 Initial Bacteria
-14
+20
 0.0
 1
 
 TEXTBOX
-17
-364
-158
-382
+15
+129
+156
+179
 Bacteria Reproduction
-14
+20
 0.0
 1
 
 MONITOR
-580
-521
-682
-566
+582
+503
+684
+548
 gutPerm
 trueAbsorption
 6
@@ -1353,9 +1353,9 @@ trueAbsorption
 
 INPUTBOX
 7
-119
+178
 162
-179
+238
 bifidoDoub
 330.0
 1
@@ -1364,9 +1364,9 @@ Number
 
 INPUTBOX
 7
-179
+238
 162
-239
+298
 desulfoDoub
 330.0
 1
@@ -1375,9 +1375,9 @@ Number
 
 INPUTBOX
 7
-299
+358
 162
-359
+418
 clostDoub
 330.0
 1
@@ -1386,9 +1386,9 @@ Number
 
 INPUTBOX
 7
-239
+298
 162
-299
+358
 bacteroidDoub
 330.0
 1
@@ -1397,9 +1397,9 @@ Number
 
 INPUTBOX
 317
-119
+178
 472
-179
+238
 inFlowInulin
 10.0
 1
@@ -1408,9 +1408,9 @@ Number
 
 INPUTBOX
 317
-239
+298
 472
-299
+358
 inFlowFO
 25.0
 1
@@ -1419,9 +1419,9 @@ Number
 
 INPUTBOX
 472
-239
+298
 627
-299
+358
 inFlowLactose
 15.0
 1
@@ -1430,9 +1430,9 @@ Number
 
 INPUTBOX
 472
-179
+238
 627
-239
+298
 inFlowLactate
 0.0
 1
@@ -1441,9 +1441,9 @@ Number
 
 INPUTBOX
 472
-119
+178
 627
-179
+238
 inFlowGlucose
 30.0
 1
@@ -1452,9 +1452,9 @@ Number
 
 INPUTBOX
 317
-179
+238
 472
-239
+298
 inFlowCS
 0.1
 1
@@ -1463,9 +1463,9 @@ Number
 
 INPUTBOX
 317
-299
+358
 472
-359
+418
 bifido-lactate-production
 0.005
 1
@@ -1473,9 +1473,9 @@ bifido-lactate-production
 Number
 
 INPUTBOX
-1220
+1350
 435
-1287
+1417
 495
 testConst
 1.0
@@ -1484,10 +1484,10 @@ testConst
 Number
 
 INPUTBOX
-627
-299
-754
-359
+885
+277
+1015
+337
 midStuckConc
 10.0
 1
@@ -1495,10 +1495,10 @@ midStuckConc
 Number
 
 SLIDER
-161
-359
-318
-392
+162
+417
+317
+450
 seedPercent
 seedPercent
 0
@@ -1511,9 +1511,9 @@ HORIZONTAL
 
 SLIDER
 472
-299
+358
 627
-332
+391
 absorption
 absorption
 0
@@ -1525,10 +1525,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-754
-337
-884
-370
+885
+212
+1015
+245
 unstuckChance
 unstuckChance
 0
@@ -1540,10 +1540,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-754
-304
-884
-337
+885
+179
+1015
+212
 lowStuckBound
 lowStuckBound
 0
@@ -1555,10 +1555,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-754
-271
-884
-304
+885
+337
+1015
+370
 seedChance
 seedChance
 0
@@ -1570,10 +1570,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-754
-239
-884
-272
+753
+299
+883
+332
 flowDist
 flowDist
 0
@@ -1585,10 +1585,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-754
-370
-884
-403
+885
+245
+1015
+278
 maxStuckChance
 maxStuckChance
 0
@@ -1601,9 +1601,9 @@ HORIZONTAL
 
 SLIDER
 472
-332
+391
 627
-365
+424
 reserveFraction
 reserveFraction
 0
@@ -1613,6 +1613,16 @@ reserveFraction
 1
 NIL
 HORIZONTAL
+
+TEXTBOX
+904
+126
+1002
+176
+Stuck Variables\n
+20
+0.0
+1
 
 @#$#@#$#@
 ## Model Summary

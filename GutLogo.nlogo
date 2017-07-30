@@ -227,12 +227,6 @@ to stopCheck
   ;; Stop if negative number of metas calculated
   if negMeta [stop]
 
-  ;; Stop if flowDist > 1
-  if flowDist > 1 [
-    print "ERROR! flowDist > 1, portions of simulation will not work properly. Terminating Program."
-    stop
-  ]
-
   ;; Stop if any population hits 0 or there are too many turtles
   if (count turtles > 1000000) [ stop ]
   if not any? turtles [ stop ] ;; stop if all turtles are dead
@@ -269,10 +263,15 @@ to setTrueAbs
   ;; 0.723823204 is the weighted average immune response coefficient calculated for
   ;; Healthy bacteria gut percentages. This allows the absorption to change due to
   ;; bacteria populations, simulating immune response.
-
-  set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
-  (1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
-  (0.7 * ((count bifidos) / (count turtles)))))
+	
+	ifelse (any? turtles)[
+  	set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
+  	(1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
+  	(0.7 * ((count bifidos) / (count turtles)))))
+	][
+		set trueAbsorption 0
+		print "ERROR! Bacteria died out. Problem with simulation leading to inaccurate results. Terminating Program."
+	]
 end
 
 
@@ -323,6 +322,11 @@ end
 
 to makeMetabolites
 ;; Runs through all the metabolites and makes them, and moves them.
+  let frac (flowDist - (floor( flowDist )))
+
+  let span ((max-pycor - min-pycor) + 1)
+
+  let leftDist (pxcor - min-pxcor)
 
   if ((inulin < 0) or (CS < 0) or (FO < 0) or (lactose < 0) or (lactate < 0) or (glucose < 0)) [
     print "ERROR! Patch reported negative metabolite. Problem with simulation leading to inaccurate results. Terminating Program."
@@ -346,17 +350,18 @@ to makeMetabolites
   set glucose (glucose * remainFactor)
   set CS (CS * remainFactor)
 
-  ;;each left-most patch gets the inFlow number of metas
-  ifelse (pxcor = min-pxcor)[
-    set inulin ((inulin) + (inFlowInulin))
-    set FO ((FO) + (inFlowFO))
-    set lactose ((lactose) + (inFlowLactose))
-    set lactate ((lactate) + (inFlowLactate))
-    set glucose ((glucose) + (inFlowGlucose))
-    set CS ((CS) + (inFlowCS))
+  ;;The leftmost pacthes evenly split the inFlow number of metas
+  ifelse (leftDist < flowDist)[
+    let inFlowCoef (((min list 1 (flowDist - leftDist))) / (flowDist * span))
+    set inulin ((inulin) + (inFlowInulin * inFlowCoef))
+    set FO ((FO) + (inFlowFO * inFlowCoef))
+    set lactose ((lactose) + (inFlowLactose * inFlowCoef))
+    set lactate ((lactate) + (inFlowLactate * inFlowCoef))
+    set glucose ((glucose) + (inFlowGlucose * inFlowCoef))
+    set CS ((CS) + (inFlowCS * inFlowCoef))
   ]
   [
-    let added ((get-inulin (- (ceiling flowDist)) 0) * (1 - remainFactor))
+    let added ( ((get-inulin (- (ceiling flowDist)) 0) * (min list frac (1 - remainFactor))) + ((get-inulin (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
     ifelse (inulin + added) < 1000[
       set inulin (inulin + (added))
     ]
@@ -364,7 +369,7 @@ to makeMetabolites
 			set inulin (1000)
 		]
 
-    set added ((get-FO (- (ceiling flowDist)) 0) * (1 - remainFactor))
+    set added ( ((get-FO (- (ceiling flowDist)) 0) * (min list frac (1 - remainFactor))) + ((get-FO (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
     ifelse (FO + added) < 1000[
       set FO (FO + (added))
     ]
@@ -372,7 +377,7 @@ to makeMetabolites
 			set FO (1000)
 		]
 
-    set added ((get-lactose (- (ceiling flowDist)) 0) * (1 - remainFactor))
+    set added ( ((get-lactose (- (ceiling flowDist)) 0) * (min list frac (1 - remainFactor))) + ((get-lactose (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
     ifelse (lactose + added) < 1000[
       set lactose (lactose + (added))
     ]
@@ -380,7 +385,7 @@ to makeMetabolites
 			set lactose (1000)
 		]
 
-    set added ((get-lactate (- (ceiling flowDist)) 0) * (1 - remainFactor))
+    set added ( ((get-lactate (- (ceiling flowDist)) 0) * (min list frac (1 - remainFactor))) + ((get-lactate (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
     ifelse (lactate + added) < 1000[
       set lactate (lactate + (added))
     ]
@@ -388,7 +393,7 @@ to makeMetabolites
 			set lactate (1000)
 		]
 
-    set added ((get-glucose (- (ceiling flowDist)) 0) * (1 - remainFactor))
+    set added ( ((get-glucose (- (ceiling flowDist)) 0) * (min list frac (1 - remainFactor))) + ((get-glucose (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
     ifelse (glucose + added) < 1000[
       set glucose (glucose + (added))
     ]
@@ -396,7 +401,58 @@ to makeMetabolites
 			set glucose (1000)
 		]
 
-    set added ((get-CS (- (ceiling flowDist)) 0) * (1 - remainFactor))
+    set added ( ((get-CS (- (ceiling flowDist)) 0) * (min list frac (1 - remainFactor))) + ((get-CS (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
+    ifelse (CS + added) < 1000[
+      set CS (CS + (added))
+    ]
+		[
+			set CS (1000)
+		]
+  ]
+
+;;Need to handle case of patch which flowDist ends in from beginning
+  if(leftDist = (floor flowDist))[
+    let added ( ((get-inulin (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
+    ifelse (inulin + added) < 1000[
+      set inulin (inulin + (added))
+    ]
+		[
+			set inulin (1000)
+		]
+
+    set added ( ((get-FO (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
+    ifelse (FO + added) < 1000[
+      set FO (FO + (added))
+    ]
+		[
+			set FO (1000)
+		]
+
+    set added ( ((get-lactose (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
+    ifelse (lactose + added) < 1000[
+      set lactose (lactose + (added))
+    ]
+		[
+			set lactose (1000)
+		]
+
+    set added ( ((get-lactate (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
+    ifelse (lactate + added) < 1000[
+      set lactate (lactate + (added))
+    ]
+		[
+			set lactate (1000)
+		]
+
+    set added ( ((get-glucose (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
+    ifelse (glucose + added) < 1000[
+      set glucose (glucose + (added))
+    ]
+		[
+			set glucose (1000)
+		]
+
+    set added ( ((get-CS (- (floor flowDist)) 0) * (min list (1 - frac) (floor flowDist))) )
     ifelse (CS + added) < 1000[
       set CS (CS + (added))
     ]
@@ -924,9 +980,9 @@ end
 @#$#@#$#@
 GRAPHICS-WINDOW
 7
-60
+53
 5015
-119
+112
 -1
 -1
 50.0
@@ -950,10 +1006,10 @@ ticks
 30.0
 
 BUTTON
-28
-14
-92
-47
+18
+10
+82
+43
 Setup
 setup
 NIL
@@ -967,10 +1023,10 @@ NIL
 1
 
 BUTTON
-113
-14
-176
-47
+96
+10
+159
+43
 Go
 go
 T
@@ -1577,8 +1633,8 @@ SLIDER
 flowDist
 flowDist
 0
-1
-0.278
+4
+0.28
 0.01
 1
 NIL
@@ -1948,7 +2004,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0
+NetLogo 6.0.1
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

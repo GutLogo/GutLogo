@@ -17,7 +17,7 @@ public class onePatchTests {
 		//runs before the test, here it opens the example file with Netlogo Code
 		ws = HeadlessWorkspace.newInstance();
 		try {
-			ws.open("../NLCode.nlogo");
+			ws.open("../GutLogo.nlogo");
 			ws.setDimensions(new WorldDimensions(0, 0, 0, 0, 12.0, false, true));
 		}
 		catch(Exception ex) {
@@ -114,7 +114,7 @@ public class onePatchTests {
 		ws.command("ask patch 0 0 [makeMetabolites]");
 		ws.command("ask patch 0 0 [set result CS]");
 		int result = Integer.parseInt(Dump.logoObject(ws.report("getResult ")));
-		assertEquals(3, result);
+		assertEquals(2, result);
 	}
 
 	@Test

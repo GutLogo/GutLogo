@@ -17,7 +17,7 @@ public class twoPatchTests {
 		//runs before the test, here it opens the example file with Netlogo Code
 		ws = HeadlessWorkspace.newInstance();
 		try {
-			ws.open("../NLCode.nlogo");
+			ws.open("../GutLogo.nlogo");
 			ws.setDimensions(new WorldDimensions(0, 1, 0, 0, 12.0, false, true));
 		}
 		catch(Exception ex) {

@@ -2,7 +2,7 @@ breed [bifidos bifido] ;; define the Bifidobacteria breed
 breed [desulfos desulfo] ;; define the Desulfovibrio breed
 breed [closts clost] ;; define the Clostridia breed
 breed [bacteroides bacteroid];; define the bacteroides bacteroidus breed
-turtles-own [energy excrete isSeed isStuck remAttempts age flowConst doubConst]
+turtles-own [age doubConst energy excrete flowConst isSeed isStuck remAttempts]
 patches-own [glucose FO lactose lactate inulin CS glucosePrev FOPrev lactosePrev
 lactatePrev inulinPrev CSPrev glucoseReserve FOReserve lactoseReserve lactateReserve
 inulinReserve CSReserve avaMetas stuckChance]
@@ -263,7 +263,7 @@ to setTrueAbs
   ;; 0.723823204 is the weighted average immune response coefficient calculated for
   ;; Healthy bacteria gut percentages. This allows the absorption to change due to
   ;; bacteria populations, simulating immune response.
-	
+
 	ifelse (any? turtles)[
   	set trueAbsorption absorption * (0.723823204 / ((0.8 * ((count desulfos) / (count turtles))) +
   	(1 * ((count closts) / (count turtles)))+(1.2 * ((count bacteroides) / (count turtles))) +
@@ -1681,8 +1681,126 @@ Stuck Variables\n
 1
 
 @#$#@#$#@
-## Model Summary
-This model represents the relationships between _Bifidobaceria_, _Desulfovibrio_, and _Clostridia_. These bacteria are important in the appearance of Autism Spectrum Disorders (ASDs). High levels of _Desulfovibrio_ and _Clostridia_ and low levels of _Bifidobacteria_ have been found in the gut of children with ASDs. Therefore, a gut microbiome dominated by _Bifidobacteria_ is likely to be that of a healthy child, whereas a gut microbiome dominated by _Desulfovibrio_ and/or _Clostridia_ is likely to be that of an autistic child.
+# Model summary
+This model is a framework for the simulation of bacteria populations in the human gut. By default, the model is tuned and set to model the ileum of the small intestine and bacteria correlated to Autism Spectrum Disorders. High levels of Desulfovibrio and Clostridium and low levels of Bifidobacterium have been found in the gut of children with ASDs. Therefore, a gut microbiome dominated by Bifidobacteria is likely to be that of a healthy child, whereas a gut microbiome dominated by Desulfovibrio and/or Clostridium is likely to be that of an autistic child. The framework can be expanded to model any number of bacterial species or conditions and provide an initial estimation of how conditions affect the populations.
+
+# How to use the interface
+
+# Variables
+
+
+##turtle breeds
+
+**bacteroides**:  The bacteroid breed of turtles, agentset that contains all of the bacteroid
+turtle types.
+
+**bifidos**: The bifidobacteria breed of turtles, agentset that contains all of the Bifidobacterium
+
+**closts**:  The clostridia breed of turtles, agentset that contains all of the Clostridium
+
+**desulfos**: The desulfovibrio breed of turtles, agentset that contains all of the Desulfobrivios
+
+
+##turtle types
+
+**bacteroid**: The generic bacteroides type.
+
+**bifido**: The generic bifidobacteria type.
+
+**clost**: The generic clostridia type.
+
+**desulfo**: The generic desulfovibrio type.
+
+
+##turtles-own
+
+**age**: Positive integer value representing the number of ticks the bacteria has been alive for. Used to determine if a bacteria would reproduce on the current tick. Seed colony bacteria are given a random age from 0 to 1000.
+
+**doubConst**: A floating point value that can be used to modify the doubling time of a bacteria. This value is multiplied by the bacterial doubling times inputted to get the tick mod on which bacteria can reproduce.
+
+**energy**: Floating point number used to represent the health of a bacteria. The energy of a bacteria is reduced by a set amount each tick and increased when the bacteria consumes food. During reproduction, half of the energy of a parent bacteria is transferred to the child .
+
+**excrete**: Boolean value that notes if a bacteria would exit the simulation. If set true, the bacteria will die on the next call of death-”bacteriaName”. If false, no effect.
+
+**flowConst**: A floating point value used to account for possible differences in flow rate depending on bacterial species. This value is multiplied by the flowDist to calculate the distance that a bacteria will travel on a tick.
+
+**isSeed**: Boolean value noting if a bacteria is a seed colony. Seed colonies do not move with the flow and are permanently stuck to the wall.
+
+**isStuck**: Boolean value noting if a bacteria is currently stuck to the wall, bacteria stuck to the wall will not move with the flow.
+
+**remAttempts**: Positive integer value used to keep track of the number of attempts provided to the bacteria to consume some food source. Limits the maximum number of attempts a bacteria can make each tick.
+
+**stuckChance**: Floating point value tracking the percent chance a bacteria will become ‘stuck’. Set by the setStuckChance function.
+
+
+##patches-own
+
+**avaMetas**: Mutating list of the integers 10 through 15. Each int represents a food source that is available in the current patch. When every metabolite is available, the list will be [10 11 12 13 14 15]. If no metabolite is available, the list will be empty. This is used in the eating code so only food sources that are available will be presented to bacteria.
+
+**CS**: Floating point value that represents the number of chondroitin sulfate units that are available for the bacteria to consume
+
+**CSPrev**: Floating point value that represents the number of chondroitin sulfate units that were in a given patch before the movement phase of a given tick. (Used to safely update patch values)
+
+**CSReserve**: Floating point value representing the number of chondroitin sulfate units that are in a given patch but at that tick bacteria are unable to consume. This value will decrease as the x-coordinate increases
+
+**FO**: Floating point value that represents the number of fructooligosaccharide units that are available for the bacteria to consume
+
+**FOPrev**: Floating point value that represents the number of fructooligosaccharide units that were in a given patch before the movement phase of a given tick. (Used to safely update patch values)
+
+**FOReserve**: Floating point value representing the number of fructooligosaccharide units that are in a given patch but at that tick bacteria are unable to consume. This value will decrease as the x-coordinate increases
+
+**glucose**: Floating point value that represents the number of glucose units that are available for the bacteria to consume
+
+**glucosePrev**: Floating point value that represents the number of glucose units that were in a given patch before the movement phase of a given tick. (Used to safely update patch values)
+
+**glucoseReserve**: Floating point value representing the number of glucose units that are in a given patch but at that tick bacteria are unable to consume. This value will decrease as the x-coordinate increases
+
+**inulin**: Floating point value that represents the number of inulin units that are available for the bacteria to consume
+
+**inulinPrev**: Floating point value that represents the number of inulin units that were in a given patch before the movement phase of a given tick. (Used to safely update patch values)
+
+**inulinReserve**: Floating point value representing the number of inulin units that are in a given patch but at that tick bacteria are unable to consume. This value will decrease as the x-coordinate increases
+
+**lactate**: Floating point value that represents the number of lactate units that are available for the bacteria to consume
+
+**lactatePrev**: Floating point value that represents the number of lactate units that were in a given patch before the movement phase of a given tick. (Used to safely update patch values)
+
+**lactateReserve**: Floating point value representing the number of lactate units that are in a given patch but at that tick bacteria are unable to consume. This value will decrease as the x-coordinate increases
+
+**lactose**: Floating point value that represents the number of lactose units that are available for the bacteria to consume
+
+**lactosePrev**: Floating point value that represents the number of lactose units that were in a given patch before the movement phase of a given tick. (Used to safely update patch values)
+
+**lactoseReserve**: Floating point value representing the number of lactose units that are in a given patch but at that tick bacteria are unable to consume. This value will decrease as the x-coordinate increases
+
+
+##globals
+
+**negMeta**: Boolean value set to true if a patch ever has a negative number of a metabolite. Used to terminate program w/o an error popup.
+
+**trueAbsorption**: The actual absorption based on the user-entered absorption and the relative population percentages of the different bacteria. This represents the fraction of metabolites each patch absorbs each tick.
+
+**negMeta**: Boolean value set to true if a patch ever has a negative number of a metabolite. Used to terminate program w/o an error popup.
+
+**testState**: Postive integer value that tracks which state the experiment is in. Used exclusively in the automatic experiment testing.
+
+**result**: For running the JUnit tests.
+
+
+#Copyright and other information
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 @#$#@#$#@
 default
 true
@@ -2004,7 +2122,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.0.1
+NetLogo 6.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@

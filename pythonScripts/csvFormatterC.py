@@ -22,24 +22,15 @@ with open(filename, 'rb') as csvfile:
 	reader = csv.DictReader(csvfile)
 	dataList = list(reader)#list of dictionaries
 
-#split up the spatial data
-for row in dataList:
-    data = row['getAllBactPatchLin']
-    #remove first and last character
-    data = data[1:-1]
-    splitData = data.split()
-    for i in range(len(splitData)):
-        row['row ' + str(i)] = splitData[i]
-
 #list of entries to avg and format
 entryList = sorted(dataList[0].keys())
+entryList.remove('getAllBactPatchLin')
 entryList.remove('[run number]')
 entryList.remove('[step]')
 entryList.remove('initNumBacteroides')
 entryList.remove('initNumBifidos')
 entryList.remove('initNumClosts')
 entryList.remove('initNumDesulfos')
-entryList.remove('getAllBactPatchLin')
 
 testSet = set()
 stepSet = set()

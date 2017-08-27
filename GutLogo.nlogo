@@ -891,7 +891,7 @@ to-report getStuckChance [xVal]
   report [stuckChance] of patch xVal 0
 end
 
-to-report gettrueAbs
+to-report getTrueAbs
 ;; Needed to run JUnit tests
   report trueAbsorption
 end
@@ -1681,10 +1681,39 @@ Stuck Variables\n
 1
 
 @#$#@#$#@
+#GutLogo Documentation
+This document contains information on how to use the model and how it functions. One can search for specific information about a component by using the find tool from the edit option tab.
+
+#Copyright and other information
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 # Model summary
 This model is a framework for the simulation of bacteria populations in the human gut. By default, the model is tuned and set to model the ileum of the small intestine and bacteria correlated to Autism Spectrum Disorders. High levels of Desulfovibrio and Clostridium and low levels of Bifidobacterium have been found in the gut of children with ASDs. Therefore, a gut microbiome dominated by Bifidobacteria is likely to be that of a healthy child, whereas a gut microbiome dominated by Desulfovibrio and/or Clostridium is likely to be that of an autistic child. The framework can be expanded to model any number of bacterial species or conditions and provide an initial estimation of how conditions affect the populations.
 
 # How to use the interface
+The GutLogo simulator makes use of the NetLogo interface. The model comes with default values that match our control simulations. A user can begin the simulation by clicking the setup and then the go buttons. The long bar underneath the buttons will visualize the current condition of the gut. The plot on the right will display the populations of the bacterial species in the gut. When testing conditions, be sure to allow the simulation to reach an equilibrium-like state before inducing a perturbation. 
+
+The left block of inputs control the doubling times of the bacterial species. Feedback loops have not yet been implemented. Therefore, widely different doubling times will lead to an unstable simulation. The inital bacteria column of inputs control the colonies that initially populate the gut. The 'initNum' variables control the initial values for each respective species while the 'seedPercent' determines the fraction of colonies permanently affixed to the gut lining. 
+
+The center two columns control variables affecting the metabolites in the model. The 'inFlow' variables alter the amount of each metabolite that enters the simulation each tick. The amount of lactate produced by bifidobacteria can be altered by 'bifido-lactate-production'. Absorption and 'reserveFraction' were both disabled for the experiments done in this paper. Absorption represents the percentage of metabolites that pass through the gut into the bloodstream. An absorption check is done every tick and the percentage of metabolite is removed. A 'reserveFraction' of greater than zero will activate the reserve metabolite module of the simulation. This module inhibits the bacteria from accessing a portion of the metabolites. The portion of metabolite avaliable is a function of position down the gut. Therefore, a colony further down the gut would have access to a larger portion of the remaining bacteria than a colony closer to the start.
+
+The next section of inputs are variables dealing with the fluid flow and probiotics of the simulation. The 'inConc' inputs determine the amount of each species of bacteria that will enter the simulation. The 'tickInflow' variable controls how often bacteria enter the gut. The default setting of 480 ticks corresponds to every 8 hours. The 'flowDist' slider controls the flow rate throughout the gut, the value is in computational patches. The default value of 0.28 patches reflects the average flow rate in the small intestine. The volumetric flow rate of the small intestine is between 2.5 and 20 ml/min. This averages out to 11.25ml/min or 11.25 cc/min. The diameter of the small intestine is approximately 1 in. or 2.54 cm. This means the cross-sectional area is 5.07 sq. cm. Therefore, the lateral flow rate of the small intestine is 2.22 cm/min. Since the circumference of the small intestine is then 7.98 cm., the area a patch represents is a 7.98 cm by 7.98 cm square. As only 1-dimensional flow is being modeled, it would take one simulated minute (one tick) for the metabolites and bacteria to move  2.22/7.98 or .278 of a patch length.
+
+The final section of inputs consists of variables controlling the chances a bacteria can become embedded in the gut lining and not be affected by the fluid flow. The 'lowStuckBound' is the lower bound that stuck chance can be, any lower and it will be rounded down to 0. 'UnstuckChance' is the chance that a bacteria can be dislodged from the gut lining and once again be affected by the fluid flow. 'MaxstuckChance' and 'midStuckConc' are the inputs to the exponential-like function controlling 'stuckChance'. 'SeedChance' is the probability that a colony already in the gut lining becomes a permanent member, never to become dislodged.
+
+One can use the Behaviorspace module to schedule multiple simulations in parallel by clicking the tools option and selecting Behaviorspace. Several of the experiments done in this paper are available for editing in the interface. 
 
 # Variables
 
@@ -1787,20 +1816,266 @@ turtle types.
 **result**: For running the JUnit tests.
 
 
-#Copyright and other information
+##Function Documentation:
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+**display-labels**:
+Function Type: 	Procedure
+Input:			None
+Output:		None
+Purpose:		Shows levels of energy on the turtles in the viewer
+Description:		Energies displayed are rounded. Bacteroides energies not displayed
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+**setup**:
+Function Type: 	Procedure
+Input:			None
+Output:		None
+Purpose:		Initializes the simulation based on the global variables’ values.
+Description:		Populates the world with seed bacteria placed randomly and initializes all variables not given by user. Sets initial trueAbsorption value and resets the tick counter. Resets the simulation completely when run.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
+**go**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		Runs the simulation
+Description:		This function is executed at the start of each tick. Calls all of the relevant functions in order and then increments the tick counter.
+
+**stopCheck**:
+Function Type:	Procedure
+Input:			None
+Output:		None, can print error messages
+Purpose:		Determine if simulation needs to terminate and terminates it
+Description:		This function can be used to stop the simulation automatically and needs to be called in the go function.
+
+**setStuckChance**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		controls the stuckChance variable for every patch
+Description:		Modifies stuck chance based on an 1 - exponential function of population. This function is specified by the midStuckConc variable and the maxStuckChance variable. Additionally, if the result of the function is considered low enough, the stuckChance is set to zero.
+
+**createSeeds**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		Make some stuck bacteria into seeds
+Description:		If the bacteria is already stuck and will not become unstuck, determines if that the bacteria will become a seed.
+
+**setTrueAbs**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		Controls the actual rate of absorption
+Description:		Adds the weighted percentages of each of the bacteria together and divides an ideal result by the sum. Modifies the user-input value for absorption by a factor equal to this quotient. The ideal value is based on qualitative approximations to how the body reacts to each of the four currently modeled bacteria. This was made to represent the potential inflammatory response to the existence of the various bacteria. By setting the absorption to 0, this function is in effect disabled as well as any incorporation of absorption to the model. This is the default setting.
+
+**bactIn**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		Controls when bacteria enter the system.
+Description:		Has an if statement that takes the mod of the tick count wrapped around a call to inConc. Defaults to allowing inConc to be called every tick.
+
+**death-bifidos**:
+Function Type:	Procedure
+Input:			Must be called on an agent, e.g. via ‘ask bifidos’
+Output:		None
+Purpose:		Removes dead bifidobacteria from model
+Description:		Called as part of bacteria behavior. Will have bacteria die if energy is less than or equal to 0 or if excreted.
+
+**death-closts**:
+Function Type:	Procedure
+Input:			Must be called on an agent, e.g. via ‘ask closts’
+Output:		None
+Purpose:		Removes dead clostridia from model
+Description:		Called as part of bacteria behavior. Will have bacteria die if energy is less than or equal to 0 or if excreted.
+
+**death-desulfos**:
+Function Type:	Procedure
+Input:			Must be called on an agent, e.g. via ‘ask desulfos’
+Output:		None
+Purpose:		Removes dead desulfovibrios from model
+Description:		Called as part of bacteria behavior. Will have bacteria die if energy is less than or equal to 0 or if excreted.
+
+**death-bacteroides**:
+Function Type:	Procedure
+Input:			Must be called on an agent, e.g. via ‘ask bacteroides’
+Output:		None
+Purpose:		Removes dead bacteroides from model
+Description:		Called as part of bacteria behavior. Will have bacteria die if energy is less than or equal to 0 or if excreted.
+
+**make-metabolites**:
+Function Type:	Procedure
+Input:			Must be called on a patch, e.g. via ‘ask patches’
+Output:		None
+Purpose:		Moves metabolites through the model
+Description:		Multipart function. Given a patch, it first removes an amount of each metabolite equal to the fraction that would not leave the patch assuming the metabolite was evenly spread out in the given patch. It then determines the amount of each metabolite that flows into the patch either from the patches before it or from the inflow into the model. During this process, it uses the helper ‘get-<metabolite>’ functions which provide the total amount of the given metabolite at the start of the tick on which this function was called. In this process, an amount of each metabolite can be reserved based on x-coordinate as well as a user-input global variable. The default setting is 0, so this will not occur unless altered. Additionally, absorption by the body may be accounted for in this function by altering the absorption global variable. However, the default setting is to not account for this as the default value for absorption is 0.
+
+**store-metabolites**:
+Function Type: 	Procedure
+Input:			Must be called on a patch, e.g. via ‘ask patches’
+Output:		None
+Purpose:		Ensures ‘<metabolite>Prev’ variables are up to date.
+Description: 		Helper function for make-metabolites. Sets ‘<metabolite>Prev’ variables to current levels to allow for correct transfer between patches.
+
+**bacteria-tick-behavior**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		Controls the behavior of each bacterial species.
+Description:		Call the flowMove, randMove, checkStuck, and death functions each tick. Then runs the reproduction code when the age of the bacteria matches a multiple of the doubling time. Finally increases the age of the bacteria.
+
+**reproduceBact**:
+Function Type:	Procedure
+Input:			Must be called on an agent, e.g. via ‘ask turtles’
+Output:		None
+Purpose:		If the bacteria called on is of age, reproduce
+Description:		Creates a new bacteria from the parent bacteria with half of the the parent’s energy. The parent’s energy will be halved and its energy must be greater than a half to reproduce. The child bacteria will never be a seed or stuck, its age will be 0.
+
+**randMove**:
+Function Type:	Procedure
+Input:			Must be called on an agent, e.g. via ‘ask turtles’
+Output:		None
+Purpose:		Defines the random movement of the bacteria.
+Description:		DISABLED. This random movement accounts for the turbulence in the flow, motility of the bacteria, and other similar movements. Moves the bacteria in a random direction by the length of the randDist variable.
+
+**flowMove**:
+Function Type:	Procedure
+Input:			Must be called on an agent, e.g. via ‘ask turtles’
+Output:		None
+Purpose:		Move bacteria due to flow in gut
+Description:		Moves the bacteria of down the intestine by the flow distance multiplied by the bacteria’s flow constant. If the bacteria would move past the bounds of the simulation, the excrete boolean of the bacteria is set to true. 
+
+**checkStuck**:
+Function Type:	Procedure
+Input:			Must be called on an agent, e.g. via ‘ask turtles’
+Output:		None
+Purpose:		Determine whether or not a given agent becomes stuck/unstuck
+Description:		Checks if the bacteria will become stuck or unstuck depending on the user-input values of the global variables.
+
+**inConc**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		Control the amount of bacteria flowing into the simulation
+Description:		This can be used to simulate probiotics or bacteria from earlier sections of the intestine. Creates bacteria on the the minimum x-coord and a random y-coord. The bacteria have a random age between 0 and 1000 and are not seeds or stuck.
+
+**bactEat**:
+Function Type:	Procedure
+Input:			metaNum, Must be called on an agent, e.g. via ‘ask turtles’
+Output:		None
+Purpose:		Feed the bacteria agents
+Description:		This code is run through an agent and passed a metabolite number from avaMeta. If the species of the bacteria can process the metabolite, then the energy of the bacteria is increased. Then the metabolite counts in that patch is decreased and if the metabolite count would be reduced below 1, the metabolite is removed from avaMetas. Called through patchEat.
+
+**patchEat**:
+Function Type:	Procedure
+Input:			must be called on a patch, e.g. via ‘ask patches’
+Output:		None
+Purpose:		Controls the bacteria eating process on the current patch.
+Description:		Initializes the remAttempts for all of the bacteria on the patch and then decreases the energy of the bacteria. Then initializes the allMetas, avaMetas, and hungryBact lists. While there are avaMetas and there are any hungryBact chooses one of the avaMetas and then a hungryBact and runs the bactEat code on that bacteria and then decreases its remAttempts. At the end of the while, the hungryBact list is reinitialized to remove bacteria that have eaten or have no more attempts. This loops until there are no more hungryBact or metabolites.
+
+**getAllBactPatchLin**:
+Function Type:	Reporter
+Input:			None
+Output:		List of the number of bacteria on each patch
+Purpose:		Used to help collect data in BehaviorSpace
+Description:		Returns a list of the number of bacteria on each patch. Only works properly with a world with height of 1
+
+**getNumBactLin**:
+Function Type:	Reporter
+Input:			x-coordinate
+Output:		The number of bacteria on the patch at given x-coord
+Purpose:		Used to help collect data in BehaviorSpace
+Description:		Returns the number of bacteria on the patch at given x-coord. Only works properly with a world with height of 1.
+
+**getNumSeeds**:
+Function Type:	Reporter
+Input:			None
+Output:		The number of bacteria with isSeed set to true
+Purpose:		Used to help collect data in BehaviorSpace
+Description:		Returns the number of bacteria with isSeed set to true.
+
+**getStuckChance**:
+Function Type:	Reporter
+Input:			x-coordinate
+Output:		The stuckChance of the patch at the given x-coordinate.
+Purpose:		Allows JUnit tests to check if the stuck chance is correct
+Description:		Returns the stuckChance at patch (x 0). Works optimally with a world with a height of 1.
+
+**getTrueAbs**:
+Function Type:	Reporter
+Input:			None
+Output:		trueAbsorption
+Purpose:		Allows JUnit tests to check if the trueAbsorption is correct.
+Description:		Returns the trueAbsorption of the model. Is irrelevant when absorption is not incorporated.
+
+**getResult**:
+Function Type:	Reporter
+Input:			None
+Output:		result
+Purpose:		Allows JUnit tests to retrieve any necessary, miscellaneous values from model.
+Description:		Returns the result global variable. Necessary for JUnit testing.
+
+**get-glucose**: 
+Function Type:	Reporter
+Input:			x-coordinate and y-coordinate
+Output:		amount of glucose in patch
+Purpose:		helper function for make/store metabolites
+Description:		helper reporter function that reports the amount of glucose in a given patch before the movement of the metabolites began for that tick.
+
+**get-lactate**: 
+Function Type:	Reporter
+Input:			x-coordinate and y-coordinate
+Output:		amount of glucose in patch
+Purpose:		helper function for make/store metabolites
+Description:		helper reporter function that reports the amount of lactate in a given patch before the movement of the metabolites began for that tick.
+
+**get-inulin**: 
+Function Type:	Reporter
+Input:			x-coordinate and y-coordinate
+Output:		amount of glucose in patch
+Purpose:		helper function for make/store metabolites
+Description:		helper reporter function that reports the amount of inulin in a given patch before the movement of the metabolites began for that tick.
+
+**get-lactose**: 
+Function Type:	Reporter
+Input:			x-coordinate and y-coordinate
+Output:		amount of glucose in patch
+Purpose:		helper function for make/store metabolites
+Description:		helper reporter function that reports the amount of lactose in a given patch before the movement of the metabolites began for that tick.
+
+**get-FO**: 
+Function Type:	Reporter
+Input:			x-coordinate and y-coordinate
+Output:		amount of glucose in patch
+Purpose:		helper function for make/store metabolites
+Description:		helper reporter function that reports the amount of fructooligosaccharide in a given patch before the movement of the metabolites began for that tick.
+
+**get-CS**:  
+Function Type:	Reporter
+Input:			x-coordinate and y-coordinate
+Output:		amount of glucose in patch
+Purpose:		helper function for make/store metabolites
+Description:		helper reporter function that reports the amount of chondroitin sulfate in a given patch before the movement of the metabolites began for that tick.
+
+**flowRateTest**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		help run the Flow Rate Tests
+Description:		sets flowDist to specific values depending on the tick number.
+
+**glucTest**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		help run the Glucose Tests
+Description:		sets inFlowGlucose to specific values depending on the tick number.
+
+**bifidosTest**:
+Function Type:	Procedure
+Input:			None
+Output:		None
+Purpose:		help run the Glucose Tests
+Description:		sets inConcBifidos to specific values depending on the tick number.
 @#$#@#$#@
 default
 true
